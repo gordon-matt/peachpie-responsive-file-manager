@@ -158,7 +158,7 @@ if ( ! empty($_FILES))
 			{
 				unlink($targetFile);
 				header('HTTP/1.1 406 Not enought Memory',TRUE,406);
-				exit();
+				//exit();
 			}
 		}
 		echo $_FILES['file']['name'];
@@ -166,13 +166,13 @@ if ( ! empty($_FILES))
 	else // file ext. is not in the allowed list
 	{
 		header('HTTP/1.1 406 file not permitted',TRUE,406);
-		exit();
+		//exit();
 	}
 }
 else // no files to upload
 {
 	header('HTTP/1.1 405 Bad Request', TRUE, 405);
-	exit();
+	//exit();
 }
 
 // redirect
