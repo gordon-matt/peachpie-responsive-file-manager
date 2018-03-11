@@ -9,4 +9,4 @@ Getting Started
 
 2. Browse to http://localhost:5004/filemanager/dialog.php
 
-**NOTE**: At thsi time, this project is not working properly. The reason has yet to be determined, but it could be due to some parts of Peachpie not being implemented yet.
+**NOTE**: At this time, this project is not working properly. The reason has yet to be determined, but it could be due to some parts of Peachpie not being implemented yet.
