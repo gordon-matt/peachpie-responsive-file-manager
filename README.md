@@ -1,3 +1,5 @@
+![Peachpie Responsive File Manager](https://github.com/gordon-matt/peachpie-responsive-file-manager/raw/master/Misc/logo.png)
+
 # peachpie-responsive-file-manager
 Responsive File Manager running on .NET Core with Peachpie
 

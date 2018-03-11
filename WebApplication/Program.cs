@@ -16,8 +16,9 @@ namespace WebApplication
 
         public static IWebHost BuildWebHost(string root, string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>().UseWebRoot(root)
-                .UseContentRoot(root)
+                .UseStartup<Startup>()
+                //.UseWebRoot(root) // Doing this fixes PHP, but breaks MVC
+                //.UseContentRoot(root) // Doing this fixes PHP, but breaks MVC
                 .Build();
     }
 }
