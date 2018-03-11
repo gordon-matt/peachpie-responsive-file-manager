@@ -1031,7 +1031,7 @@ function debugger($input, $trace = false, $halt = false)
 
 	if ($halt == true)
 	{
-		exit();
+		//exit();
 	}
 }
 
