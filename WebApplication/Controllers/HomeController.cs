@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Models;
 
@@ -10,25 +6,25 @@ namespace WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        [Route("")]
+        public ActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        [Route("iframe")]
+        public ActionResult IFrame()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
-        public IActionResult Contact()
+        [Route("standalone")]
+        public ActionResult Standalone()
         {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
+        [Route("error")]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
