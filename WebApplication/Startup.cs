@@ -12,6 +12,7 @@ using WebApplication.Data;
 using WebApplication.Models;
 using WebApplication.Services;
 using Peachpie.Web;
+using System.IO;
 
 namespace WebApplication
 {
@@ -65,7 +66,11 @@ namespace WebApplication
 
             app.UseSession();
 
-            app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager"));
+            app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
+            {
+                RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website"
+            });
+
             app.UseDefaultFiles();
 
             app.UseStaticFiles();
