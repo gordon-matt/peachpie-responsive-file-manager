@@ -23,4 +23,9 @@
     <ProjectReference Include="..\Website\Website.msbuildproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Media\Thumbs\" />
+    <Folder Include="wwwroot\Media\Uploads\" />
+  </ItemGroup>
+
 </Project>
