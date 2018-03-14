@@ -5,8 +5,14 @@ Responsive File Manager running on .NET Core with Peachpie
 
 Getting Started
 
-1. Change the `current_path` and `thumbs_base_path` paths in `Website/filemanager/config/config.php` for your local file system. This is supposed to work with relative file paths, but Peachpie doesn't seem to allow that yet.
+1. Run `dotnet restore`
 
-2. Browse to http://localhost:5004/filemanager/dialog.php
+2. Right-click the `Website` project and choose **Reload Project**
 
-**NOTE**: At this time, this project is not working properly. The reason has yet to be determined, but it could be due to some parts of Peachpie not being implemented yet.
+3. Change the `current_path` and `thumbs_base_path` paths in `Website/filemanager/config/config.php` for your local file system. This is supposed to work with relative file paths, but Peachpie doesn't seem to allow that yet.
+
+4. Set the WebApplication project as the default, if it isn't already.
+
+5. Run and test one of the 3 demo pages
+
+**NOTE**: At this time, this project is not working properly. This is partly due to the fact that some PHP functions are not yet  implemented - for example: there are some missing functions in the `Peachpie.Library.Graphics` project. Further details can be found here: [Peachpie Issue 185](https://github.com/peachpiecompiler/peachpie/issues/185)
