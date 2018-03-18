@@ -5,12 +5,11 @@
     <UserSecretsId>aspnet-WebApplication-0ED9D933-07CC-46A2-8DF4-30AF442E8C9F</UserSecretsId>
   </PropertyGroup>
 
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" PrivateAssets="All" />
-    <PackageReference Include="Peachpie.NETCore.Web" Version="0.9.0-CI00855" />
+    <PackageReference Include="Peachpie.NETCore.Web" Version="0.9.0-CI00867" />
   </ItemGroup>
 
   <ItemGroup>
