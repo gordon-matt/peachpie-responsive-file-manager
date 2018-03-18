@@ -76,7 +76,7 @@ $config = array(
 	| with final /
 	|
 	*/
-	'current_path' => 'D:\\Source\\GitHub\\peachpie-responsive-file-manager\\WebApplication\\wwwroot\\Media\\Uploads\\',
+	'current_path' => '..\\..\\WebApplication\\wwwroot\\Media\\Uploads\\',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ $config = array(
 	| DO NOT put inside upload folder
 	|
 	*/
-	'thumbs_base_path' => 'D:\\Source\\GitHub\\peachpie-responsive-file-manager\\WebApplication\\wwwroot\\Media\\Thumbs\\',
+	'thumbs_base_path' => '..\\..\\WebApplication\\wwwroot\\Media\\Thumbs\\',
 
 	/*
 	|--------------------------------------------------------------------------
