@@ -15,9 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Peachpie.Compiler.Tools" Version="0.9.0-CI00867" />
-    <PackageReference Include="Peachpie.NET.Sdk" Version="0.9.0-CI00867" PrivateAssets="Build" />
-    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.0-CI00867" />
-    <PackageReference Include="Peachpie.Library.Network" Version="0.9.0-CI00867" />
+    <DotNetCliToolReference Include="Peachpie.Compiler.Tools" Version="0.9.0-CI00869" />
+    <PackageReference Include="Peachpie.NET.Sdk" Version="0.9.0-CI00869" PrivateAssets="Build" />
+    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.0-CI00869" />
+    <PackageReference Include="Peachpie.Library.Network" Version="0.9.0-CI00869" />
   </ItemGroup>
 </Project>
