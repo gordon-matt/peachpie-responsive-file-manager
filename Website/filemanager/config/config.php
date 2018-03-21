@@ -66,7 +66,7 @@ $config = array(
 	| with start and final /
 	|
 	*/
-	'upload_dir' => '/Media/Uploads/',
+	'upload_dir' => $appsettings['upload_dir'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -76,7 +76,7 @@ $config = array(
 	| with final /
 	|
 	*/
-	'current_path' => '..\\..\\WebApplication\\wwwroot\\Media\\Uploads\\',
+	'current_path' => $appsettings['current_path'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ $config = array(
 	| DO NOT put inside upload folder
 	|
 	*/
-	'thumbs_base_path' => '..\\..\\WebApplication\\wwwroot\\Media\\Thumbs\\',
+	'thumbs_base_path' => $appsettings['thumbs_base_path'],
 
 	/*
 	|--------------------------------------------------------------------------
