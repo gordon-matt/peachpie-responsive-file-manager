@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Pchp.Core;
 using Peachpie.Web;
 using WebApplication.Data;
 using WebApplication.Models;
@@ -34,6 +36,8 @@ namespace WebApplication
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            
+            services.Configure<ResponsiveFileManagerConfig>(Configuration.GetSection("ResponsiveFileManagerConfig"));
 
             // Adds a default in-memory implementation of IDistributedCache.
             services.AddDistributedMemoryCache();
@@ -63,9 +67,23 @@ namespace WebApplication
 
             app.UseSession();
 
+            var rfmOptions = app.ApplicationServices.GetRequiredService<IOptions<ResponsiveFileManagerConfig>>().Value;
+
             app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
             {
-                RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website"
+                RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website",
+                BeforeRequest = (Context ctx) =>
+                {
+                    // Since the config.php file is compiled, we cannot modify it once deployed... everything is hard coded there.
+                    //  TODO: Place these values in appsettings.json and pass them in here to override the ones from config.php
+
+                    ctx.Globals["appsettings"] = (PhpValue)new PhpArray()
+                    {
+                        { "upload_dir", rfmOptions.UploadDirectory },
+                        { "current_path", rfmOptions.CurrentPath },
+                        { "thumbs_base_path", rfmOptions.ThumbsBasePath }
+                    };
+                }
             });
 
             app.UseDefaultFiles();
