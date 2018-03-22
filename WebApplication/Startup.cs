@@ -71,7 +71,7 @@ namespace WebApplication
 
             app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
             {
-                RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website",
+                //RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website",
                 BeforeRequest = (Context ctx) =>
                 {
                     // Since the config.php file is compiled, we cannot modify it once deployed... everything is hard coded there.

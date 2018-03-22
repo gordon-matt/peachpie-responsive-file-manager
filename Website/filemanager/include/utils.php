@@ -569,9 +569,9 @@ function image_check_memory_usage($img, $max_breedte, $max_hoogte)
     // NOTE: Setting memory_limit is currently not supported by Phalanger
     //  However, simply returning true here seems to be fine.. we can ignore this altogether...;
     
-    //return true;
+    return true;
     
-	if (file_exists($img))
+	/*if (file_exists($img))
 	{
 		$K64 = 65536; // number of bytes in 64K
 		$memory_usage = memory_get_usage();
@@ -604,7 +604,7 @@ function image_check_memory_usage($img, $max_breedte, $max_hoogte)
 	else
 	{
 		return false;
-	}
+	}*/
 }
 
 /**

@@ -7,7 +7,7 @@
         /// Path from base_url to base of upload folder. Use start and final /
         /// </summary>
         public string UploadDirectory { get; set; }
-
+        
         /// <summary>
         /// Relative path from filemanager folder to upload folder. Use final /
         /// </summary>
