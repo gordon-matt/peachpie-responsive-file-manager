@@ -8,6 +8,13 @@
     <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>ResponsiveFileManager</AssemblyName>
+	<PackageId>ResponsiveFileManager</PackageId>
+    <Authors>Matt Gordon</Authors>
+    <Company>Matt Gordon</Company>
+    <Product>Responsive File Manager</Product>
+    <Description>Responsive File Manager running on .NET Core with Peachpie</Description>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
