@@ -11,13 +11,14 @@
     <Copyright>Copyright</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" PrivateAssets="All" />
-    <PackageReference Include="Peachpie.NETCore.Web" Version="0.9.0-CI00869" />
+    <PackageReference Include="Peachpie.NETCore.Web" Version="0.9.0-CI00872" />
   </ItemGroup>
 
   <ItemGroup>
