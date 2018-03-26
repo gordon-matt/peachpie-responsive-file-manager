@@ -216,18 +216,25 @@ function rename_folder($old_path, $name, $transliteration)
  */
 function create_img($imgfile, $imgthumb, $newwidth, $newheight = null, $option = "crop")
 {
-	$timeLimit = ini_get('max_execution_time');
-	set_time_limit(30);
-	$result = false;
-	if (image_check_memory_usage($imgfile, $newwidth, $newheight))
+	try
 	{
-		require_once('php_image_magician_custom.php');
-		$magicianObj = new imageLib($imgfile);
-		$magicianObj->resizeImage($newwidth, $newheight, $option);
-		$magicianObj->saveImage($imgthumb, 80);
-		$result = true;
+		$timeLimit = ini_get('max_execution_time');
+		set_time_limit(30);
+		$result = false;
+		if (image_check_memory_usage($imgfile, $newwidth, $newheight))
+		{
+			require_once('php_image_magician_custom.php');
+			$magicianObj = new imageLib($imgfile);
+			$magicianObj->resizeImage($newwidth, $newheight, $option);
+			$magicianObj->saveImage($imgthumb, 80);
+			$result = true;
+		}
+		set_time_limit($timeLimit);
 	}
-	set_time_limit($timeLimit);
+	catch (Exception $e)
+	{
+		error_log($e);
+	}
 
 	return $result;
 }

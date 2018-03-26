@@ -1,16 +1,15 @@
 ﻿using System;
-using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Pchp.Core;
 using Peachpie.Web;
 using WebApplication.Data;
 using WebApplication.Models;
+using WebApplication.Options;
 using WebApplication.Services;
 
 namespace WebApplication
@@ -36,8 +35,6 @@ namespace WebApplication
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            
-            services.Configure<ResponsiveFileManagerConfig>(Configuration.GetSection("ResponsiveFileManagerConfig"));
 
             // Adds a default in-memory implementation of IDistributedCache.
             services.AddDistributedMemoryCache();
@@ -67,7 +64,8 @@ namespace WebApplication
 
             app.UseSession();
 
-            var rfmOptions = app.ApplicationServices.GetRequiredService<IOptions<ResponsiveFileManagerConfig>>().Value;
+            var rfmOptions = new ResponsiveFileManagerOptions();
+            Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
 
             app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
             {
