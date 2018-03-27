@@ -5,7 +5,16 @@ Responsive File Manager running on .NET Core with Peachpie
 
 ## Getting Started
 
-1. Use the Peachpie NuGet feed (https://www.myget.org/F/peachpie/api/v3/index.json) to get the following libraries:
+1. Add the following entries in your **NuGet.config**:
+
+```
+<add key="myget.org peachpie" value="https://www.myget.org/F/peachpie/api/v3/index.json" />
+<add key="ImageSharp Nightly" value="https://www.myget.org/F/imagesharp/api/v3/index.json" />
+```
+
+**NOTE:** The ImageSharp feed is required for the `Peachpie.Library.Graphics` package
+
+Get the following packages from the Peachpie NuGet feed:
   - Peachpie.Library
   - Peachpie.Library.Graphics
   - Peachpie.Library.MsSql
@@ -40,7 +49,7 @@ public class ResponsiveFileManagerOptions
 }
 ```
 
-4. Add the following to your appsettings.json:
+4. Add the following to your **appsettings.json**:
 
 ```
 "ResponsiveFileManagerOptions": {
@@ -103,13 +112,13 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-Alternatively, you can use the source code in this repo, as follows:
+You can use the source code in this repo, as follows:
 
 1. Run `dotnet restore`
 
 2. Right-click the `Website` project and choose **Reload Project**
 
-3. Set the WebApplication project as the default, if it isn't already.
+3. Set the **WebApplication** project as the default, if it isn't already.
 
 4. Run and test one of the 3 demo pages
 
