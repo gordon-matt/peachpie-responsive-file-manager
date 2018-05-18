@@ -1,10 +1,13 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Pchp.Core;
 using Peachpie.Web;
 using WebApplication.Data;
@@ -67,8 +70,11 @@ namespace WebApplication
             var rfmOptions = new ResponsiveFileManagerOptions();
             Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
 
+            string root = Path.Combine(new FileInfo(Assembly.GetEntryAssembly().CodeBase.Substring(8)).DirectoryName, "wwwroot");
+
             app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
             {
+                //RootPath = root,
                 //RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website",
                 BeforeRequest = (Context ctx) =>
                 {
@@ -85,8 +91,11 @@ namespace WebApplication
             });
 
             app.UseDefaultFiles();
-
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(root)
+            });
 
             app.UseAuthentication();
 

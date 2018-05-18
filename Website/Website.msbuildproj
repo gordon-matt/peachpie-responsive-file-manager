@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Globals">
     <ProjectGuid>a271793f-72bf-429d-9ec8-83c03559cbd6</ProjectGuid>
@@ -8,18 +8,23 @@
     <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>ResponsiveFileManager</AssemblyName>
-	<PackageId>ResponsiveFileManager</PackageId>
+    <PackageId>ResponsiveFileManager</PackageId>
     <Authors>Matt Gordon</Authors>
     <Company>Matt Gordon</Company>
     <Product>Responsive File Manager</Product>
     <Description>Responsive File Manager running on .NET Core with Peachpie</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <ContentFiles>**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt;lang/*.php;</ContentFiles>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="**/*.php" />
+    <Content Include="$(ContentFiles)" Exclude="obj/**;bin/**">
+      <PackagePath>contentFiles/any/netcoreapp2.0/wwwroot/</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
