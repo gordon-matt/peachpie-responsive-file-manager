@@ -91,6 +91,8 @@ public void Configure(IApplicationBuilder app)
 
     var rfmOptions = new ResponsiveFileManagerOptions();
     Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
+	
+    string root = Path.Combine(new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName, "wwwroot");
 
     app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
     {
@@ -106,13 +108,15 @@ public void Configure(IApplicationBuilder app)
     });
 
     app.UseDefaultFiles();
-    app.UseStaticFiles();
+    app.UseStaticFiles(); // For default wwwroot location
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(root)
+    });
 	
     // etc
 }
 ```
-
-6. And finally, copy all the static files (JavaScript, CSS and images) from the file manager to your own `wwwroot\filemanager` folder. At this time, only the **.php** files are in the NuGet package. Unfortunately, the static files still need to be in the main web application, so you'll need to copy them over. You can find them here: https://github.com/gordon-matt/peachpie-responsive-file-manager/tree/master/WebApplication/wwwroot/filemanager.
 
 You can use the source code in this repo, as follows:
 
