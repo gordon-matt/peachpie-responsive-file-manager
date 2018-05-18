@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -18,17 +18,22 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" PrivateAssets="All" />
+    <PackageReference Include="Peachpie.Library" Version="0.9.0-CI00872" />
+    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.0-CI00872" />
+    <PackageReference Include="Peachpie.Library.MsSql" Version="0.9.0-CI00872" />
+    <PackageReference Include="Peachpie.Library.MySql" Version="0.9.0-CI00872" />
+    <PackageReference Include="Peachpie.Library.Network" Version="0.9.0-CI00872" />
+    <PackageReference Include="Peachpie.Library.PDO" Version="0.9.0-CI00872" />
+    <PackageReference Include="Peachpie.Library.Scripting" Version="0.9.0-CI00872" />
+    <PackageReference Include="Peachpie.Library.XmlDom" Version="0.9.0-CI00872" />
     <PackageReference Include="Peachpie.NETCore.Web" Version="0.9.0-CI00872" />
+    <PackageReference Include="ResponsiveFileManager" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Website\Website.msbuildproj" />
   </ItemGroup>
 
   <ItemGroup>
