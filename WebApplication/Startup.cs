@@ -70,7 +70,7 @@ namespace WebApplication
             var rfmOptions = new ResponsiveFileManagerOptions();
             Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
 
-            string root = Path.Combine(new FileInfo(Assembly.GetEntryAssembly().CodeBase.Substring(8)).DirectoryName, "wwwroot");
+            string root = Path.Combine(new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName, "wwwroot");
 
             app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
             {
