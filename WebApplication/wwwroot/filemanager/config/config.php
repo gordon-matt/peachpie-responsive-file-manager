@@ -2,6 +2,11 @@
 if (session_id() == '') session_start();
 
 mb_internal_encoding('UTF-8');
+mb_http_output('UTF-8');
+mb_http_input('UTF-8');
+mb_language('uni');
+mb_regex_encoding('UTF-8');
+ob_start('mb_output_handler');
 date_default_timezone_set('Europe/Rome');
 
 /*
@@ -304,7 +309,7 @@ $config = array(
 	'create_text_files'                       => true, // only create files with exts. defined in $editable_text_file_exts
 
 	// you can preview these type of files if $preview_text_files is true
-	'previewable_text_file_exts'              => array( 'txt', 'log', 'xml', 'html', 'css', 'htm', 'js' ),
+	'previewable_text_file_exts'              => array( "bsh", "c","css", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html", "java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh", "xhtml", "xml","xsl" ),
 	'previewable_text_file_exts_no_prettify'  => array( 'txt', 'log' ),
 
 	// you can edit these type of files if $edit_text_files is true (only text based files)
@@ -333,7 +338,7 @@ $config = array(
 	//Allowed extensions (lowercase insert)
 	//**********************
 	'ext_img'                                 => array( 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'svg' ), //Images
-	'ext_file'                                => array( 'doc', 'docx', 'rtf', 'pdf', 'xls', 'xlsx', 'txt', 'csv', 'html', 'xhtml', 'psd', 'sql', 'log', 'fla', 'xml', 'ade', 'adp', 'mdb', 'accdb', 'ppt', 'pptx', 'odt', 'ots', 'ott', 'odb', 'odg', 'otp', 'otg', 'odf', 'ods', 'odp', 'css', 'ai', 'kmz' ), //Files
+	'ext_file'                                => array( 'doc', 'docx', 'rtf', 'pdf', 'xls', 'xlsx', 'txt', 'csv', 'html', 'xhtml', 'psd', 'sql', 'log', 'fla', 'xml', 'ade', 'adp', 'mdb', 'accdb', 'ppt', 'pptx', 'odt', 'ots', 'ott', 'odb', 'odg', 'otp', 'otg', 'odf', 'ods', 'odp', 'css', 'ai', 'kmz','dwg', 'dxf', 'hpgl', 'plt', 'spl', 'step', 'stp', 'iges', 'igs', 'sat', 'cgm'), //Files
 	'ext_video'                               => array( 'mov', 'mpeg', 'm4v', 'mp4', 'avi', 'mpg', 'wma', "flv", "webm" ), //Video
 	'ext_music'                               => array( 'mp3', 'mpga', 'm4a', 'ac3', 'aiff', 'mid', 'ogg', 'wav' ), //Audio
 	'ext_misc'                                => array( 'zip', 'rar', 'gz', 'tar', 'iso', 'dmg' ), //Archives
@@ -361,6 +366,11 @@ $config = array(
 	'hidden_folders'                          => array(),
 	// set the names of any files you want hidden. Remember these names will be hidden in all folders (eg "this_document.pdf", "that_image.jpg" )
 	'hidden_files'                            => array( 'config.php' ),
+
+	/*******************
+	* URL upload
+	*******************/
+	'url_upload'                             => true,
 
 	/*******************
 	* JAVA upload

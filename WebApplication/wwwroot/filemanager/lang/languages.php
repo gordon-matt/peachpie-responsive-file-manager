@@ -26,6 +26,7 @@ return array(
 	'pl' => 'Język polski, polszczyzna',
 	'pt_BR' => 'Português(Brazil)',
 	'pt_PT' => 'Português',
+	'ro' => 'Română',
 	'ru' => 'Pусский язык',
 	'sk' => 'Slovenčina',
 	'sl' => 'Slovenski jezik',
