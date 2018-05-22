@@ -396,13 +396,13 @@ class imageLib {
 			}
 		}
 
-        //// *** Sharpen image (if jpg and the user wishes to do so)
-        //if ($sharpen && in_array($this->fileExtension, $this->sharpenArray))
-        //{
+		// *** Sharpen image (if jpg and the user wishes to do so)
+		if ($sharpen && in_array($this->fileExtension, $this->sharpenArray))
+		{
 
-        //    // *** Sharpen
-        //    $this->sharpen();
-        //}
+			// *** Sharpen
+			$this->sharpen();
+		}
 	}
 
 ## --------------------------------------------------------
@@ -2707,7 +2707,7 @@ class imageLib {
 		#
 	{
 
-		if ( ! file_exists($file) && ! $this->checkStringStartsWith('http://', $file))
+		if ( ! file_exists($file) && ! $this->checkStringStartsWith('http://', $file) && ! $this->checkStringStartsWith('https://', $file) )
 		{
 			if ($this->debug)
 			{
