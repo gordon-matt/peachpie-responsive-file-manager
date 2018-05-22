@@ -313,7 +313,7 @@ class JUpload {
 		$this->cleanup();
 		if ($msg != '')
 		die(str_replace('(.*)',$msg,$this->appletparams['stringUploadError'])."\n");
-		//exit;
+		exit;
 	}
 
 	private function warning($msg = '') {
@@ -321,7 +321,7 @@ class JUpload {
 		if ($msg != '')
 		echo('WARNING: '.$msg."\n");
 		echo $this->appletparams['stringUploadSuccess']."\n";
-		//exit;
+		exit;
 	}
 
 	private function cleanup() {
@@ -515,7 +515,7 @@ private function receive_debug_log() {
                     'An empty log has just been posted.');
 		$this->logPHPDebug('receive_debug_log', 'Empty error log received');
 	}
-	//exit;
+	exit;
 }
 
 /**
@@ -708,7 +708,7 @@ $cnt++;
 echo $this->appletparams['stringUploadSuccess']."\n";
 $_SESSION['RF'][$this->classparams['var_prefix'].'files'] = $this->files;
 session_write_close();
-//exit;
+exit;
 }
 
 /**

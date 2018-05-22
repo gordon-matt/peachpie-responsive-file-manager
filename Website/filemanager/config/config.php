@@ -1,5 +1,6 @@
 <?php
-session_start();
+if (session_id() == '') session_start();
+
 mb_internal_encoding('UTF-8');
 date_default_timezone_set('Europe/Rome');
 
@@ -29,6 +30,8 @@ define('USE_ACCESS_KEYS', false); // TRUE or FALSE
 |--------------------------------------------------------------------------
 */
 
+define('DEBUG_ERROR_MESSAGE', true); // TRUE or FALSE
+
 /*
 |--------------------------------------------------------------------------
 | Path configuration
@@ -52,10 +55,9 @@ $config = array(
 	| DON'T TOUCH (base url (only domain) of site).
 	|--------------------------------------------------------------------------
 	|
-	| without final /
+	| without final / (DON'T TOUCH)
 	|
 	*/
-
 	'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
 
 	/*
@@ -119,7 +121,17 @@ $config = array(
 	| in Megabytes
 	|
 	*/
-	'MaxSizeUpload' => 100,
+	'MaxSizeTotal' => false,
+
+	/*
+	|--------------------------------------------------------------------------
+	| Maximum upload size
+	|--------------------------------------------------------------------------
+	|
+	| in Megabytes
+	|
+	*/
+	'MaxSizeUpload' => 10,
 
 
 	/*
@@ -141,20 +153,24 @@ $config = array(
 	'icon_theme' => "ico",
 
 
+	//Show or not show total size in list view feature in filemanager (is possible to greatly increase the calculations)
+	'show_total_size'						=> false,
 	//Show or not show folder size in list view feature in filemanager (is possible, if there is a large folder, to greatly increase the calculations)
-	'show_folder_size'                        => true,
+	'show_folder_size'						=> true,
 	//Show or not show sorting feature in filemanager
-	'show_sorting_bar'                        => true,
+	'show_sorting_bar'						=> true,
 	//active or deactive the transliteration (mean convert all strange characters in A..Za..z0..9 characters)
-	'transliteration'                         => false,
+	'transliteration'						=> false,
 	//convert all spaces on files name and folders name with $replace_with variable
-	'convert_spaces'                          => false,
+	'convert_spaces'						=> false,
 	//convert all spaces on files name and folders name this value
-	'replace_with'                            => "_",
+	'replace_with'							=> "_",
+	//convert to lowercase the files and folders name
+	'lower_case'							=> false,
 
 	// -1: There is no lazy loading at all, 0: Always lazy-load images, 0+: The minimum number of the files in a directory
 	// when lazy loading should be turned on.
-	'lazy_loading_file_number_threshold'      => 0,
+	'lazy_loading_file_number_threshold'	=> 0,
 
 
 	//*******************************************
@@ -173,7 +189,7 @@ $config = array(
 	#            2 / landscape = keep aspect set width;
 	#            3 / auto = auto;
 	#            4 / crop= resize and crop;
-	 */
+	*/
 
 	//Automatic resizing //
 	// If you set $image_resizing to TRUE the script converts all uploaded images exactly to image_resizing_width x image_resizing_height dimension
@@ -213,8 +229,8 @@ $config = array(
 	'duplicate_files'                         => true,
 	'copy_cut_files'                          => true, // for copy/cut files
 	'copy_cut_dirs'                           => true, // for copy/cut directories
-	'chmod_files'                             => false, // change file permissions
-	'chmod_dirs'                              => false, // change folder permissions
+	'chmod_files'                             => true, // change file permissions
+	'chmod_dirs'                              => true, // change folder permissions
 	'preview_text_files'                      => true, // eg.: txt, log etc.
 	'edit_text_files'                         => true, // eg.: txt, log etc.
 	'create_text_files'                       => true, // only create files with exts. defined in $editable_text_file_exts
@@ -255,11 +271,14 @@ $config = array(
 	'ext_misc'                                => array( 'zip', 'rar', 'gz', 'tar', 'iso', 'dmg' ), //Archives
 
 	/******************
-	 * AVIARY config
-	 *******************/
-	'aviary_active'                           => false,
-	'aviary_apiKey'                           => "dvh8qudbp6yx2bnp",
-	'aviary_secret'                           => "m6xaym5q42rpw433",
+	* AVIARY config
+	*******************/
+	'aviary_active'                           => true,
+	'aviary_apiKey'                           => "2444282ef4344e3dacdedc7a78f8877d",
+	'aviary_language'                         => "en",
+	'aviary_theme'                            => "light",
+	'aviary_tools'                            => "all",
+	'aviary_maxSize'                          => "1400",
 	// Add or modify the Aviary options below as needed - they will be json encoded when added to the configuration so arrays can be utilized as needed
 
 	//The filter and sorter are managed through both javascript and php scripts because if you have a lot of
@@ -276,8 +295,8 @@ $config = array(
 	'hidden_files'                            => array( 'config.php' ),
 
 	/*******************
-	 * JAVA upload
-	 *******************/
+	* JAVA upload
+	*******************/
 	'java_upload'                             => true,
 	'JAVAMaxSizeUpload'                       => 200, //Gb
 
@@ -306,7 +325,7 @@ $config = array(
 	#                          2 / landscape = keep aspect set width;
 	#                          3 / auto = auto;
 	#                          4 / crop= resize and crop;
-	 */
+	*/
 	'fixed_image_creation_option'             => array( 'crop', 'auto' ), //set the type of the crop
 
 
@@ -316,9 +335,9 @@ $config = array(
 	// The image creation path is always relative so if i'm inside source/test/test1 and I upload an image, the path start from here
 	//
 	'relative_image_creation'                 => false, //activate or not the creation of one or more image resized with relative path from upload folder
-	'relative_path_from_current_pos'          => array( 'thumb/', 'thumb/' ), //relative path of the image folder from the current position on upload folder
-	'relative_image_creation_name_to_prepend' => array( '', 'test_' ), //name to prepend on filename
-	'relative_image_creation_name_to_append'  => array( '_test', '' ), //name to append on filename
+	'relative_path_from_current_pos'          => array( './', './' ), //relative path of the image folder from the current position on upload folder
+	'relative_image_creation_name_to_prepend' => array( '', '' ), //name to prepend on filename
+	'relative_image_creation_name_to_append'  => array( '_thumb', '_thumb1' ), //name to append on filename
 	'relative_image_creation_width'           => array( 300, 400 ), //width of image (you can leave empty if you set height)
 	'relative_image_creation_height'          => array( 200, '' ), //height of image (you can leave empty if you set width)
 	/*
@@ -327,7 +346,7 @@ $config = array(
 	#                          2 / landscape = keep aspect set width;
 	#                          3 / auto = auto;
 	#                          4 / crop= resize and crop;
-	 */
+	*/
 	'relative_image_creation_option'          => array( 'crop', 'crop' ), //set the type of the crop
 
 
@@ -351,10 +370,11 @@ return array_merge(
 		// For a list of options see: https://developers.aviary.com/docs/web/setup-guide#constructor-config
 		'aviary_defaults_config' => array(
 			'apiKey'     => $config['aviary_apiKey'],
-			'apiVersion' => 3,
-			'language'   => 'en',
-			'theme'      => 'light',
-			'tools'      => 'all'
+			'language'   => $config['aviary_language'],
+			'theme'      => $config['aviary_theme'],
+			'tools'      => $config['aviary_tools'],
+			'maxSize'    => $config['aviary_maxSize']
 		),
 	)
 );
+?>

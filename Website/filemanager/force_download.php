@@ -9,8 +9,8 @@ include 'include/utils.php';
 
 if ($_SESSION['RF']["verify"] != "RESPONSIVEfilemanager")
 {
-	response('forbiden', 403)->send();
-	//exit;
+	response(trans('forbiden').AddErrorLocation(), 403)->send();
+	exit;
 }
 
 include 'include/mime_type_lib.php';
@@ -21,15 +21,15 @@ if (
 	|| strpos($_POST['path'], './') === 0
 )
 {
-	response('wrong path', 400)->send();
-	//exit;
+	response(trans('wrong path'.AddErrorLocation()), 400)->send();
+	exit;
 }
 
 
 if (strpos($_POST['name'], '/') !== false)
 {
-	response('wrong path', 400)->send();
-	//exit;
+	response(trans('wrong path'.AddErrorLocation()), 400)->send();
+	exit;
 }
 
 $path = $current_path . $_POST['path'];
@@ -39,14 +39,14 @@ $info = pathinfo($name);
 
 if ( ! in_array(fix_strtolower($info['extension']), $ext))
 {
-	response('wrong extension', 400)->send();
-	//exit;
+	response(trans('wrong extension'.AddErrorLocation()), 400)->send();
+	exit;
 }
 
 if ( ! file_exists($path . $name))
 {
-	response('File not found', 404)->send();
-	//exit;
+	response(trans('File_Not_Found'.AddErrorLocation()), 404)->send();
+	exit;
 }
 
 $img_size = (string) (filesize($path . $name)); // Get the image size as string
@@ -61,4 +61,5 @@ response(file_get_contents($path . $name), 200, array(
 	'Content-Disposition' => 'attachment; filename="' . ($name) . '"'
 ))->send();
 
-//exit;
+exit;
+?>
