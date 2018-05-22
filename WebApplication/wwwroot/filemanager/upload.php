@@ -25,15 +25,26 @@ else
    $storeFolderThumb = $thumbs_base_path.$_POST["fldr"];
 }
 
-$path_pos  = strpos($storeFolder,$current_path);
-$thumb_pos = strpos($storeFolderThumb,$thumbs_base_path);
+$ftp=ftp_con($config);
+if($ftp){
+	$source_base = $ftp_base_folder.$upload_dir;
+	$thumb_base = $ftp_base_folder.$ftp_thumbs_dir;
+	$path_pos  = strpos($storeFolder,$source_base);
+	$thumb_pos = strpos($storeFolderThumb,$thumb_base);
+
+}else{
+	$source_base = $current_path;
+	$thumb_base = $thumbs_base_path;
+	$path_pos  = strpos($storeFolder,$source_base);
+	$thumb_pos = strpos($storeFolderThumb,$thumb_base);
+}
 
 if ($path_pos!==0
 	|| $thumb_pos !==0
-	|| strpos($storeFolderThumb,'../',strlen($thumbs_base_path)) !== FALSE
-	|| strpos($storeFolderThumb,'./',strlen($thumbs_base_path)) !== FALSE
-	|| strpos($storeFolder,'../',strlen($current_path)) !== FALSE
-	|| strpos($storeFolder,'./',strlen($current_path)) !== FALSE )
+	|| strpos($storeFolderThumb,'../',strlen($thumb_base)) !== FALSE
+	|| strpos($storeFolderThumb,'./',strlen($thumb_base)) !== FALSE
+	|| strpos($storeFolder,'../',strlen($source_base)) !== FALSE
+	|| strpos($storeFolder,'./',strlen($source_base)) !== FALSE )
 {
 	response(trans('wrong path'.AddErrorLocation()))->send();
 	exit;
@@ -56,12 +67,35 @@ while ($cycle && $i < $max_cycles)
 }
 
 
-if ( ! empty($_FILES))
+if ( ! empty($_FILES) || isset($_POST['url']))
 {
+	if(isset($_POST['url'])){
+		$temp = tempnam('/tmp','RF');
+		$handle = fopen($temp, "w");
+		fwrite($handle, file_get_contents($_POST['url']));
+		fclose($handle);
+		$_FILES['file']= array(
+			'name' => basename($_POST['url']),
+			'tmp_name' => $temp,
+			'size' => filesize($temp)
+		);
+	}
+
 	$info = pathinfo($_FILES['file']['name']);
-	$mime_type = get_file_mime_type($_FILES['file']['tmp_name']);
+	$mime_type = $_FILES['file']['type'];
+	if (function_exists('mime_content_type')){
+		$mime_type = mime_content_type($_FILES['file']['tmp_name']);
+	}elseif(function_exists('finfo_open')){
+		$finfo = finfo_open(FILEINFO_MIME_TYPE);
+		$mime_type = finfo_file($finfo, $_FILES['file']['tmp_name']);
+	}else{
+		include 'include/mime_type_lib.php';
+		$mime_type = get_file_mime_type($_FILES['file']['tmp_name']);
+	}
+
 	$extension = get_extension_from_mime($mime_type);
-	if($extension===''){
+
+	if($extension=='so'){
 		$extension = $info['extension'];
 	}
 
@@ -76,7 +110,7 @@ if ( ! empty($_FILES))
 		{
 			$_FILES['file']['name'] = fix_strtolower($_FILES['file']['name']);
 		}
-	 	// Gen. new file name if exists
+		// Gen. new file name if exists
 		if (file_exists($targetPath.$_FILES['file']['name']))
 		{
 			$i = 1;
@@ -102,22 +136,45 @@ if ( ! empty($_FILES))
 		}
 
 		// upload
-		move_uploaded_file($tempFile,$targetFile);
-		chmod($targetFile, 0755);
+		if($ftp){
+			$targetFile =  tempnam('/tmp','RF').$_FILES['file']['name'];
+			if ($is_img)
+			{
+				$targetFileThumb =  tempnam('/tmp','RF').$_FILES['file']['name'];
+			}
+		}
+
+		if(is_uploaded_file($tempFile)){
+			move_uploaded_file($tempFile,$targetFile);
+		}else{
+			copy($tempFile,$targetFile);
+			unlink($tempFile);
+		}
+		chmod($targetFile, $fileFolderPermission);
 
 		if ($is_img)
 		{
+			if(isset($image_watermark) && $image_watermark){
+				require_once('include/php_image_magician.php');
+
+				$magicianObj = new imageLib($targetFile);
+				$magicianObj -> addWatermark($image_watermark, $image_watermark_position,  $image_watermark_padding);
+
+				$magicianObj -> saveImage($targetFile);
+			}
+
 			$memory_error = FALSE;
 			if ( ! create_img($targetFile, $targetFileThumb, 122, 91))
 			{
-				$memory_error = FALSE;
+				$memory_error = TRUE;
 			}
 			else
 			{
+
 				// TODO something with this long function baaaah...
-				if( ! new_thumbnails_creation($targetPath,$targetFile,$_FILES['file']['name'],$current_path,$relative_image_creation,$relative_path_from_current_pos,$relative_image_creation_name_to_prepend,$relative_image_creation_name_to_append,$relative_image_creation_width,$relative_image_creation_height,$relative_image_creation_option,$fixed_image_creation,$fixed_path_from_filemanager,$fixed_image_creation_name_to_prepend,$fixed_image_creation_to_append,$fixed_image_creation_width,$fixed_image_creation_height,$fixed_image_creation_option))
+				if( !$ftp && ! new_thumbnails_creation($targetPath,$targetFile,$_FILES['file']['name'],$current_path,$relative_image_creation,$relative_path_from_current_pos,$relative_image_creation_name_to_prepend,$relative_image_creation_name_to_append,$relative_image_creation_width,$relative_image_creation_height,$relative_image_creation_option,$fixed_image_creation,$fixed_path_from_filemanager,$fixed_image_creation_name_to_prepend,$fixed_image_creation_to_append,$fixed_image_creation_width,$fixed_image_creation_height,$fixed_image_creation_option))
 				{
-					$memory_error = FALSE;
+					$memory_error = TRUE;
 				}
 				else
 				{
@@ -168,7 +225,7 @@ if ( ! empty($_FILES))
 						if ($image_max_width == 0) $srcWidth = $image_max_height*$srcWidth/$srcHeight;
 					}
 
-					if ($resize) create_img($targetFile, $targetFile, $srcWidth, $srcHeight, $image_max_mode);
+					if ($resize){ create_img($targetFile, $targetFile, $srcWidth, $srcHeight, $image_max_mode); }
 				}
 			}
 
@@ -180,11 +237,22 @@ if ( ! empty($_FILES))
 				exit();
 			}
 		}
+
+		if($ftp){
+
+			$ftp->put($targetPath. $_FILES['file']['name'], $targetFile, FTP_BINARY);
+			unlink($targetFile);
+			if ($is_img)
+			{
+				$ftp->put($targetPathThumb. $_FILES['file']['name'], $targetFileThumb, FTP_BINARY);
+				unlink($targetFileThumb);
+			}
+		}
 		echo $_FILES['file']['name'];
 	}
 	else // file ext. is not in the allowed list
 	{
-		response(trans("Error_extension").AddErrorLocation(), 406)->send();
+		response("Thumbnails creation: ".trans("Error_extension").AddErrorLocation(), 406)->send();
 		exit();
 	}
 }

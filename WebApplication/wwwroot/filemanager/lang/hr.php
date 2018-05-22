@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'filtriraj po nazivu',
 	'Swipe_help' => 'Povucite prstom ime datoteke / mape za prikaz mogućnosti',
 	'Upload_base' => 'Putanja do mape za prenesene datoteke',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA prijenos (odlično za prijenos velikih datoteka)',
 	'Upload_java_help' => "Ako se Java dodatak ne učita 1. provjerite imate li instaliran Java dodatak <a href='http://java.com/en/download/'>[link za preuzimanje]</a>   2. provjerite da firewall nije aktiviran i blokira dodatak",
 	'Upload_base_help' => "Povucite i ispustite datoteke ili samo kliknite (moderni preglednici) te odaberite datoteku(s). Kad prijenos završi, kliknite 'Natrag na pregled datoteka' gumb.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

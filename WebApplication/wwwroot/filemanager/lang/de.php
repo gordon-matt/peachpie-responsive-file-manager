@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'Text Filter',
 	'Swipe_help' => 'Fahren Sie mit der Maus über die Datei um Details anzeigen zu lassen.',
 	'Upload_base' => 'Basis Upload',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'Java upload (gro&szlig;e Dateien)',
 	'Upload_java_help' => "Wenn das Java Applet nicht geladen wird, dann stellen Sie sicher, 1. dass Java richtig installiert ist (falls nicht, dann <a href='http://java.com/en/download/'>[download link]</a>) 2. dass Ihre Firewall die aktuelle Aktion nicht blockiert.",
 	'Upload_base_help' => "Klicken Sie in dieses Feld oder ziehen Sie die gew&uuml;nschte Datei(en) per Drag & Drop.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

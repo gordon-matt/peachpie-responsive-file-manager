@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'текстэн шүүлтүүр',
 	'Swipe_help' => 'Файл/Хавтасны нэрийг товшоод тохиргоог харна уу',
 	'Upload_base' => 'Энгийнээр хуулах',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA-гаар хуулах (их хэмжээтэй файл)',
 	'Upload_java_help' => "Хэрэв Java Applet уншихгүй бол 1. Java суусан эсэхийг шалгана уу, үгүй бол <a href='http://java.com/en/download/'>[эндээс татаж авна уу]</a>   2. Галт хана дээр хаалт хийсэн эсэхийг шалгана уу",
 	'Upload_base_help' => "Хуулах хэсэг дээр файлыг зөөж тавих болон дээр нь дарж хуулж болно (орчин үеийн хөтөч дээр). Хуулж дууссан бол 'Файлын жагсаалт руу буцах' товчин дээр дарна уу.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

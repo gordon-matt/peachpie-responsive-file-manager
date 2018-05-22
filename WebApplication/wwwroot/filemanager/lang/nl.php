@@ -40,6 +40,7 @@ return array(
 	'Text_filter' => 'Zoeken...',
 	'Swipe_help' => 'Swipe over de naam van een bestand of map om opties te zien',
 	'Upload_base' => 'Standaard uploader',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA upload (voor grote bestanden)',
 	'Upload_java_help' => "Als de Java Applet niet laadt: 1. Heeft u JAVA geinstalleerd? Zo niet, download het hier: <a href='http://java.com/en/download/'>java.com/en/download/</a> 2. Wees er zeker van dat de firewall deze actie accepteert",
 	'Upload_base_help' => "Klik en sleep (meerdere) bestanden vanaf uw computer naar het \"Drop files\" vlak hierboven om bestanden toe te voegen.<br/> Ook is het mogelijk om in een dialoogvenster (meerdere) bestanden te selecteren, klik hiervoor op \"Drop files\"<br/><br/><i>Als alle uploads voltooid zijn kunt u terugkeren met de knop \"Terug naar bestanden\"</i>",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",
