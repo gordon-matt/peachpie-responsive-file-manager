@@ -30,7 +30,7 @@ if (isset($_GET['lang']))
 	if(array_key_exists($lang,$languages)){
 		$_SESSION['RF']['language'] = $lang;
 	}
-}elseif($_SESSION['RF']['language']){
+}elseif(isset($_SESSION['RF']['language']) && $_SESSION['RF']['language'])
 	$lang = strip_tags($_SESSION['RF']['language']);
 	if(array_key_exists($lang,$languages)){
 		$_SESSION['RF']['language'] = $lang;
@@ -42,7 +42,9 @@ include 'include/utils.php';
 if (isset($_GET['fldr'])
 	&& !empty($_GET['fldr'])
 	&& strpos($_GET['fldr'],'../') === FALSE
-	&& strpos($_GET['fldr'],'./') === FALSE)
+	&& strpos($_GET['fldr'],'./') === FALSE
+	&& strpos($_GET['fldr'],'..\\') === FALSE
+	&& strpos($_GET['fldr'],'.\\') === FALSE)
 {
 	$subdir = rawurldecode(trim(strip_tags($_GET['fldr']),"/") ."/");
 	$_SESSION['RF']["filter"]='';
@@ -86,7 +88,7 @@ if (!isset($_SESSION['RF']["subfolder"]))
 }
 $rfm_subfolder = '';
 
-if (!empty($_SESSION['RF']["subfolder"]) && strpos($_SESSION['RF']["subfolder"],'../') === FALSE
+if (!empty($_SESSION['RF']["subfolder"]) && strpos($_SESSION['RF']["subfolder"],'../') === FALSE && strpos($_SESSION['RF']["subfolder"],'..\\') === FALSE
 && strpos($_SESSION['RF']["subfolder"],'./') === FALSE && strpos($_SESSION['RF']["subfolder"],"/") !== 0
 && strpos($_SESSION['RF']["subfolder"],'.') === FALSE)
 {
@@ -149,7 +151,11 @@ if(!$ftp){
 		create_folder(FALSE, $thumbs_path.$subdir);
 	}
 }
-
+if (isset($_GET['callback']))
+{
+	$callback = strip_tags($_GET['callback']);
+}
+else $callback=0;
 if (isset($_GET['popup']))
 {
 	$popup = strip_tags($_GET['popup']);
@@ -219,7 +225,9 @@ $boolarray = Array(false => 'false', true => 'true');
 
 $return_relative_url = isset($_GET['relative_url']) && $_GET['relative_url'] == "1" ? true : false;
 
-if (!isset($_GET['type'])) $_GET['type'] = 0;
+if (!isset($_GET['type'])){
+	$_GET['type'] = 0;
+}
 
 if($_GET['type']==1 || $_GET['type']==3){
 	$filter='';
@@ -384,6 +392,7 @@ $get_params = http_build_query($get_params);
 <body>
 	<input type="hidden" id="ftp" value="<?php echo !!$ftp; ?>" />
 	<input type="hidden" id="popup" value="<?php echo $popup;?>" />
+	<input type="hidden" id="callback" value="<?php echo $callback; ?>" />	
 	<input type="hidden" id="crossdomain" value="<?php echo $crossdomain;?>" />
 	<input type="hidden" id="editor" value="<?php echo $editor;?>" />
 	<input type="hidden" id="view" value="<?php echo $view;?>" />
@@ -455,7 +464,9 @@ $get_params = http_build_query($get_params);
 	<div class="tabbable upload-tabbable"> <!-- Only required for left/right tabs -->
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#tab1" data-toggle="tab"><?php echo trans('Upload_base');?></a></li>
+			<?php if($url_upload){ ?>
 			<li><a href="#taburl" data-toggle="tab"><?php echo trans('Upload_url');?></a></li>
+			<?php } ?>
 			<?php if($java_upload){ ?>
 			<li><a href="#tab2" id="uploader-btn" data-toggle="tab"><?php echo trans('Upload_java');?></a></li>
 			<?php } ?>
@@ -481,6 +492,7 @@ $get_params = http_build_query($get_params);
 				</form>
 				<div class="upload-help"><?php echo trans('Upload_base_help');?></div>
 			</div>
+			<?php if($url_upload){ ?>
 			<div class="tab-pane" id="taburl">
 				<br/>
 				<form class="form-horizontal">
@@ -497,6 +509,7 @@ $get_params = http_build_query($get_params);
 					</div>
 				</form>
 			</div>
+			<?php } ?>
 			<?php if($java_upload){ ?>
 			<div class="tab-pane" id="tab2">
 				<div id="iframe-container"></div>
@@ -840,7 +853,7 @@ $files=$sorted;
 					<input type="hidden" class="path" value="<?php echo str_replace('.','',dirname($rfm_subfolder.$subdir));?>"/>
 					<input type="hidden" class="path_thumb" value="<?php echo dirname($thumbs_path.$subdir)."/";?>"/>
 				<?php } ?>
-				<a class="folder-link" href="dialog.php?<?php echo $get_params.rawurlencode($src)."&".uniqid() ?>">
+				<a class="folder-link" href="dialog.php?<?php echo $get_params.rawurlencode($src)."&".($callback?'callback='.$callback."&":'').uniqid() ?>">
 					<div class="img-precontainer">
 							<div class="img-container directory"><span></span>
 							<img class="directory-img"  src="img/<?php echo $icon_theme;?>/folder<?php if($file==".."){ echo "_back"; }?>.png" />
@@ -1049,16 +1062,19 @@ $files=$sorted;
 					<a class="tip-right modalAV <?php if($is_audio){ echo "audio"; }else{ echo "video"; } ?>"
 					title="<?php echo trans('Preview')?>" data-url="ajax_calls.php?action=media_preview&title=<?php echo $filename;?>&file=<?php echo $rfm_subfolder.$subdir.$file;?>"
 					href="javascript:void('');" ><i class=" icon-eye-open"></i></a>
-						<?php }elseif($preview_text_files && in_array($file_array['extension'],$previewable_text_file_exts)){ ?>
-						<a class="tip-right file-preview-btn" title="<?php echo trans('Preview')?>" data-url="ajax_calls.php?action=get_file&sub_action=preview&preview_mode=text&title=<?php echo $filename;?>&file=<?php echo $rfm_subfolder.$subdir.$file;?>"
-						href="javascript:void('');" ><i class=" icon-eye-open"></i></a>
-						<?php }elseif($googledoc_enabled && in_array($file_array['extension'],$googledoc_file_exts)){ ?>
-						<a class="tip-right file-preview-btn" title="<?php echo trans('Preview')?>" data-url="ajax_calls.php?action=get_file&sub_action=preview&preview_mode=google&title=<?php echo $filename;?>&file=<?php echo $rfm_subfolder.$subdir.$file;?>"
-						href="docs.google.com;" ><i class=" icon-eye-open"></i></a>
+					<?php }elseif(in_array($file_array['extension'],array('dwg', 'dxf', 'hpgl', 'plt', 'spl', 'step', 'stp', 'iges', 'igs', 'sat', 'cgm', 'svg'))){ ?>
+					<a class="tip-right file-preview-btn" title="<?php echo trans('Preview')?>" data-url="ajax_calls.php?action=cad_preview&title=<?php echo $filename;?>&file=<?php echo $rfm_subfolder.$subdir.$file;?>"
+					href="javascript:void('');" ><i class=" icon-eye-open"></i></a>
+					<?php }elseif($preview_text_files && in_array($file_array['extension'],$previewable_text_file_exts)){ ?>
+					<a class="tip-right file-preview-btn" title="<?php echo trans('Preview')?>" data-url="ajax_calls.php?action=get_file&sub_action=preview&preview_mode=text&title=<?php echo $filename;?>&file=<?php echo $rfm_subfolder.$subdir.$file;?>"
+					href="javascript:void('');" ><i class=" icon-eye-open"></i></a>
+					<?php }elseif($googledoc_enabled && in_array($file_array['extension'],$googledoc_file_exts)){ ?>
+					<a class="tip-right file-preview-btn" title="<?php echo trans('Preview')?>" data-url="ajax_calls.php?action=get_file&sub_action=preview&preview_mode=google&title=<?php echo $filename;?>&file=<?php echo $rfm_subfolder.$subdir.$file;?>"
+					href="docs.google.com;" ><i class=" icon-eye-open"></i></a>
 
-						<?php }elseif($viewerjs_enabled && in_array($file_array['extension'],$viewerjs_file_exts)){ ?>
-						<a class="tip-right file-preview-btn" title="<?php echo trans('Preview')?>" data-url="ajax_calls.php?action=get_file&sub_action=preview&preview_mode=viewerjs&title=<?php echo $filename;?>&file=<?php echo $rfm_subfolder.$subdir.$file;?>"
-						href="docs.google.com;" ><i class=" icon-eye-open"></i></a>
+					<?php }elseif($viewerjs_enabled && in_array($file_array['extension'],$viewerjs_file_exts)){ ?>
+					<a class="tip-right file-preview-btn" title="<?php echo trans('Preview')?>" data-url="ajax_calls.php?action=get_file&sub_action=preview&preview_mode=viewerjs&title=<?php echo $filename;?>&file=<?php echo $rfm_subfolder.$subdir.$file;?>"
+					href="docs.google.com;" ><i class=" icon-eye-open"></i></a>
 
 					<?php }else{ ?>
 					<a class="preview disabled"><i class="icon-eye-open icon-white"></i></a>
@@ -1139,5 +1155,3 @@ $files=$sorted;
 	</script>
 </body>
 </html>
-<?php }
-?>

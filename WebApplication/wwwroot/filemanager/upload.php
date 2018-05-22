@@ -44,7 +44,11 @@ if ($path_pos!==0
 	|| strpos($storeFolderThumb,'../',strlen($thumb_base)) !== FALSE
 	|| strpos($storeFolderThumb,'./',strlen($thumb_base)) !== FALSE
 	|| strpos($storeFolder,'../',strlen($source_base)) !== FALSE
-	|| strpos($storeFolder,'./',strlen($source_base)) !== FALSE )
+	|| strpos($storeFolder,'./',strlen($source_base)) !== FALSE
+	|| strpos($storeFolderThumb,'..\\',strlen($thumb_base)) !== FALSE
+	|| strpos($storeFolderThumb,'.\\',strlen($thumb_base)) !== FALSE
+	|| strpos($storeFolder,'..\\',strlen($source_base)) !== FALSE
+	|| strpos($storeFolder,'.\\',strlen($source_base)) !== FALSE )
 {
 	response(trans('wrong path'.AddErrorLocation()))->send();
 	exit;
@@ -77,7 +81,8 @@ if ( ! empty($_FILES) || isset($_POST['url']))
 		$_FILES['file']= array(
 			'name' => basename($_POST['url']),
 			'tmp_name' => $temp,
-			'size' => filesize($temp)
+			'size' => filesize($temp),
+			'type' => explode(".", strtolower($temp))
 		);
 	}
 
@@ -104,7 +109,7 @@ if ( ! empty($_FILES) || isset($_POST['url']))
 		$tempFile = $_FILES['file']['tmp_name'];
 		$targetPath = $storeFolder;
 		$targetPathThumb = $storeFolderThumb;
-		$_FILES['file']['name'] = fix_filename($info['filename'].".".$extension,$transliteration,$convert_spaces, $replace_with);
+		$_FILES['file']['name'] = fix_filename($info['filename'].".".$extension,$config);
 		// LowerCase
 		if ($lower_case)
 		{
@@ -164,7 +169,7 @@ if ( ! empty($_FILES) || isset($_POST['url']))
 			}
 
 			$memory_error = FALSE;
-			if ( ! create_img($targetFile, $targetFileThumb, 122, 91))
+			if ( $extension != 'svg' && !create_img($targetFile, $targetFileThumb, 122, 91))
 			{
 				$memory_error = TRUE;
 			}
@@ -252,7 +257,8 @@ if ( ! empty($_FILES) || isset($_POST['url']))
 	}
 	else // file ext. is not in the allowed list
 	{
-		response("Thumbnails creation: ".trans("Error_extension").AddErrorLocation(), 406)->send();
+		response(trans("Error_extension").AddErrorLocation(), 406)->send();
+
 		exit();
 	}
 }
