@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'κείμενο φίλτρου',
 	'Swipe_help' => 'Περάστε με το ποντίκι πάνω από το όνομα του αρχείου / φακέλου για να δείτε τις επιλογές',
 	'Upload_base' => 'Βασική μεταφόρτωση',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA μεταφόρτωση (αρχεία μεγάλου μεγέθους)',
 	'Upload_java_help' => "Αν το Java Applet δεν φορτώνει, 1. Βεβαιωθείτε ότι έχετε εγκαταστημένη Java, αλλιώς <a href='http://java.com/en/download/'>[σύνδεσμος λήψης]</a>   2. βεβαιωθείτε ότι τίποτα δεν έχει αποκλειστεί από το τείχος προστασίας σας",
 	'Upload_base_help' => "Σύρετε και αφήστε τα αρχεία ή κάντε κλικ στην παραπάνω περιοχή (σύγχρονα προγράμματα περιήγησης) και επιλέξτε το(α) αρχείο(α). Όταν ολοκληρωθεί η μεταφόρτωση, κάντε κλικ στο κουμπί 'Επιστροφή στον κατάλογο των αρχείων'.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

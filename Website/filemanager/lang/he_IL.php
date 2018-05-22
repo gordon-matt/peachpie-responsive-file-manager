@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'סנן טקסט',
 	'Swipe_help' => 'סמן את הקובץ / תיקיה על מנת להציג אפשריות',
 	'Upload_base' => 'רגיל',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA (לקבצים גדולים)',
 	'Upload_java_help' => "אם אפליקצית הJAVA לא נטענת , 1. וודא שJAVA מותקנת במחשבך , אחר <a href='http://java.com/en/download/'>לחץ להורדה</a>   2. וודא שהכל מאופשר בחומת האש .",
 	'Upload_base_help' => "גרור ושחרר את הקבוצים אשר הינך מעוניין לעלות . בסיום יש ללחוץ על \"חזור אל רשימת קבצים\"",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

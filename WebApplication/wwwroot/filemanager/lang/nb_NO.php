@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'Tekst-filter',
 	'Swipe_help' => 'Sveip filnavnet/mappenavnet for å vise alternativer',
 	'Upload_base' => 'Vanlig opplasting',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'Java-opplasting (store filer)',
 	'Upload_java_help' => "Hvis java-appleten ikke lastes: 1. Sjekk om Java er installert, hvis ikke <a href='http://java.com/en/download/'>last ned Java</a> 2. Sjekk brannmur-innstillingene.",
 	'Upload_base_help' => "Dra og slipp filen(e) i området over eller klikk (virker for moderne nettlesere). Ved bruk av gammel nettleser: Velg filen og klikk på knappen. Når opplastingen er ferdig, klikk på tilbake-knappen øverst.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'wpisz txt',
 	'Swipe_help' => 'Kliknij w nazwę pliku/folderu by wyświetlić dostępne opcje',
 	'Upload_base' => 'Wgrywanie standardowe',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'Wgrywanie przez skrypty JS (dla dużych plików)',
 	'Upload_java_help' => "Jeżeli ten aplet JS nie powoduje wgrywania 1. Sprawdź czy masz pobraną i uruchomioną obsługę skryptów w JAVA na stronie JAVA <a href='http://java.com/en/download/'>[pobierz]</a> 2. Upewnij się, że nie jest to blokada wynikająca z ustawień zapory firewall",
 	'Upload_base_help' => "Zastosuj metodę Przeciągnij & Upuść w obszar powyżej, lub kliknij tam (opcja dotyczy tylko najnowszych przeglądarek). Wybierz plik i kliknij Otwórz. Kiedy zakończy się proces wgrywania, kliknij Powrót do listy plików na górze, by zakończyć.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

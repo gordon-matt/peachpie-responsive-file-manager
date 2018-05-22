@@ -29,8 +29,8 @@ if ( ! function_exists('trans'))
 {
 	// language
 	if ( ! isset($_SESSION['RF']['language'])
-		|| file_exists($_SESSION['RF']['language_file']) === false
-		|| ! is_readable($_SESSION['RF']['language_file'])
+		|| file_exists('lang/' . basename($_SESSION['RF']['language']) . '.php') === false
+		|| ! is_readable('lang/' . basename($_SESSION['RF']['language']) . '.php')
 	)
 	{
 		$lang = $default_language;
@@ -41,32 +41,37 @@ if ( ! function_exists('trans'))
 			$lang = trim($lang);
 		}
 
-		$language_file = dirname(dirname(__FILE__)) . '/lang/' . $default_language . '.php';
 		if ($lang != $default_language)
 		{
 			$path_parts = pathinfo($lang);
-
-			if (is_readable(dirname(dirname(__FILE__)) . '/lang/' . $path_parts['basename'] . '.php'))
-			{
-				$language_file = dirname(dirname(__FILE__)) . '/lang/' . $path_parts['basename'] . '.php';
-			}
-			else
-			{
-				echo "<script>console.log('The " . $lang . " language file is not readable! Falling back...');</script>";
-			}
+			$lang = $path_parts['basename'];
+			$languages = include 'lang/languages.php';
 		}
 
 		// add lang file to session for easy include
 		$_SESSION['RF']['language'] = $lang;
-		$_SESSION['RF']['language_file'] = $language_file;
 	}
 	else
 	{
-		$lang = $_SESSION['RF']['language'];
-		$language_file = $_SESSION['RF']['language_file'];
-	}
+		if(file_exists('lang/languages.php')){
+			$languages = include 'lang/languages.php';
+		}else{
+			$languages = include '../lang/languages.php';
+		}
 
-	$lang_vars = include $language_file;
+		if(array_key_exists($_SESSION['RF']['language'],$languages)){
+			$lang = $_SESSION['RF']['language'];
+		}else{
+			response(trans('Lang_Not_Found').AddErrorLocation())->send();
+			exit;
+		}
+
+	}
+	if(file_exists('lang/' . $lang . '.php')){
+		$lang_vars = include 'lang/' . $lang . '.php';
+	}else{
+		$lang_vars = include '../lang/' . $lang . '.php';
+	}
 
 	if ( ! is_array($lang_vars))
 	{
@@ -94,25 +99,37 @@ if ( ! function_exists('trans'))
 *
 * @return  bool
 */
-function deleteDir($dir)
+function deleteDir($dir,$ftp = null, $config = null)
 {
-	if ( ! file_exists($dir))
-	{
-		return true;
-	}
-	if ( ! is_dir($dir))
-	{
-		return unlink($dir);
-	}
-	foreach (scandir($dir) as $item)
-	{
-		if ($item == '.' || $item == '..')
-		{
-			continue;
+	if($ftp){
+
+		try{
+			$ftp->rmdir($dir);
+			return true;
+
+		}catch(FtpClient\FtpException $e){
+			return null;
 		}
-		if ( ! deleteDir($dir . DIRECTORY_SEPARATOR . $item))
+
+	}else{
+		if ( ! file_exists($dir))
 		{
 			return false;
+		}
+		if ( ! is_dir($dir))
+		{
+			return unlink($dir);
+		}
+		foreach (scandir($dir) as $item)
+		{
+			if ($item == '.' || $item == '..')
+			{
+				continue;
+			}
+			if ( ! deleteDir($dir . DIRECTORY_SEPARATOR . $item))
+			{
+				return false;
+			}
 		}
 	}
 
@@ -127,18 +144,31 @@ function deleteDir($dir)
 *
 * @return  bool
 */
-function duplicate_file($old_path, $name)
+function duplicate_file( $old_path, $name, $ftp = null, $config = null )
 {
-	if (file_exists($old_path))
-	{
-		$info = pathinfo($old_path);
-		$new_path = $info['dirname'] . "/" . $name . "." . $info['extension'];
-		if (file_exists($new_path) && $old_path == $new_path)
-		{
-			return false;
-		}
+	$info = pathinfo($old_path);
+	$new_path = $info['dirname'] . "/" . $name . "." . $info['extension'];
+	if($ftp){
+		try{
+			$tmp = time().$name . "." . $info['extension'];
+			$ftp->get($tmp, "/".$old_path, FTP_BINARY);
+			$ftp->put("/".$new_path, $tmp, FTP_BINARY);
+			unlink($tmp);
+			return true;
 
-		return copy($old_path, $new_path);
+		}catch(FtpClient\FtpException $e){
+			return null;
+		}
+	}else{
+		if (file_exists($old_path))
+		{
+			if (file_exists($new_path) && $old_path == $new_path)
+			{
+				return false;
+			}
+
+			return copy($old_path, $new_path);
+		}
 	}
 }
 
@@ -152,21 +182,45 @@ function duplicate_file($old_path, $name)
 *
 * @return bool
 */
-function rename_file($old_path, $name, $transliteration)
+function rename_file($old_path, $name, $ftp = null, $config = null)
 {
-	$name = fix_filename($name, $transliteration);
-	if (file_exists($old_path))
-	{
-		$info = pathinfo($old_path);
-		$new_path = $info['dirname'] . "/" . $name . "." . $info['extension'];
-		if (file_exists($new_path) && $old_path == $new_path)
-		{
+	$name = fix_filename($name, $config);
+	$info = pathinfo($old_path);
+	$new_path = $info['dirname'] . "/" . $name . "." . $info['extension'];
+	if($ftp){
+		try{
+			return $ftp->rename("/".$old_path, "/".$new_path);
+		}catch(FtpClient\FtpException $e){
 			return false;
 		}
+	}else{
+		if (file_exists($old_path))
+		{
+			$new_path = $info['dirname'] . "/" . $name . "." . $info['extension'];
+			if (file_exists($new_path) && $old_path == $new_path)
+			{
+				return false;
+			}
 
-		return rename($old_path, $new_path);
+			return rename($old_path, $new_path);
+		}
 	}
 }
+
+
+function url_exists($url){
+    if (!$fp = curl_init($url)) return false;
+    return true;
+}
+
+
+function tempdir() {
+    $tempfile=tempnam(sys_get_temp_dir(),'');
+    if (file_exists($tempfile)) { unlink($tempfile); }
+    mkdir($tempfile);
+    if (is_dir($tempfile)) { return $tempfile; }
+}
+
 
 /**
 * Rename directory
@@ -177,18 +231,54 @@ function rename_file($old_path, $name, $transliteration)
 *
 * @return bool
 */
-function rename_folder($old_path, $name, $transliteration)
+function rename_folder($old_path, $name, $ftp = null, $config = null)
 {
-	$name = fix_filename($name, $transliteration, false, '_', true);
-	if (file_exists($old_path))
-	{
-		$new_path = fix_dirname($old_path) . "/" . $name;
-		if (file_exists($new_path) && $old_path == $new_path)
-		{
-			return false;
+	$name = fix_filename($name, $config, true);
+	$new_path = fix_dirname($old_path) . "/" . $name;
+	if($ftp){
+		if($ftp->chdir("/".$old_path)){
+			if(@$ftp->chdir($new_path)){
+				return false;
+			}
+			return $ftp->rename("/".$old_path, "/".$new_path);
 		}
+	}else{
+		if (file_exists($old_path))
+		{
+			if (file_exists($new_path) && $old_path == $new_path)
+			{
+				return false;
+			}
 
-		return rename($old_path, $new_path);
+			return rename($old_path, $new_path);
+		}
+	}
+}
+
+function ftp_con($config){
+	if(isset($config['ftp_host']) && $config['ftp_host']){
+		// *** Include the class
+		include('include/FtpClient.php');
+		include('include/FtpException.php');
+		include('include/FtpWrapper.php');
+
+		$ftp = new \FtpClient\FtpClient();
+		try{
+			$ftp->connect($config['ftp_host'],$config['ftp_ssl'],$config['ftp_port']);
+			$ftp->login($config['ftp_user'], $config['ftp_pass']);
+			$ftp->pasv(true);
+			return $ftp;
+		}catch(FtpClient\FtpException $e){
+			echo "Error: ";
+			echo $e->getMessage();
+			echo " to server ";
+			$tmp = $e->getTrace();
+			echo $tmp[0]['args'][0];
+			echo "<br/>Please check configurations";
+			die();
+		}
+	}else{
+		return false;
 	}
 }
 
@@ -204,22 +294,41 @@ function rename_folder($old_path, $name, $transliteration)
 * @return bool
 * @throws \Exception
 */
-function create_img($imgfile, $imgthumb, $newwidth, $newheight = null, $option = "crop")
+function create_img($imgfile, $imgthumb, $newwidth, $newheight = null, $option = "crop", $ftp=false,$config = array())
 {
 	$result = false;
+	if($ftp ){
+		if(url_exists($imgfile)){
+			$temp = tempnam('/tmp','RF');
+			unlink($temp);
+			$temp .=".".substr(strrchr($imgfile,'.'),1);
+			$handle = fopen($temp, "w");
+			fwrite($handle, file_get_contents($imgfile));
+			fclose($handle);
+			$imgfile= $temp;
+			$save_ftp = $imgthumb;
+			$imgthumb = $temp;
+		}
+	}
 	if(file_exists($imgfile) || strpos($imgfile,'http')===0){
-		$timeLimit = ini_get('max_execution_time');
-		set_time_limit(30);
 		if (strpos($imgfile,'http')===0 || image_check_memory_usage($imgfile, $newwidth, $newheight))
 		{
 			require_once('php_image_magician.php');
-			$magicianObj = new imageLib($imgfile);
-			$magicianObj->resizeImage($newwidth, $newheight, $option);
-			$magicianObj->saveImage($imgthumb, 80);
+			try{
+				$magicianObj = new imageLib($imgfile);
+				$magicianObj->resizeImage($newwidth, $newheight, $option);
+				$magicianObj->saveImage($imgthumb, 80);
+			}catch (Exception $e){
+				return false;
+			}
 			$result = true;
 		}
-		set_time_limit($timeLimit);
 	}
+	if($result && $ftp ){
+		$ftp->put($save_ftp, $imgthumb, FTP_BINARY);
+		unlink($imgthumb);
+	}
+
 	return $result;
 }
 
@@ -345,18 +454,23 @@ function checkresultingsize($sizeAdded)
 * @param  string  $path
 * @param  string  $path_thumbs
 */
-function create_folder($path = null, $path_thumbs = null)
+function create_folder($path = null, $path_thumbs = null,$ftp = null,$config = null)
 {
-	$oldumask = umask(0);
-	if ($path && ! file_exists($path))
-	{
-		mkdir($path, 0766, true);
-	} // or even 01777 so you get the sticky bit set
-	if ($path_thumbs && ! file_exists($path_thumbs))
-	{
-		mkdir($path_thumbs, 0766, true) or die("$path_thumbs cannot be found");
-	} // or even 01777 so you get the sticky bit set
-	umask($oldumask);
+	if($ftp){
+		$ftp->mkdir($path);
+		$ftp->mkdir($path_thumbs);
+	}else{
+		$oldumask = umask(0);
+		if ($path && ! file_exists($path))
+		{
+			mkdir($path, 0755, true);
+		} // or even 01777 so you get the sticky bit set
+		if ($path_thumbs && ! file_exists($path_thumbs))
+		{
+			mkdir($path_thumbs, 0755, true) or die("$path_thumbs cannot be found");
+		} // or even 01777 so you get the sticky bit set
+		umask($oldumask);
+	}
 }
 
 /**
@@ -438,18 +552,22 @@ function fix_get_params($str)
 *
 * @return string
 */
-function fix_filename($str, $transliteration, $convert_spaces = false, $replace_with = "_", $is_folder = false)
+function fix_filename($str, $config, $is_folder = false)
 {
-	if ($convert_spaces)
+	if ($config['convert_spaces'])
 	{
-		$str = str_replace(' ', $replace_with, $str);
+		$str = str_replace(' ', $config['replace_with'], $str);
 	}
 
-	if ($transliteration)
+	if ($config['transliteration'])
 	{
+		if (!mb_detect_encoding($str, 'UTF-8', true))
+		{
+			$str = utf8_encode($str);
+		}
 		if (function_exists('transliterator_transliterate'))
 		{
-			$str = transliterator_transliterate('Accents-Any', utf8_encode($str));
+			$str = transliterator_transliterate('Any-Latin; Latin-ASCII', $str);
 		}
 		else
 		{
@@ -523,11 +641,11 @@ function fix_strtolower($str)
 	}
 }
 
-function fix_path($path, $transliteration, $convert_spaces = false, $replace_with = "_")
+function fix_path($path, $config)
 {
 	$info = pathinfo($path);
 	$tmp_path = $info['dirname'];
-	$str = fix_filename($info['filename'], $transliteration, $convert_spaces, $replace_with);
+	$str = fix_filename($info['filename'], $config);
 	if ($tmp_path != "")
 	{
 		return $tmp_path . DIRECTORY_SEPARATOR . $str;
@@ -536,20 +654,6 @@ function fix_path($path, $transliteration, $convert_spaces = false, $replace_wit
 	{
 		return $str;
 	}
-}
-
-/**
-* Get current base url
-*
-* @return  string
-*/
-function base_url()
-{
-	return sprintf(
-		"%s://%s",
-		isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
-		$_SERVER['HTTP_HOST']
-	);
 }
 
 /**
@@ -600,19 +704,11 @@ function image_check_memory_usage($img, $max_breedte, $max_hoogte)
 			$image_bits = 0;
 		$image_memory_usage = $K64 + ($image_width * $image_height * ($image_bits) * 2);
 		$thumb_memory_usage = $K64 + ($max_breedte * $max_hoogte * ($image_bits) * 2);
-		$memory_needed = intval($memory_usage + $image_memory_usage + $thumb_memory_usage);
+		$memory_needed = abs(intval($memory_usage + $image_memory_usage + $thumb_memory_usage));
 
 		if ($memory_needed > $memory_limit)
 		{
-			ini_set('memory_limit', (intval($memory_needed / 1024 / 1024) + 5) . 'M');
-			if (ini_get('memory_limit') == (intval($memory_needed / 1024 / 1024) + 5) . 'M')
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			return false;
 		}
 		else
 		{
@@ -726,7 +822,13 @@ function get_file_by_url($url)
 {
 	if (ini_get('allow_url_fopen'))
 	{
-		return file_get_contents($url);
+		$arrContextOptions=array(
+		    "ssl"=>array(
+		        "verify_peer"=>false,
+		        "verify_peer_name"=>false,
+		    ),
+		);
+		return file_get_contents($url, false, stream_context_create($arrContextOptions));
 	}
 	if ( ! function_exists('curl_version'))
 	{
@@ -772,7 +874,7 @@ function is_really_writable($dir)
 		}
 
 		fclose($fp);
-		@chmod($dir, 0766);
+		@chmod($dir, 0755);
 		@unlink($dir);
 
 		return true;
@@ -824,7 +926,7 @@ function rcopy($source, $destination, $is_rec = false)
 		}
 		if (is_dir($destination) === false)
 		{
-			mkdir($destination, 0766, true);
+			mkdir($destination, 0755, true);
 		}
 
 		$files = scandir($source);
@@ -880,7 +982,7 @@ function rrename($source, $destination, $is_rec = false)
 		}
 		if (is_dir($destination) === false)
 		{
-			mkdir($destination, 0766, true);
+			mkdir($destination, 0755, true);
 		}
 
 		$files = scandir($source);
@@ -979,32 +1081,6 @@ function rchmod($source, $mode, $rec_option = "none", $is_rec = false)
 				}
 			}
 		}
-	}
-}
-
-/**
-* Check if chmod is valid
-*
-* @param  $perm
-* @param  $val
-*
-* @return  bool
-*/
-function chmod_logic_helper($perm, $val)
-{
-	$valid = array(
-		1 => array( 1, 3, 5, 7 ),
-		2 => array( 2, 3, 6, 7 ),
-		4 => array( 4, 5, 6, 7 )
-	);
-
-	if (in_array($perm, $valid[ $val ]))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
 	}
 }
 

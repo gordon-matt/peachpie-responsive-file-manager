@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'szűrés',
 	'Swipe_help' => 'Húzd az egered a fájl/mappa nevére, hogy lásd az opciókat.',
 	'Upload_base' => 'Alapértelmezett feltöltő',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA feltöltő (nagyméretű fájlokhoz)',
 	'Upload_java_help' => "Ha a Java Applet nem töltődik be: 1. ellenőrizze, hogy a JAVA telepítve van-e, ha nincs: <a href='http://java.com/en/download/'>[letöltés]</a> 2. ellenőrizze, hogy a tűzfal nem blokkolja-e",
 	'Upload_base_help' => "Fogd meg és húzd az ablakba a fájlt vagy kattints bele és válaszd ki majd nyomd meg a megnyitás gombot (modern böngészők). Amikor a feltöltés befejeződött kattints a fenti gombra a visszatéréshez.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

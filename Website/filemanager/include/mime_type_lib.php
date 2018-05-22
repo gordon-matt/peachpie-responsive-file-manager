@@ -57,7 +57,6 @@ $mime_types = array(
 	'djvu'    => 'image/vnd.djvu',
 	'dll'     => 'application/octet-stream',
 	'dms'     => 'application/octet-stream',
-	'doc'     => 'application/msword',
 	'dvi'     => 'application/x-dvi',
 	'dxr'     => 'application/x-director',
 	'eps'     => 'application/postscript',
@@ -92,6 +91,8 @@ $mime_types = array(
 	'ksp'     => 'application/x-kspread',
 	'kwd'     => 'application/x-kword',
 	'kwt'     => 'application/x-kword',
+    'kml'     => 'application/vnd.google-earth.kml+xml',
+    'kmz'     => 'application/vnd.google-earth.kmz',
 	'latex'   => 'application/x-latex',
 	'lha'     => 'application/octet-stream',
 	'lzh'     => 'application/octet-stream',
@@ -107,9 +108,8 @@ $mime_types = array(
 	'mp2'     => 'audio/mpeg',
 	'mp3'     => 'audio/mpeg',
 	'mpe'     => 'video/mpeg',
-	'mpeg'    => 'video/mpeg',
 	'mpg'     => 'video/mpeg',
-	'mpga'    => 'audio/mpeg',
+	'mpeg'    => 'video/mpeg',
 	'ms'      => 'application/x-troff-ms',
 	'msh'     => 'model/mesh',
 	'mxu'     => 'video/vnd.mpegurl',
@@ -134,6 +134,7 @@ $mime_types = array(
 	'pdf'     => 'application/pdf',
 	'pgm'     => 'image/x-portable-graymap',
 	'pgn'     => 'application/x-chess-pgn',
+	'php'     => 'text/x-php',
 	'png'     => 'image/png',
 	'pnm'     => 'image/x-portable-anymap',
 	'ppm'     => 'image/x-portable-pixmap',
@@ -212,13 +213,31 @@ $mime_types = array(
 	'xbm'     => 'image/x-xbitmap',
 	'xht'     => 'application/xhtml+xml',
 	'xhtml'   => 'application/xhtml+xml',
-	'xls'     => 'application/vnd.ms-excel',
 	'xml'     => 'text/xml',
 	'xpm'     => 'image/x-xpixmap',
 	'xsl'     => 'text/xml',
 	'xwd'     => 'image/x-xwindowdump',
 	'xyz'     => 'chemical/x-xyz',
-	'zip'     => 'application/zip'
+	'zip'     => 'application/zip',
+	'doc'      => 'application/msword',
+	'docx'     => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+	'dotx'     => 'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+	'docm'     => 'application/vnd.ms-word.document.macroEnabled.12',
+	'xls'      => 'application/vnd.ms-excel',
+	'xlsx'     => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+	'xltx'     => 'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+	'xlsm'     => 'application/vnd.ms-excel.sheet.macroEnabled.12',
+	'xltm'     => 'application/vnd.ms-excel.template.macroEnabled.12',
+	'xlam'     => 'application/vnd.ms-excel.addin.macroEnabled.12',
+	'xlsb'     => 'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
+	'ppt'      => 'application/vnd.ms-powerpoint',
+	'pptx'     => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+	'potx'     => 'application/vnd.openxmlformats-officedocument.presentationml.template',
+	'ppsx'     => 'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+	'ppam'     => 'application/vnd.ms-powerpoint.addin.macroEnabled.12',
+	'pptm'     => 'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+	'potm'     => 'application/vnd.ms-powerpoint.template.macroEnabled.12',
+	'ppsm'     => 'application/vnd.ms-powerpoint.slideshow.macroEnabled.12',
 );
 
 if ( ! function_exists('get_extension_from_mime'))
@@ -242,7 +261,7 @@ if ( ! function_exists('get_file_mime_type'))
 	{
 		if (function_exists('finfo_open') && function_exists('finfo_file') && function_exists('finfo_close'))
 		{
-			$fileinfo = finfo_open(FILEINFO_MIME);
+			$fileinfo = finfo_open(FILEINFO_MIME_TYPE);
 			$mime_type = finfo_file($fileinfo, $filename);
 			finfo_close($fileinfo);
 
@@ -256,6 +275,7 @@ if ( ! function_exists('get_file_mime_type'))
 				return $mime_type;
 			}
 		}
+
 		if (function_exists('mime_content_type'))
 		{
 			$mime_type = mime_content_type($filename);

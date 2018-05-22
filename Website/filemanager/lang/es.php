@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'filtro de texto',
 	'Swipe_help' => 'Deslize el nombre del archivo/carpeta para mostrar las opciones',
 	'Upload_base' => 'Subida de archivos SIMPLE',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'Subida de archivos JAVA (para archivos pesados)',
 	'Upload_java_help' => "Si el applet no carga: 1. Asegúrate de tener Java instalado; sino descárgalo e instálalo <a href='http://java.com/en/download/'>desde aquí</a> 2. Asegúrate que tu firewall no esté bloqueando nada.",
 	'Upload_base_help' => "Arrastra y suelta los archivos dentro de esta área o haga clic en ella (para navegadores modernos) de lo contrario, seleccione el archivo y haga clic en el botón. Cuando finalice la subida, haga clic en el botón superior para regresar.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

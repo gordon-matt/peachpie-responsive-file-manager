@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'Vyhľadať',
 	'Swipe_help' => 'Pre viac možností prejdite myšou na súbor/adresár',
 	'Upload_base' => 'Klasické nahratie súborov',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'Nahrať súbory cez JAVA (veľké súbory)',
 	'Upload_java_help' => "Ak sa vám nezobrazí Java Applet uistite sa, že máte nainštalovanú Java (<a href='http://java.com/en/download/'>stiahnuť</a>) a skontrolujte blokovanie cez bránu Firewall.",
 	'Upload_base_help' => "Myšou presuňte súbory alebo kliknite na plochu a vyberte súbory. Keď je nahrávanie dokončené, kliknite na tlačidlo 'Späť na zoznam súborov'.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

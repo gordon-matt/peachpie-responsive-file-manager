@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'išči',
 	'Swipe_help' => 'Izmakni ime datoteke/mape za prikaz možnosti',
 	'Upload_base' => 'Osnovni način',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA prenos (za velike datoteke)',
 	'Upload_java_help' => "Če se Java ne zažene, preverite če imate Javo naloženo (če je nimate jo <a href='http://java.com/en/download/'>[naložite]</a>) in preverite da je ne blokira vaš požarni zid.",
 	'Upload_base_help' => 'Povlecite in spustite datoteke ali kliknite v okvir (pri sodobnih brskalnikih) in izberite datoteke. Ko bo nalaganje končano, kliknite gumb "Nazaj na seznam datotek".',
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

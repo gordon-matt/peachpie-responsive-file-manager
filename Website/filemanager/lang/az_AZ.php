@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'filtrlə...',
 	'Swipe_help' => 'Variantları görmək üçün file/folder adına tıklayın',
 	'Upload_base' => 'Normal Yükləmə',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA Yükləmə (Böyük fayllar üçün)',
 	'Upload_java_help' => "Əgər Java tətbiqi yüklənmədisə; 1- Kompüterinizdə Java yüklənmiş olduğundan əmin olun yada <a href='http://java.com/en/download/'>[Java'nı Buradan Yükləyin]</a> 2- Təhlükəsizlik divarının heç bir şeyə mane olmadığından əmin olun.",
 	'Upload_base_help' => "Faylları aşağıdakı sahəyə Gətir & Burax ve ya tıklayaraq açılan pəncərədən fayllarınızı seçin. Yükləmə başa çatdığında 'Return to files list' düyməsinə tıklayın.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

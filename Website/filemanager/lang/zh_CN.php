@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => '文字过滤',
 	'Swipe_help' => '在文件或文件夹的名称上划过已显示更多选项',
 	'Upload_base' => '普通上传',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA上传(适用于大文件上传)',
 	'Upload_java_help' => "如果Java Applet没有加载，你可以：1. 请确认你的电脑安装了Java。如果没有安装，在这里下载安装 <a href='http://java.com/en/download/'>[下载链接]</a>   2. 确保您电脑的防火墙没有阻挡Java上传",
 	'Upload_base_help' => "将需要上传的文件拖动到以上区域 (需要比较新的浏览器才支持)，并选择相关文件。当上传完成，点击'返回文件列表'按钮",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

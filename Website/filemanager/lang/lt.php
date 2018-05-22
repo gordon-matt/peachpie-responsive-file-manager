@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'ieškoti',
 	'Swipe_help' => 'Tempkite failo/katalogo pavadinimą, kad pamatytumėte informaciją',
 	'Upload_base' => 'Pagrindinis įkėlimas',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'JAVA įkėlimas (dideliems failams)',
 	'Upload_java_help' => "Jei JAVA plėtinys neužsikrauna įsitikinkite, kad: 1. esate instaliavę JAVA, kitu atveju <a href='http://java.com/en/download/'>[atsisiųskite]</a>   2. Įsitikinkite, kad jūsų ugniasienė neblokuoja",
 	'Upload_base_help' => "Tempkite ir paleiskite iš kompiuterio failus arba spauskite ir pasirinkite, ką įkelti. Kai įkėlimas bus baigtas, spauskite 'Grįžti į failų sąrašą'.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",

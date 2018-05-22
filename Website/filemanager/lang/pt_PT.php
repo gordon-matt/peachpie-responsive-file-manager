@@ -39,6 +39,7 @@ return array(
 	'Text_filter' => 'filtro por texto',
 	'Swipe_help' => 'Passe o nome do arquivo / pasta para ver as opções',
 	'Upload_base' => 'Envio básico',
+	'Upload_url' => 'URL',
 	'Upload_java' => 'Envio via JAVA (ficheiros grandes)',
 	'Upload_java_help' => "Se o Java não carrega 1. Certifique-se que tem o Java instalado, caso contrário <a href='http://java.com/en/download/'>[descarregue aqui]</a> 2. Certifique-se que não tem nenhuma firewall a bloquear",
 	'Upload_base_help' => "Arraste & Largue ficheiros dentro da área acima ou clique-a (para browsers modernos) caso contrário escolha o ficheiro e clique no botão. Quando o envio terminar, clique no botão de regresso acima.",
@@ -112,7 +113,7 @@ return array(
 	'no file' => "No file",
 	'view type number missing' => "View type number missing",
 	'Not enought Memory' => "Not enought Memory",
-	'max_size_reached' => "Your folder has reach its maximale size of %d MB.", //%d = max overall size
+	'max_size_reached' => "Your image folder has reach its maximale size of %d MB.", //%d = max overall size
 	'B' => "B",
 	'KB' => "KB",
 	'MB' => "MB",
