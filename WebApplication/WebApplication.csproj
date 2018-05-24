@@ -27,7 +27,7 @@
     <PackageReference Include="Peachpie.Library.Scripting" Version="0.9.0-CI00906" />
     <PackageReference Include="Peachpie.Library.XmlDom" Version="0.9.0-CI00906" />
     <PackageReference Include="Peachpie.NETCore.Web" Version="0.9.0-CI00906" />
-    <PackageReference Include="ResponsiveFileManager" Version="1.0.3" />
+    <PackageReference Include="ResponsiveFileManager" Version="1.0.4" />
   </ItemGroup>
 
   <!--<ItemGroup>
