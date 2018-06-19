@@ -15,7 +15,7 @@
     <Description>Responsive File Manager running on .NET Core with Peachpie</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
-    <Version>1.0.4</Version>
+    <Version>1.0.7</Version>
     <ContentFiles>**/*.htaccess;**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jar;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt;</ContentFiles>
   </PropertyGroup>
 
@@ -32,9 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Peachpie.Compiler.Tools" Version="0.9.0-CI00906" />
-    <PackageReference Include="Peachpie.NET.Sdk" Version="0.9.0-CI00906" PrivateAssets="Build" />
-    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.0-CI00906" />
-    <PackageReference Include="Peachpie.Library.Network" Version="0.9.0-CI00906" />
+    <DotNetCliToolReference Include="Peachpie.Compiler.Tools" Version="0.9.0-CI00965" />
+    <PackageReference Include="Peachpie.NET.Sdk" Version="0.9.0-CI00965" PrivateAssets="Build" />
+    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.0-CI00965" />
+    <PackageReference Include="Peachpie.Library.Network" Version="0.9.0-CI00965" />
   </ItemGroup>
 </Project>
