@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Pchp.Core;
-using Peachpie.Web;
+using Peachpie.AspNetCore.Web;
 using WebApplication.Data;
 using WebApplication.Models;
 using WebApplication.Options;
