@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-WebApplication-0ED9D933-07CC-46A2-8DF4-30AF442E8C9F</UserSecretsId>
     <PackageId>Web Application</PackageId>
     <Authors>Web Application</Authors>
@@ -11,23 +11,23 @@
     <Copyright>Copyright</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
-    <PackageReference Include="Peachpie.Library" Version="0.9.11" />
-    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.11" />
-    <PackageReference Include="Peachpie.Library.MsSql" Version="0.9.11" />
-    <PackageReference Include="Peachpie.Library.MySql" Version="0.9.11" />
-    <PackageReference Include="Peachpie.Library.Network" Version="0.9.11" />
-    <PackageReference Include="Peachpie.Library.PDO" Version="0.9.11" />
-    <PackageReference Include="Peachpie.Library.Scripting" Version="0.9.11" />
-    <PackageReference Include="Peachpie.Library.XmlDom" Version="0.9.11" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Peachpie.Library" Version="0.9.24" />
+    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.24" />
+    <PackageReference Include="Peachpie.Library.MsSql" Version="0.9.24" />
+    <PackageReference Include="Peachpie.Library.MySql" Version="0.9.24" />
+    <PackageReference Include="Peachpie.Library.Network" Version="0.9.24" />
+    <PackageReference Include="Peachpie.Library.PDO" Version="0.9.24" />
+    <PackageReference Include="Peachpie.Library.Scripting" Version="0.9.24" />
+    <PackageReference Include="Peachpie.Library.XmlDom" Version="0.9.24" />
     <PackageReference Include="Peachpie.NETCore.Web" Version="0.9.0-CI01110" />
-    <PackageReference Include="ResponsiveFileManager" Version="1.0.8" />
+    <PackageReference Include="ResponsiveFileManager" Version="1.0.9" />
   </ItemGroup>
 
   <!--<ItemGroup>
@@ -35,9 +35,7 @@
   </ItemGroup>-->
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
-    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>
