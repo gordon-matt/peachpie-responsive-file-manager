@@ -1,4 +1,10 @@
-﻿<style type="text/css">
+﻿@{ 
+    // In a real situation, you would get the tenant ID from your app and append it here
+    //  or do something similar.. maybe a user ID instead if each user has their own folder...
+    string rootFolder = "Tenant_1";
+}
+
+<style type="text/css">
     .modal-dialog {
         width: 80%;
     }
@@ -20,10 +26,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">Select</h4>
             </div>
             <div class="modal-body">
-                <iframe src="/filemanager/dialog.php?type=1&fldr=&field_id=fieldID" frameborder="0" style="overflow:hidden;min-height:600px; height:100%;width:100%" height="100%" width="100%"></iframe>
+                <iframe src="/filemanager/dialog.php?type=1&relative_url=1&rootFolder=@rootFolder&fldr=&field_id=fieldID&ignore_last_position=1" frameborder="0" style="overflow:hidden;min-height:600px; height:100%;width:100%" height="100%" width="100%"></iframe>
             </div>
         </div>
     </div>

@@ -51,14 +51,17 @@ if (isset($_GET['fldr'])
 }
 else { $subdir = ''; }
 
-if($subdir == "")
+if (!isset($_GET['ignore_last_position']) || $_GET['ignore_last_position'] == "0")
 {
-	if(!empty($_COOKIE['last_position']) && strpos($_COOKIE['last_position'],'.') === FALSE){
-		$subdir= trim($_COOKIE['last_position']);
+	if($subdir == "")
+	{
+		if(!empty($_COOKIE['last_position']) && strpos($_COOKIE['last_position'],'.') === FALSE){
+			$subdir= trim($_COOKIE['last_position']);
+		}
 	}
+	//remember last position
+	setcookie('last_position',$subdir,time() + (86400 * 7));
 }
-//remember last position
-setcookie('last_position',$subdir,time() + (86400 * 7));
 
 if ($subdir == "/") { $subdir = ""; }
 
@@ -82,7 +85,11 @@ if ($show_total_size) {
 *SUB-DIR CODE
 ***/
 
-if (!isset($_SESSION['RF']["subfolder"]))
+if (isset($_GET['rootFolder']))
+{
+	$_SESSION['RF']["subfolder"] = $_GET["rootFolder"];
+}
+else if (!isset($_SESSION['RF']["subfolder"]))
 {
 	$_SESSION['RF']["subfolder"] = '';
 }
