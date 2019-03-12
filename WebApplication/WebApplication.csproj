@@ -27,12 +27,12 @@
     <PackageReference Include="Peachpie.Library.Scripting" Version="0.9.24" />
     <PackageReference Include="Peachpie.Library.XmlDom" Version="0.9.24" />
     <PackageReference Include="Peachpie.NETCore.Web" Version="0.9.0-CI01110" />
-    <PackageReference Include="ResponsiveFileManager" Version="1.0.9" />
+    <!--<PackageReference Include="ResponsiveFileManager" Version="1.0.9" />-->
   </ItemGroup>
 
-  <!--<ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Website\Website.msbuildproj" />
-  </ItemGroup>-->
+  </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
