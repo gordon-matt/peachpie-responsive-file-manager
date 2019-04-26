@@ -1,0 +1,29 @@
+﻿<Project Sdk="Peachpie.NET.Sdk/0.9.40">
+
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>a271793f-72bf-429d-9ec8-83c03559cbd6</ProjectGuid>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Matt Gordon</Authors>
+    <Company>Matt Gordon</Company>
+    <Product>Responsive File Manager</Product>
+    <Description>Responsive File Manager running on .NET Core with Peachpie</Description>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**/*.php" Exclude="obj/**;bin/**" />
+
+    <Content Include="**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jar;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt;filemanager/lang/*.php" Exclude="obj/**;bin/**">
+      <PackagePath>contentFiles/any/netcoreapp2.0/wwwroot/</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+
+  </ItemGroup>
+
+</Project>
