@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -19,12 +17,15 @@ namespace WebApplication
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            HostingEnvironment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
+
+        public IHostingEnvironment HostingEnvironment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -70,8 +71,6 @@ namespace WebApplication
             var rfmOptions = new ResponsiveFileManagerOptions();
             Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
 
-            string root = Path.Combine(new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName, "wwwroot");
-
             app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
             {
                 //RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website",
@@ -93,7 +92,7 @@ namespace WebApplication
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions()
             {
-                FileProvider = new PhysicalFileProvider(root)
+                FileProvider = new PhysicalFileProvider(HostingEnvironment.WebRootPath)
             });
 
             app.UseAuthentication();
