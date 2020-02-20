@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using Pchp.Core;
 using Peachpie.AspNetCore.Web;
 using WebApplication.Data;
@@ -17,15 +18,15 @@ namespace WebApplication
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
-            HostingEnvironment = hostingEnvironment;
+            HostEnvironment = environment;
         }
 
         public IConfiguration Configuration { get; }
 
-        public IHostingEnvironment HostingEnvironment { get; }
+        public IWebHostEnvironment HostEnvironment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -49,15 +50,18 @@ namespace WebApplication
                 options.Cookie.HttpOnly = true;
             });
 
-            services.AddMvc();
+            services.AddMvc(opt =>
+            {
+                opt.EnableEndpointRouting = false; // TODO: this is pre-aspnetcore 3.0 MVC, for app.UseMvc() below
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
+                //app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
@@ -92,7 +96,7 @@ namespace WebApplication
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions()
             {
-                FileProvider = new PhysicalFileProvider(HostingEnvironment.WebRootPath)
+                FileProvider = HostEnvironment.WebRootFileProvider,
             });
 
             app.UseAuthentication();

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Peachpie.NET.Sdk/0.9.40">
+﻿<Project Sdk="Peachpie.NET.Sdk/0.9.800">
 
   <PropertyGroup Label="Globals">
     <ProjectGuid>a271793f-72bf-429d-9ec8-83c03559cbd6</ProjectGuid>
@@ -14,13 +14,14 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
     <Version>1.1.0</Version>
+    <NoWarn>PHP5011</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="**/*.php" Exclude="obj/**;bin/**" />
 
     <Content Include="**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jar;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt;filemanager/lang/*.php" Exclude="obj/**;bin/**">
-      <PackagePath>contentFiles/any/netcoreapp2.0/wwwroot/</PackagePath>
+      <PackagePath>contentFiles/any/netcoreapp3.0/wwwroot/</PackagePath>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
 
