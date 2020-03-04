@@ -5,10 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Pchp.Core;
-using Peachpie.AspNetCore.Web;
 using WebApplication.Data;
 using WebApplication.Models;
 using WebApplication.Options;
@@ -50,10 +48,8 @@ namespace WebApplication
                 options.Cookie.HttpOnly = true;
             });
 
-            services.AddMvc(opt =>
-            {
-                opt.EnableEndpointRouting = false; // TODO: this is pre-aspnetcore 3.0 MVC, for app.UseMvc() below
-            });
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,7 +79,7 @@ namespace WebApplication
                     // Since the config.php file is compiled, we cannot modify it once deployed... everything is hard coded there.
                     //  TODO: Place these values in appsettings.json and pass them in here to override the ones from config.php
 
-                    ctx.Globals["appsettings"] = (PhpValue)new PhpArray()
+                    ctx.Globals["appsettings"] = new PhpArray
                     {
                         { "upload_dir", rfmOptions.UploadDirectory },
                         { "current_path", rfmOptions.CurrentPath },
@@ -99,13 +95,17 @@ namespace WebApplication
                 FileProvider = HostEnvironment.WebRootFileProvider,
             });
 
-            app.UseAuthentication();
+            app.UseRouting();
 
-            app.UseMvc(routes =>
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
