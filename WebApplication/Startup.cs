@@ -76,9 +76,6 @@ namespace WebApplication
                 //RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website",
                 BeforeRequest = (Context ctx) =>
                 {
-                    // Since the config.php file is compiled, we cannot modify it once deployed... everything is hard coded there.
-                    //  TODO: Place these values in appsettings.json and pass them in here to override the ones from config.php
-
                     ctx.Globals["appsettings"] = new PhpArray
                     {
                         { "upload_dir", rfmOptions.UploadDirectory },
