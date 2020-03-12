@@ -17,5 +17,10 @@
         /// Relative path from filemanager folder to thumbs folder. Use final / and DO NOT put inside upload folder.
         /// </summary>
         public string ThumbsBasePath { get; set; }
+
+        /// <summary>
+        /// Maximum upload size in Megabytes.
+        /// </summary>
+        public int? MaxSizeUpload { get; set; }
     }
 }
