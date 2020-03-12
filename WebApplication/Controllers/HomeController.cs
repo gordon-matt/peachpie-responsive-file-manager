@@ -12,6 +12,18 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        [Route("tiny-mce-4")]
+        public ActionResult TinyMCE4()
+        {
+            return View();
+        }
+
+        [Route("tiny-mce-5")]
+        public ActionResult TinyMCE5()
+        {
+            return View();
+        }
+
         [Route("iframe")]
         public ActionResult IFrame()
         {
