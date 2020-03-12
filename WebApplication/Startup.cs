@@ -73,14 +73,14 @@ namespace WebApplication
 
             app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
             {
-                //RootPath = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Website",
                 BeforeRequest = (Context ctx) =>
                 {
                     ctx.Globals["appsettings"] = new PhpArray
                     {
                         { "upload_dir", rfmOptions.UploadDirectory },
                         { "current_path", rfmOptions.CurrentPath },
-                        { "thumbs_base_path", rfmOptions.ThumbsBasePath }
+                        { "thumbs_base_path", rfmOptions.ThumbsBasePath },
+                        { "MaxSizeUpload", rfmOptions.MaxSizeUpload } //TODO: Test this new option
                     };
                 }
             });
