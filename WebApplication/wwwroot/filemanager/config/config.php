@@ -212,7 +212,7 @@ $config = array(
     | in Megabytes
     |
     */
-    'MaxSizeUpload' => 10,
+    'MaxSizeUpload' => $appsettings['MaxSizeUpload'] ?? 10,
 
     /*
     |--------------------------------------------------------------------------
