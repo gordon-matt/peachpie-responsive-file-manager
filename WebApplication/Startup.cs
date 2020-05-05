@@ -1,10 +1,14 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Pchp.Core;
 using WebApplication.Data;
@@ -71,6 +75,14 @@ namespace WebApplication
             var rfmOptions = new ResponsiveFileManagerOptions();
             Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles(); // shortcut for HostEnvironment.WebRootFileProvider
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                RequestPath = new PathString("/filemanager"),
+                FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"))),
+            });
+
             app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
             {
                 BeforeRequest = (Context ctx) =>
@@ -83,13 +95,6 @@ namespace WebApplication
                         { "MaxSizeUpload", rfmOptions.MaxSizeUpload } //TODO: Test this new option
                     };
                 }
-            });
-
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = HostEnvironment.WebRootFileProvider,
             });
 
             app.UseRouting();
