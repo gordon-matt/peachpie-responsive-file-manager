@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-WebApplication-0ED9D933-07CC-46A2-8DF4-30AF442E8C9F</UserSecretsId>
     <PackageId>Web Application</PackageId>
     <Authors>Web Application</Authors>
@@ -11,18 +11,19 @@
     <Copyright>Copyright</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
-    <Version>1.0.5</Version>
+    <Version>1.2.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" PrivateAssets="All" />
-    <!--PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="3.0.0" PrivateAssets="All" /-->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" PrivateAssets="All" />
     <PackageReference Include="Peachpie.AspNetCore.Web" Version="$(PeachpieVersion)" />
-    <!--<PackageReference Include="ResponsiveFileManager" Version="1.1.0" />-->
+    
+    <!-- If testing a NuGet package (development mode), then use this <PackageReference> and comment the <ProjectReference> below -->
+    <!--<PackageReference Include="ResponsiveFileManager" Version="1.2.0.2" />-->
   </ItemGroup>
 
   <ItemGroup>

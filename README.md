@@ -110,8 +110,6 @@ You can use the source code in this repo, as follows:
 
 4. Look at the `Startup.cs` file for configuration to copy to your own project to use with the NuGet package.
 
-**NOTE**: This is a work in progress. At this time, the project is functional, but there are some minor bugs. Further details can be found here: [Peachpie Issue 185](https://github.com/peachpiecompiler/peachpie/issues/185)
-
 ## Donate
 If you find this project helpful, consider buying me a cup of coffee.  :-)
 
