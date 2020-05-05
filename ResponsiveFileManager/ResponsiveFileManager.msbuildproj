@@ -20,14 +20,13 @@
   <ItemGroup>
     <Compile Include="**/*.php" Exclude="obj/**;bin/**" />
 
-    <Content Include="**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jar;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt" Exclude="obj/**;bin/**">
-      <PackagePath>contentFiles/any/netcoreapp3.1/wwwroot/</PackagePath>
+    <Content
+      Include="**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jar;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt"
+      Exclude="obj/**;bin/**"
+      CopyToOutputDirectory="PreserveNewest">
+      <PackagePath>contentFiles/any/netcoreapp3.1/</PackagePath>
       <PackageCopyToOutput>true</PackageCopyToOutput>
-    </Content>
-
-    <Content Include="filemanager/lang/*.php" Exclude="obj/**;bin/**">
-      <PackagePath>contentFiles/any/netcoreapp3.1/wwwroot/filemanager/lang/</PackagePath>
-      <PackageCopyToOutput>true</PackageCopyToOutput>
+      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
 
   </ItemGroup>
