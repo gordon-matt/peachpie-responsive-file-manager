@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Pchp.Core;
+using Peachpie.AspNetCore.Web;
 using WebApplication.Data;
 using WebApplication.Models;
 using WebApplication.Options;
