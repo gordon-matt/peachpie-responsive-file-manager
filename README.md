@@ -74,13 +74,20 @@ public void Configure(IApplicationBuilder app)
     var rfmOptions = new ResponsiveFileManagerOptions();
     Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
 	
-    string root = Path.Combine(new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName, "wwwroot");
+    string filemanager = Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"));
+
+    app.UseDefaultFiles();
+    app.UseStaticFiles(); // For default wwwroot location
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(filemanager)
+    });
 
     app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
     {
         BeforeRequest = (Context ctx) =>
         {
-            ctx.Globals["appsettings"] = (PhpValue)new PhpArray()
+            ctx.Globals["appsettings"] = new PhpArray()
             {
                 { "upload_dir", rfmOptions.UploadDirectory },
                 { "current_path", rfmOptions.CurrentPath },
@@ -89,13 +96,6 @@ public void Configure(IApplicationBuilder app)
         }
     });
 
-    app.UseDefaultFiles();
-    app.UseStaticFiles(); // For default wwwroot location
-    app.UseStaticFiles(new StaticFileOptions()
-    {
-        FileProvider = new PhysicalFileProvider(root)
-    });
-	
     // etc
 }
 ```
@@ -103,12 +103,14 @@ public void Configure(IApplicationBuilder app)
 You can use the source code in this repo, as follows:
 
 1. Open the solution in Visual Studio 2017 or newer.
-
-2. Set the **WebApplication** project as the default, if it isn't already.
-
-3. Run and test one of the 3 demo pages
-
-4. Look at the `Startup.cs` file for configuration to copy to your own project to use with the NuGet package.
+2. Set the **WebApplication** project as the default, if it 
+isn't already.
+3. restore libs in WebApplication folder:
+  - `dotnet tool install -g Microsoft.Web.LibraryManager.Cli`
+  - `libman restore`
+4. Run and test one of the 3 demo pages
+5. Look at the `Startup.cs` file for configuration to copy 
+to your own project to use with the NuGet package.
 
 ## Donate
 If you find this project helpful, consider buying me a cup of coffee.  :-)

@@ -3,12 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-WebApplication-0ED9D933-07CC-46A2-8DF4-30AF442E8C9F</UserSecretsId>
-    <PackageId>Web Application</PackageId>
-    <Authors>Web Application</Authors>
-    <Company>Web Application</Company>
-    <Product>Web Application</Product>
-    <Description>Description</Description>
-    <Copyright>Copyright</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
     <Version>1.2.1</Version>
@@ -21,13 +15,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" PrivateAssets="All" />
     <PackageReference Include="Peachpie.AspNetCore.Web" Version="$(PeachpieVersion)" />
-    
+
     <!-- If testing a NuGet package (development mode), then use this <PackageReference> and comment the <ProjectReference> below -->
-    <!--<PackageReference Include="ResponsiveFileManager" Version="1.2.0.2" />-->
+    <!--<PackageReference Include="ResponsiveFileManager" Version="1.2.0.2" PrivateAssets="None" />-->
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Website\ResponsiveFileManager.msbuildproj" />
+    <ProjectReference Include="..\ResponsiveFileManager\ResponsiveFileManager.msbuildproj" PrivateAssets="None" />
   </ItemGroup>
 
   <ItemGroup>
