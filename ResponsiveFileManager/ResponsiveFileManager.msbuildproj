@@ -13,17 +13,14 @@
     <Description>Responsive File Manager running on .NET Core with Peachpie</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
-    <Version>1.2.1</Version>
+    <Version>1.3.0</Version>
     <NoWarn>PHP5011</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="**/*.php" Exclude="obj/**;bin/**" />
 
-    <Content
-      Include="**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jar;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt"
-      Exclude="obj/**;bin/**"
-      CopyToOutputDirectory="PreserveNewest">
+    <Content Include="**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jar;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt" Exclude="obj/**;bin/**" CopyToOutputDirectory="PreserveNewest">
       <PackagePath>contentFiles/any/netcoreapp3.1/</PackagePath>
       <PackageCopyToOutput>true</PackageCopyToOutput>
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
