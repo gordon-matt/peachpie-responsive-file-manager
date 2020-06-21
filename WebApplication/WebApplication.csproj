@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ResponsiveFileManager\ResponsiveFileManager.msbuildproj" PrivateAssets="None" />
+    <ProjectReference Include="..\ResponsiveFileManager.AspNetCore\ResponsiveFileManager.AspNetCore.csproj" PrivateAssets="None" />
   </ItemGroup>
 
   <ItemGroup>

@@ -77,7 +77,7 @@ $config = array(
     | with start and final /
     |
     */
-	'upload_dir' => $appsettings['upload_dir'],
+	'upload_dir' => $rfm_options->UploadDirectory,
     /*
     |--------------------------------------------------------------------------
     | relative path from filemanager folder to upload folder
@@ -86,7 +86,7 @@ $config = array(
     | with final /
     |
     */
-	'current_path' => $appsettings['current_path'],
+	'current_path' => $rfm_options->CurrentPath,
 
     /*
     |--------------------------------------------------------------------------
@@ -97,7 +97,7 @@ $config = array(
     | DO NOT put inside upload folder
     |
     */
-	'thumbs_base_path' => $appsettings['thumbs_base_path'],
+	'thumbs_base_path' => $rfm_options->ThumbsBasePath,
 
     /*
     |--------------------------------------------------------------------------
@@ -212,7 +212,7 @@ $config = array(
     | in Megabytes
     |
     */
-    'MaxSizeUpload' => $appsettings['MaxSizeUpload'] ?? 10,
+    'MaxSizeUpload' => $rfm_options->MaxSizeUpload ?? 10,
 
     /*
     |--------------------------------------------------------------------------

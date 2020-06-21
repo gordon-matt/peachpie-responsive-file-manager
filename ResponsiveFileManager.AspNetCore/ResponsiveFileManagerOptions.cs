@@ -1,4 +1,4 @@
-﻿namespace WebApplication.Options
+﻿namespace ResponsiveFileManager
 {
     // TODO: Add all options from config.php
     public class ResponsiveFileManagerOptions
