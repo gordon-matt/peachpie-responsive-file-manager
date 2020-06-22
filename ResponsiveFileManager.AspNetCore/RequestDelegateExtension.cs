@@ -1,27 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.ResponseCaching;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Options;
-using Pchp.Core;
-using Peachpie.AspNetCore.Web;
-using ResponsiveFileManager;
 
 namespace Microsoft.AspNetCore.Builder
 {
     /// <summary>
-    /// <see cref="IApplicationBuilder"/> extension for enabling WordPress.
+    /// <see cref="IApplicationBuilder"/> extension for enabling Responsive File Manager.
     /// </summary>
     public static class RequestDelegateExtension
     {
@@ -39,7 +24,6 @@ namespace Microsoft.AspNetCore.Builder
 
             app.UsePhp();
 
-            //
             return app;
         }
     }

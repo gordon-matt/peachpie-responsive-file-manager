@@ -1,11 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using ResponsiveFileManager;
-using Pchp.Core;
+﻿using System;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Pchp.Core;
+using ResponsiveFileManager;
 
 namespace Microsoft.AspNetCore.Builder
 {
@@ -15,7 +13,7 @@ namespace Microsoft.AspNetCore.Builder
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds optional WordPress services and configuration callback.
+        /// Adds optional Responsive File Manager services and configuration callback.
         /// </summary>
         public static IServiceCollection AddResponsiveFileManager(this IServiceCollection services, Action<ResponsiveFileManagerOptions> configure = null)
         {
