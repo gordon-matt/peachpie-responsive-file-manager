@@ -14,7 +14,6 @@ using Pchp.Core;
 using Peachpie.AspNetCore.Web;
 using WebApplication.Data;
 using WebApplication.Models;
-using WebApplication.Options;
 using WebApplication.Services;
 
 namespace WebApplication
@@ -55,6 +54,11 @@ namespace WebApplication
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddResponsiveFileManager(options =>
+            {
+                //
+                options.MaxSizeUpload = 32;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,30 +77,10 @@ namespace WebApplication
 
             app.UseSession();
 
-            var rfmOptions = new ResponsiveFileManagerOptions();
-            Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
-
             app.UseDefaultFiles();
             app.UseStaticFiles(); // shortcut for HostEnvironment.WebRootFileProvider
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                RequestPath = new PathString("/filemanager"),
-                FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"))),
-            });
 
-            app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
-            {
-                BeforeRequest = (Context ctx) =>
-                {
-                    ctx.Globals["appsettings"] = new PhpArray
-                    {
-                        { "upload_dir", rfmOptions.UploadDirectory },
-                        { "current_path", rfmOptions.CurrentPath },
-                        { "thumbs_base_path", rfmOptions.ThumbsBasePath },
-                        { "MaxSizeUpload", rfmOptions.MaxSizeUpload } //TODO: Test this new option
-                    };
-                }
-            });
+            app.UseResponsiveFileManager();
 
             app.UseRouting();
 
