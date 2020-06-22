@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Description>The whole of Responsive File Manager, compiled, packed and provided as an ASP.NET Core package. Does not require PHP, becomes a part of ASP.NET Core application.
+
+Usage:
+
+1. Add a package reference to "ResponsiveFileManager.AspNetCore"
+2. Add ResponsiveFileManager as middleware within "Configure" method:
+
+      app.UseResponsiveFileManager();
+
+3. Optionally configure ResponsiveFileManager settings in "ConfigureServices" method.
+
+      services.AddResponsiveFileManager(options =&gt;
+      {
+      //
+      });</Description>
+    <Version>1.0.0</Version>
+    <Authors>Matt Gordon</Authors>
+    <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Peachpie.AspNetCore.Web" Version="$(PeachpieVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ResponsiveFileManager\ResponsiveFileManager.msbuildproj">
+      <PrivateAssets>None</PrivateAssets>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

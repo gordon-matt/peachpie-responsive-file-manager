@@ -1,4 +1,4 @@
-﻿namespace WebApplication.Options
+﻿namespace ResponsiveFileManager
 {
     // TODO: Add all options from config.php
     public class ResponsiveFileManagerOptions
@@ -7,7 +7,7 @@
         /// Path from base_url to base of upload folder. Use start and final /
         /// </summary>
         public string UploadDirectory { get; set; }
-        
+
         /// <summary>
         /// Relative path from filemanager folder to upload folder. Use final /
         /// </summary>
