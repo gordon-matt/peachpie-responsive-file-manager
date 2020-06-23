@@ -7,6 +7,44 @@ Responsive File Manager running on .NET Core with Peachpie
 
 ## Getting Started
 
+If you are not already using Peachpie for anything, then including Responsive File Manager is very easy:
+
+1. Get the ResponsiveFileManager.AspNetCore NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager.AspNetCore/
+
+2. Add the following to your **appsettings.json**:
+
+```json
+"ResponsiveFileManagerOptions": {
+    // Path from base_url to base of upload folder. Use start and final /
+    "UploadDirectory": "/Media/Uploads/",
+
+    // Relative path from filemanager folder to upload folder. Use final /
+    "CurrentPath": "../Media/Uploads/",
+
+    // Relative path from filemanager folder to thumbs folder. Use final / and DO NOT put inside upload folder.
+    "ThumbsBasePath": "../Media/Thumbs/",
+	
+	"MaxSizeUpload":  10
+}
+```
+
+3. Add ResponsiveFileManager as middleware within the `Configure` method:
+
+```csharp
+app.UseResponsiveFileManager();
+```
+
+4. Optionally configure ResponsiveFileManager settings in the `ConfigureServices` method.
+
+```csharp
+services.AddResponsiveFileManager(options =>
+{
+	
+});
+```
+
+If you are wanting to use Peachpie for more than just ResponsiveFileManager, then it is recommended you ignore the ResponsiveFileManager.AspNetCore package, only acquire the base ResponsiveFileManager package and then manually configure the settings as follows:
+
 1. Get the ResponsiveFileManager NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager/
 
 2. Create the following class:
@@ -28,6 +66,11 @@ public class ResponsiveFileManagerOptions
     /// Relative path from filemanager folder to thumbs folder. Use final / and DO NOT put inside upload folder.
     /// </summary>
     public string ThumbsBasePath { get; set; }
+
+	/// <summary>
+	/// Maximum upload size in Megabytes.
+	/// </summary>
+	public int? MaxSizeUpload { get; set; }
 }
 ```
 
@@ -42,7 +85,9 @@ public class ResponsiveFileManagerOptions
     "CurrentPath": "../Media/Uploads/",
 
     // Relative path from filemanager folder to thumbs folder. Use final / and DO NOT put inside upload folder.
-    "ThumbsBasePath": "../Media/Thumbs/"
+    "ThumbsBasePath": "../Media/Thumbs/",
+	
+	"MaxSizeUpload":  10
 }
 ```
 
@@ -71,30 +116,30 @@ public void Configure(IApplicationBuilder app)
 
     app.UseSession();
 
-    var rfmOptions = new ResponsiveFileManagerOptions();
-    Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
-	
-    string filemanager = Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"));
+	var rfmOptions = new ResponsiveFileManagerOptions();
+	Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
 
-    app.UseDefaultFiles();
-    app.UseStaticFiles(); // For default wwwroot location
-    app.UseStaticFiles(new StaticFileOptions()
-    {
-        FileProvider = new PhysicalFileProvider(filemanager)
-    });
+	app.UseDefaultFiles();
+	app.UseStaticFiles(); // shortcut for HostEnvironment.WebRootFileProvider
+	app.UseStaticFiles(new StaticFileOptions
+	{
+		RequestPath = new PathString("/filemanager"),
+		FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"))),
+	});
 
-    app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
-    {
-        BeforeRequest = (Context ctx) =>
-        {
-            ctx.Globals["appsettings"] = new PhpArray()
-            {
-                { "upload_dir", rfmOptions.UploadDirectory },
-                { "current_path", rfmOptions.CurrentPath },
-                { "thumbs_base_path", rfmOptions.ThumbsBasePath }
-            };
-        }
-    });
+	app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
+	{
+		BeforeRequest = (Context ctx) =>
+		{
+			ctx.Globals["appsettings"] = new PhpArray
+			{
+				{ "upload_dir", rfmOptions.UploadDirectory },
+				{ "current_path", rfmOptions.CurrentPath },
+				{ "thumbs_base_path", rfmOptions.ThumbsBasePath },
+				{ "MaxSizeUpload", rfmOptions.MaxSizeUpload }
+			};
+		}
+	});
 
     // etc
 }
@@ -103,14 +148,12 @@ public void Configure(IApplicationBuilder app)
 You can use the source code in this repo, as follows:
 
 1. Open the solution in Visual Studio 2017 or newer.
-2. Set the **WebApplication** project as the default, if it 
-isn't already.
+2. Set the **WebApplication** project as the default, if it isn't already.
 3. restore libs in WebApplication folder:
   - `dotnet tool install -g Microsoft.Web.LibraryManager.Cli`
   - `libman restore`
-4. Run and test one of the 3 demo pages
-5. Look at the `Startup.cs` file for configuration to copy 
-to your own project to use with the NuGet package.
+4. Run and test one of the demo pages
+5. Look at the `Startup.cs` file for configuration to copy to your own project to use with the NuGet package.
 
 ## Donate
 If you find this project helpful, consider buying me a cup of coffee.  :-)
