@@ -7,7 +7,7 @@ Responsive File Manager running on .NET Core with Peachpie
 
 ## Getting Started
 
-If you are not already using Peachpie for anything, then including Responsive File Manager is very easy:
+**If you are not already using Peachpie for anything, then including Responsive File Manager is very easy:**
 
 1. Get the ResponsiveFileManager.AspNetCore NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager.AspNetCore/
 
@@ -24,7 +24,7 @@ If you are not already using Peachpie for anything, then including Responsive Fi
     // Relative path from filemanager folder to thumbs folder. Use final / and DO NOT put inside upload folder.
     "ThumbsBasePath": "../Media/Thumbs/",
 	
-	"MaxSizeUpload":  10
+    "MaxSizeUpload":  10
 }
 ```
 
@@ -43,7 +43,7 @@ services.AddResponsiveFileManager(options =>
 });
 ```
 
-If you are wanting to use Peachpie for more than just ResponsiveFileManager, then it is recommended you ignore the ResponsiveFileManager.AspNetCore package, only acquire the base ResponsiveFileManager package and then manually configure the settings as follows:
+**If you are wanting to use Peachpie for more than just ResponsiveFileManager, then it is recommended you ignore the ResponsiveFileManager.AspNetCore package, only acquire the base ResponsiveFileManager package and then manually configure the settings as follows:**
 
 1. Get the ResponsiveFileManager NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager/
 
@@ -67,10 +67,10 @@ public class ResponsiveFileManagerOptions
     /// </summary>
     public string ThumbsBasePath { get; set; }
 
-	/// <summary>
-	/// Maximum upload size in Megabytes.
-	/// </summary>
-	public int? MaxSizeUpload { get; set; }
+    /// <summary>
+    /// Maximum upload size in Megabytes.
+    /// </summary>
+    public int? MaxSizeUpload { get; set; }
 }
 ```
 
@@ -87,7 +87,7 @@ public class ResponsiveFileManagerOptions
     // Relative path from filemanager folder to thumbs folder. Use final / and DO NOT put inside upload folder.
     "ThumbsBasePath": "../Media/Thumbs/",
 	
-	"MaxSizeUpload":  10
+    "MaxSizeUpload":  10
 }
 ```
 
@@ -116,30 +116,24 @@ public void Configure(IApplicationBuilder app)
 
     app.UseSession();
 
-	var rfmOptions = new ResponsiveFileManagerOptions();
-	Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
+    var rfmOptions = new ResponsiveFileManagerOptions();
+    Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
 
-	app.UseDefaultFiles();
-	app.UseStaticFiles(); // shortcut for HostEnvironment.WebRootFileProvider
-	app.UseStaticFiles(new StaticFileOptions
-	{
-		RequestPath = new PathString("/filemanager"),
-		FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"))),
-	});
+    app.UseDefaultFiles();
+    app.UseStaticFiles(); // shortcut for HostEnvironment.WebRootFileProvider
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        RequestPath = new PathString("/filemanager"),
+        FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"))),
+    });
 
-	app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
-	{
-		BeforeRequest = (Context ctx) =>
-		{
-			ctx.Globals["appsettings"] = new PhpArray
-			{
-				{ "upload_dir", rfmOptions.UploadDirectory },
-				{ "current_path", rfmOptions.CurrentPath },
-				{ "thumbs_base_path", rfmOptions.ThumbsBasePath },
-				{ "MaxSizeUpload", rfmOptions.MaxSizeUpload }
-			};
-		}
-	});
+    app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
+    {
+        BeforeRequest = (Context ctx) =>
+        {
+            ctx.Globals["rfm_options"] = PhpValue.FromClass(rfmOptions);
+        }
+    });
 
     // etc
 }
