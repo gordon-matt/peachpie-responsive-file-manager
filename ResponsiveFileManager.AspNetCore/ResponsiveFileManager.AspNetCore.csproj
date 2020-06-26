@@ -16,9 +16,6 @@ Usage:
       {
       //
       });</Description>
-    <Version>1.0.0</Version>
-    <Authors>Matt Gordon</Authors>
-    <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
