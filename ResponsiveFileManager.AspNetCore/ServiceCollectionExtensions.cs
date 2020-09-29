@@ -26,7 +26,6 @@ namespace Microsoft.AspNetCore.Builder
                 //
             });
 
-            //
             return services;
         }
     }
