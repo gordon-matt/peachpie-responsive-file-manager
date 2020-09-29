@@ -1,7 +1,11 @@
 ﻿using System.IO;
 using System.Reflection;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
+using Pchp.Core;
+using ResponsiveFileManager;
 
 namespace Microsoft.AspNetCore.Builder
 {
@@ -16,13 +20,24 @@ namespace Microsoft.AspNetCore.Builder
         /// <param name="app">The application builder.</param>
         public static IApplicationBuilder UseResponsiveFileManager(this IApplicationBuilder app)
         {
+            const string filemanagerPath = "/filemanager";
+
             app.UseStaticFiles(new StaticFileOptions
             {
-                RequestPath = new PathString("/filemanager"),
-                FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"))),
+                RequestPath = filemanagerPath,
+                FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, ".." + filemanagerPath))),
             });
 
-            app.UsePhp();
+            app.UsePhp(filemanagerPath, (Context ctx) =>
+            {
+                // construct the options
+                var options = new ResponsiveFileManagerOptions();
+                ctx.GetService<IConfiguration>().GetSection("ResponsiveFileManagerOptions").Bind(options);
+                ctx.GetService<IConfigureOptions<ResponsiveFileManagerOptions>>()?.Configure(options);
+
+                // pass the options object to PHP globals
+                ctx.Globals["rfm_options"] = PhpValue.FromClass(options);
+            });
 
             return app;
         }

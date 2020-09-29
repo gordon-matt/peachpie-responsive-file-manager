@@ -1,8 +1,5 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Pchp.Core;
 using ResponsiveFileManager;
 
 namespace Microsoft.AspNetCore.Builder
@@ -26,19 +23,9 @@ namespace Microsoft.AspNetCore.Builder
 
             services.AddPhp(options =>
             {
-                options.RequestStart += (Context ctx) =>
-                {
-                    // construct the options
-                    var options = new ResponsiveFileManagerOptions();
-                    ctx.GetService<IConfiguration>().GetSection("ResponsiveFileManagerOptions").Bind(options);
-                    ctx.GetService<IConfigureOptions<ResponsiveFileManagerOptions>>()?.Configure(options);
-
-                    // pass the options object to PHP globals
-                    ctx.Globals["rfm_options"] = PhpValue.FromClass(options);
-                };
+                //
             });
 
-            //
             return services;
         }
     }

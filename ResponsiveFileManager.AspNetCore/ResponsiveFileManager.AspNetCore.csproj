@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Title>Responsive File Manager for ASP.NET Core</Title>
     <Description>The whole of Responsive File Manager, compiled, packed and provided as an ASP.NET Core package. Does not require PHP, becomes a part of ASP.NET Core application.
 
 Usage:
@@ -17,6 +18,7 @@ Usage:
       //
       });</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>1.3.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,11 +27,12 @@ Usage:
 
   <ItemGroup>
     <PackageReference Include="Peachpie.AspNetCore.Web" Version="$(PeachpieVersion)" />
-  </ItemGroup>
 
-  <ItemGroup>
     <ProjectReference Include="..\ResponsiveFileManager\ResponsiveFileManager.msbuildproj">
       <PrivateAssets>None</PrivateAssets>
     </ProjectReference>
+
+    <None Include="..\README.md" Pack="true" PackagePath="assets/readme.md" />
+
   </ItemGroup>
 </Project>
