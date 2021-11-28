@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResponsiveFileManager.AspNetCore", "ResponsiveFileManager.AspNetCore\ResponsiveFileManager.AspNetCore.csproj", "{C71D0DC2-A4F8-4470-BB1A-DE5CE7182611}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResponsiveFileManager", "ResponsiveFileManager\ResponsiveFileManager.csproj", "{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}"
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "ResponsiveFileManager", "ResponsiveFileManager\ResponsiveFileManager.msbuildproj", "{5CB39992-2ABB-401E-95B2-ECF606DB963B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,18 +48,18 @@ Global
 		{C71D0DC2-A4F8-4470-BB1A-DE5CE7182611}.Release|x64.Build.0 = Release|Any CPU
 		{C71D0DC2-A4F8-4470-BB1A-DE5CE7182611}.Release|x86.ActiveCfg = Release|Any CPU
 		{C71D0DC2-A4F8-4470-BB1A-DE5CE7182611}.Release|x86.Build.0 = Release|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Debug|x64.Build.0 = Debug|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Debug|x86.Build.0 = Debug|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Release|x64.ActiveCfg = Release|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Release|x64.Build.0 = Release|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Release|x86.ActiveCfg = Release|Any CPU
-		{92DE4A6D-E1EC-4F3F-87B8-36C8EA8AA5E6}.Release|x86.Build.0 = Release|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Debug|x64.Build.0 = Debug|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Debug|x86.Build.0 = Debug|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Release|x64.ActiveCfg = Release|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Release|x64.Build.0 = Release|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Release|x86.ActiveCfg = Release|Any CPU
+		{5CB39992-2ABB-401E-95B2-ECF606DB963B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
