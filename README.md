@@ -43,6 +43,8 @@ services.AddResponsiveFileManager(options =>
 });
 ```
 
+5. For TinyMCE integration, you will need to copy the plugin from this solution to your tinymce/plugins folder. Plugins for TinyMCE versions 4 and 5 can be found in `/Misc/TinyMCE Plugin`.
+
 **If you are wanting to use Peachpie for more than just ResponsiveFileManager, then it is recommended you ignore the ResponsiveFileManager.AspNetCore package, only acquire the base ResponsiveFileManager package and then manually configure the settings as follows:**
 
 1. Get the ResponsiveFileManager NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager/

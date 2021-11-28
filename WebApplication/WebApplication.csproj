@@ -1,36 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-WebApplication-0ED9D933-07CC-46A2-8DF4-30AF442E8C9F</UserSecretsId>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
-    <Version>1.3.0</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>aspnet-WebApplication-0ED9D933-07CC-46A2-8DF4-30AF442E8C9F</UserSecretsId>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
+		<Version>1.4.0</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" PrivateAssets="All" />
-    <PackageReference Include="Peachpie.AspNetCore.Web" Version="$(PeachpieVersion)" />
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.12" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.12" PrivateAssets="All" />
+		<PackageReference Include="Peachpie.AspNetCore.Web" Version="$(PeachpieVersion)" />
 
-    <!-- If testing a NuGet package (development mode), then use this <PackageReference> and comment the <ProjectReference> below -->
-    <!--<PackageReference Include="ResponsiveFileManager" Version="1.2.0.2" PrivateAssets="None" />-->
-  </ItemGroup>
+		<!-- If testing a NuGet package (development mode), then use this <PackageReference> and comment the <ProjectReference> below -->
+		<!--<PackageReference Include="ResponsiveFileManager" Version="1.2.0.2" PrivateAssets="None" />-->
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ResponsiveFileManager.AspNetCore\ResponsiveFileManager.AspNetCore.csproj" PrivateAssets="None" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ResponsiveFileManager.AspNetCore\ResponsiveFileManager.AspNetCore.csproj" PrivateAssets="None" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Media\Thumbs\" />
-    <Folder Include="wwwroot\Media\Uploads\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="wwwroot\Media\Thumbs\" />
+		<Folder Include="wwwroot\Media\Uploads\" />
+	</ItemGroup>
 
 </Project>
