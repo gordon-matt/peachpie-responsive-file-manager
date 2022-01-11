@@ -262,6 +262,10 @@
         "themes/silver/theme.js",
         "themes/silver/theme.min.js"
       ]
+    },
+    {
+      "library": "ckeditor4@4.17.1",
+      "destination": "wwwroot/lib/ckeditor4/"
     }
   ]
 }

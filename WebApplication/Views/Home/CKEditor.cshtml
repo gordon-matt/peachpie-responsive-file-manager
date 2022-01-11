@@ -1,0 +1,13 @@
+﻿<textarea id="editor-ckeditor"></textarea>
+
+@section Scripts {
+    <script src="~/lib/ckeditor4/ckeditor.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('editor-ckeditor' ,{
+	        filebrowserBrowseUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+	        filebrowserUploadUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+	        filebrowserImageBrowseUrl : 'filemanager/dialog.php?type=1&editor=ckeditor&fldr='
+        });
+    </script>
+}

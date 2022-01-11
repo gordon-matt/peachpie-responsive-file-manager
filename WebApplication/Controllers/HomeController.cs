@@ -12,6 +12,12 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        [Route("ckeditor")]
+        public ActionResult CKEditor()
+        {
+            return View();
+        }
+
         [Route("tiny-mce-4")]
         public ActionResult TinyMCE4()
         {
