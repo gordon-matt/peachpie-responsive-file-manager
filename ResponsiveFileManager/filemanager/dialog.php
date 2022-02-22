@@ -362,12 +362,19 @@ $get_params = http_build_query($get_params);
         <script src="js/include.js?v=<?php echo $version; ?>"></script>
 </head>
 <body>
+    <!-- Change: 2022-02-22: See https://github.com/trippo/ResponsiveFilemanager/issues/608 -->
+    <script src="js/blueimp/tmpl.min.js"></script>
+    <script src="js/blueimp/load-image.all.min.js"></script>
+    <script src="js/blueimp/canvas-to-blob.min.js"></script>
+
     <!-- The Templates plugin is included to render the upload/download listings -->
-    <script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+    <!-- <script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script> -->
     <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-    <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+    <!-- <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script> -->
     <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-    <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <!-- <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script> -->
+
+
     <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
     <script src="js/jquery.iframe-transport.js"></script>
     <!-- The basic File Upload plugin -->

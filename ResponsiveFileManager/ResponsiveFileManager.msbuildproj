@@ -8,7 +8,7 @@
 		<Description>Responsive File Manager running on .NET Core with Peachpie</Description>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<NoWarn>PHP5011</NoWarn>
-		<Version>1.4.0</Version>
+		<Version>1.4.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
