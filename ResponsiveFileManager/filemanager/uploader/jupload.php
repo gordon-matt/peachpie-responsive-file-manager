@@ -239,7 +239,7 @@ class JUpload {
 	 */
 	private function tobytes($val) {
 		$val = trim($val);
-		$last = fix_strtolower($val{strlen($val)-1});
+		$last = fix_strtolower($val[strlen($val)-1]);
 		switch($last) {
 			case 'g':
 				$val *= 1024;
