@@ -1,24 +1,24 @@
 ﻿<Project Sdk="Peachpie.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Title>Responsive File Manager</Title>
     <Product>Responsive File Manager</Product>
     <Description>Responsive File Manager running on .NET Core with Peachpie</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <NoWarn>PHP5011</NoWarn>
-    <Version>1.5.0</Version>
+    <Version>1.6.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="**/*.php" Exclude="obj/**;bin/**" />
     <Content Include="**/*.as;**/*.css;**/*.fla;**/*.gif;**/*.html;**/*.jar;**/*.jpg;**/*.js;**/*.json;**/*.png;**/*.svg;**/*.swf;**/*.txt" Exclude="obj/**;bin/**" CopyToOutputDirectory="PreserveNewest">
-      <PackagePath>contentFiles/any/net8.0/</PackagePath>
+      <PackagePath>contentFiles/any/net9.0/</PackagePath>
       <PackageCopyToOutput>true</PackageCopyToOutput>
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
     <None Include="ResponsiveFileManager.manifest" Pack="true" PackagePath="ResponsiveFileManager.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="Peachpie.App" Version="1.1.9" />
+    <PackageReference Update="Peachpie.App" Version="1.1.11" />
   </ItemGroup>
 </Project>
