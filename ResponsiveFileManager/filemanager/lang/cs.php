@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
 	'Select' => 'Vybrat',
 	'Deselect_All' => 'Zrušit vše',
@@ -41,10 +41,10 @@ return array(
 	'Text_filter' => 'textový filtr',
 	'Swipe_help' => 'Pro zobrazení možností klikněte na název souboru/složky.',
 	'Upload_base' => 'Základní nahrávání',
-	'Upload_base_help' => "Soubory přetáhněte (pouze moderní prohlížeče) nebo klikněte na horní tlačítko 'Přidat soubor(y)' a poté na tlačítko 'Sputit nahrávání'. Až bude nahrávání dokončeno, klikněte na 'Zpět k seznamu souborů'.",
+	'Upload_base_help' => "Soubory přetáhněte (pouze moderní prohlížeče) nebo klikněte na horní tlačítko 'Přidat soubor(y)' a poté na tlačítko 'Spustit nahrávání'. Až bude nahrávání dokončeno, klikněte na 'Zpět k seznamu souborů'.",
 	'Upload_add_files' => 'Přidat soubor(y)',
-	'Upload_start' => 'Sputit nahrávání',
-	'Upload_error_messages' =>array(
+	'Upload_start' => 'Spustit nahrávání',
+	'Upload_error_messages' => [
 		1 => 'Nahrávaný soubor má větší velikost, než co povoluje direktiva upload_max_filesize v php.ini',
 		2 => 'Nahrávaný soubor má větší velikost, než co povoluje direktiva MAX_FILE_SIZE uvedená v HTML formuláři',
 		3 => 'Soubor byl nahrán pouze z části',
@@ -63,7 +63,7 @@ return array(
 		'min_height' => 'Obrázek vyžaduje minimální výšku',
 		'abort' => 'Nahrávání souboru bylo přerušeno',
 		'image_resize' => 'Nepodařilo se změnit velikost obrázku'
-	),
+    ],
 	'Upload_url' => 'Z url adresy',
 	'Type_dir' => 'složka',
 	'Type' => 'Typ',
@@ -97,7 +97,7 @@ return array(
 	'Copy_Cut_Not_Allowed' => 'Nemáte oprávnění %s.', // %s(1) = cut or copy, %s(2) = files or folders
 	'Image_Editor_No_Save' => 'Obrázek nelze uložit',
 	'Image_Editor_Exit' => "Exit",
-    'Image_Editor_Save' => "Save",
+    'Image_Editor_Save' => "Uložit",
     'Zip_No_Extract' => 'Archív nelze rozbalit. Soubor může být poškozen.',
 	'Zip_Invalid' => 'Přípona není podporována. Povolené: zip, gz, tar.',
 	'Dir_No_Write' => 'Vybraná složka není zapisovatelná.',
@@ -124,7 +124,7 @@ return array(
 	'Upload_message' => "Pro nahrání přetáhněte soubor(y) sem",
 
 	'SERVER ERROR' => "CHYBA SERVERU",
-	'forbiden' => "Zakázáno",
+	'forbidden' => "Zakázáno",
 	'wrong path' => "Neplatná cesta",
 	'wrong name' => "Neplatná název",
 	'wrong extension' => "Neplatná přípona",
@@ -144,4 +144,4 @@ return array(
 	'GB' => "GB",
 	'TB' => "TB",
 	'total size' => "Celková velikost",
-);
+];

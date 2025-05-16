@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     'Select' => 'Ausw&auml;hlen',
     'Deselect_All' => 'Alle abw&auml;hlen',
@@ -44,7 +44,7 @@ return array(
     'Upload_base_help' => "Ziehen Sie die Dateien per Drag & Drop auf die Fl&auml;che (moderne Browser) oder klicken Sie auf die obere Schaltfl&auml;che, um die Datei(en) hinzuzuf&uuml;gen und klicken Sie auf \"Hochladen beginnen\". Wenn das Hochladen abgeschlossen ist, klicken Sie auf die Schaltfl&auml;che \"Zur Dateiliste zur&uuml;ckkehren\".",
     'Upload_add_files' => 'Dateien hinzuf&uuml;gen',
     'Upload_start' => 'Hochladen beginnen',
-    'Upload_error_messages' => array(
+    'Upload_error_messages' => [
         1 => 'Die hochgeladene Datei &uuml;berschreitet die Anweisung \"upload_max_filesize\" in der php.ini',
         2 => 'Die hochgeladene Datei &uuml;berschreitet die Anweisung \"MAX_FILE_SIZE\", die im HTML-Formular angegeben wurde',
         3 => 'Die hochgeladene Datei wurde nur teilweise hochgeladen',
@@ -63,7 +63,7 @@ return array(
         'min_height' => 'Bild erfordert eine minimale H&ouml;he',
         'abort' => 'Hochladen abgebrochen',
         'image_resize' => 'Fehler beim &Auml;ndern der Bildgr&ouml;&szlig;e'
-    ),
+    ],
     'Upload_url' => 'Von URL',
     'Type_dir' => 'Verzeichnis',
     'Type' => 'Typ',
@@ -96,8 +96,8 @@ return array(
     'Copy_Cut_Count_Limit' => 'Sie haben zu viele Dateien/Ordner zum %s ausgew&auml;lt. Limit: %d Dateien pro Aktion', // %s = cut or copy
     'Copy_Cut_Not_Allowed' => 'Sie haben nicht die Berechtigungen zum %s von Dateien.', // %s(1) = cut or copy, %s(2) = files or folders
     'Image_Editor_No_Save' => 'Das Bild konnte nicht gespeichert werden.',
-    'Image_Editor_Exit' => "Ausgang",
-    'Image_Editor_Save' => "Sparen",
+    'Image_Editor_Exit' => "Schlie&szlig;en",
+    'Image_Editor_Save' => "Speichern",
     'Zip_No_Extract' => 'Zip Datei konnte nicht entpackt werden. Die Datei ist m&ouml;glicherweise besch&auml;digt.',
     'Zip_Invalid' => 'Dieses Dateiformat wird nicht unterst&uuml;zt. Zugelassene Formate: zip, gz und tar.',
     'Dir_No_Write' => 'Dieses Dateiverzeichis ist schreibgesch&uuml;tzt.',
@@ -144,4 +144,4 @@ return array(
     'GB' => "GB",
     'TB' => "TB",
     'total size' => "Gesamtgr&ouml;&szlig;e",
-);
+];
