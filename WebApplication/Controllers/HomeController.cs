@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using WebApplication.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Controllers;
 
@@ -29,7 +27,4 @@ public class HomeController : Controller
 
     [Route("standalone")]
     public IActionResult Standalone() => View();
-
-    [Route("error")]
-    public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }
