@@ -7,13 +7,15 @@
         tinymce.init({
             selector: "textarea",
             plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table directionality",
-                "template paste autoresize",
-                "responsivefilemanager"
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount',
+                'emoticons', 'quickbars', 'responsivefilemanager'
             ],
-            toolbar: "insertfile undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image responsivefilemanager | print preview media | forecolor backcolor",
+            toolbar:
+                'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link image responsivefilemanager table emoticons | code fullscreen help',
+            toolbar_mode: 'sliding', // sliding or scrolling
             width: '100%',
             height: 400,
             min_height: 400,
