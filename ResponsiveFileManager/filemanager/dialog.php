@@ -1509,6 +1509,7 @@ if ($config['upload_files']) { ?>
                 $show_original_mini = false;
                 $mini_src = "";
                 $src_thumb = "";
+                $src_thumb_default = "img/" . $config['icon_theme'] . "/default.jpg";
                 if (in_array($file_array['extension'], $config['ext_img'])) {
                     $src = $file_path;
                     $is_img = true;
@@ -1543,11 +1544,16 @@ if ($config['upload_files']) { ?>
                 $no_thumb = false;
                 if ($src_thumb == "") {
                     $no_thumb = true;
-                    if (file_exists('img/' . $config['icon_theme'] . '/' . $file_array['extension'] . ".jpg")) {
-                        $src_thumb = 'img/' . $config['icon_theme'] . '/' . $file_array['extension'] . ".jpg";
-                    } else {
-                        $src_thumb = "img/" . $config['icon_theme'] . "/default.jpg";
-                    }
+                    
+                    // file_exists() has issues with PeachPie
+                    //if (file_exists('img/' . $config['icon_theme'] . '/' . $file_array['extension'] . ".jpg")) {
+                        //$src_thumb = 'img/' . $config['icon_theme'] . '/' . $file_array['extension'] . ".jpg";
+                    //} else {
+                        //$src_thumb = "img/" . $config['icon_theme'] . "/default.jpg";
+                    //}
+
+                    $src_thumb = 'img/' . $config['icon_theme'] . '/' . $file_array['extension'] . ".jpg";
+
                     $is_icon_thumb = true;
                 }
                 if ($mini_src == "") {
@@ -1621,7 +1627,8 @@ if ($config['upload_files']) { ?>
                                     <img class="<?php
                                     echo $show_original ? "original" : "" ?><?php
                                     echo $is_icon_thumb ? " icon" : "" ?>" data-src="<?php
-                                    echo $src_thumb; ?>">
+                                    echo $src_thumb; ?>" onerror="this.onerror=null; this.src="<?php
+                                    echo $src_thumb_default; ?>";">
                                 </div>
                             </div>
                             <div class="img-precontainer-mini <?php
