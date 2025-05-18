@@ -4,7 +4,7 @@
     <UserSecretsId>aspnet-WebApplication-0ED9D933-07CC-46A2-8DF4-30AF442E8C9F</UserSecretsId>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
-    <Version>1.5.0</Version>
+    <Version>2.0.0-beta</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Peachpie.AspNetCore.Web" Version="1.1.11" />
