@@ -109,15 +109,24 @@ if ($config['show_total_size']) {
 /***
  * SUB-DIR CODE
  ***/
-if (isset($_GET['rootFolder']))
-{
-    $_SESSION['RF']["subfolder"] = $_GET["rootFolder"];
-}
-else if (!isset($_SESSION['RF']["subfolder"])) {
-    $_SESSION['RF']["subfolder"] = '';
-}
+// Initialize $rfm_subfolder
 $rfm_subfolder = '';
 
+// Handle rootFolder (tenant/user folder) - only set if explicitly provided and different
+if (isset($_GET['rootFolder']) && !empty($_GET['rootFolder'])) {
+    $new_root = trim($_GET['rootFolder'], '/');
+    if (!isset($_SESSION['RF']["subfolder"]) || $_SESSION['RF']["subfolder"] !== $new_root) {
+        $_SESSION['RF']["subfolder"] = $new_root;
+    }
+    $rfm_subfolder = $_SESSION['RF']["subfolder"];
+} else if (!isset($_SESSION['RF']["subfolder"])) {
+    $_SESSION['RF']["subfolder"] = '';
+    $rfm_subfolder = '';
+} else {
+    $rfm_subfolder = $_SESSION['RF']["subfolder"];
+}
+
+// Handle subfolder (nested folder)
 if (!empty($_SESSION['RF']["subfolder"])
     && strpos($_SESSION['RF']["subfolder"], "/") !== 0
     && strpos($_SESSION['RF']["subfolder"], '.') === false
