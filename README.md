@@ -36,7 +36,7 @@ More options can be found in the demo app.
 app.UseResponsiveFileManager();
 ```
 
-4. Optionally configure ResponsiveFileManager settings in the `ConfigureServices` method.
+4. Optionally configure ResponsiveFileManager settings:
 
 ```csharp
 builder.Services.AddResponsiveFileManager(options =>
