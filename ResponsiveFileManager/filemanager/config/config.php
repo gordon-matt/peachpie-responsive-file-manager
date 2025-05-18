@@ -109,7 +109,6 @@ $config = [
     */
     'thumbs_upload_dir' => $rfm_options->ThumbsUploadDir ?? '/thumbs/',
 
-
     /*
     |--------------------------------------------------------------------------
     | mime file control to define files extensions
@@ -119,7 +118,6 @@ $config = [
     |
     */
     'mime_extension_rename'	=> $rfm_options->MimeExtensionRename ?? true,
-
 
     /*
     |--------------------------------------------------------------------------
@@ -222,7 +220,6 @@ $config = [
     'filePermission' => $rfm_options->FilePermission ?? 0755,
     'folderPermission' => $rfm_options->FolderPermission ?? 0777,
 
-
     /*
     |--------------------------------------------------------------------------
     | default language file name
@@ -240,7 +237,6 @@ $config = [
     |
     */
     'icon_theme' => $rfm_options->IconTheme ?? "ico",
-
 
     //Show or not total size in filemanager (is possible to greatly increase the calculations)
     'show_total_size'						=> $rfm_options->ShowTotalSize ?? false,
@@ -263,7 +259,6 @@ $config = [
 
     //Add ?484899493349 (time value) to returned images to prevent cache
     'add_time_to_img'                       => $rfm_options->AddTimeToImg ?? false,
-
 
     //*******************************************
     //Images limit and resizing configuration
@@ -294,7 +289,6 @@ $config = [
     'image_resizing_override' => $rfm_options->ImageResizingOverride ?? false,
     // If set to TRUE then you can specify bigger images than $image_max_width & height otherwise if image_resizing is
     // bigger than $image_max_width or height then it will be converted to those values
-
 
     //******************
     //
@@ -351,7 +345,7 @@ $config = [
     'preview_text_files'                      => $rfm_options->PreviewTextFiles ?? true, // eg.: txt, log etc.
     'edit_text_files'                         => $rfm_options->EditTextFiles ?? true, // eg.: txt, log etc.
     'create_text_files'                       => $rfm_options->CreateTextFiles ?? true, // only create files with exts. defined in $config['editable_text_file_exts']
-    'download_files'			  => $rfm_options->DownloadFiles ?? true, // allow download files or just preview
+    'download_files'			              => $rfm_options->DownloadFiles ?? true, // allow download files or just preview
 
     // you can preview these type of files if $preview_text_files is true
     'previewable_text_file_exts'              => $rfm_options->PreviewableTextFileExts ?? ["bsh", "c","css", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html", "java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh", "xhtml", "xml","xsl",'txt', 'log',''],
@@ -387,13 +381,11 @@ $config = [
     'ext_music'                               => $rfm_options->ExtMusic ?? ['mp3', 'mpga', 'm4a', 'ac3', 'aiff', 'mid', 'ogg', 'wav'], //Audio
     'ext_misc'                                => $rfm_options->ExtMisc ?? ['zip', 'rar', 'gz', 'tar', 'iso', 'dmg'], //Archives
 
-
     //*********************
     //  If you insert an extensions blacklist array the filemanager don't check any extensions but simply block the extensions in the list
     //  otherwise check Allowed extensions configuration
     //*********************
     'ext_blacklist' => $rfm_options->ExtBlacklist ?? false,
-
 
     //Empty filename permits like .htaccess, .env, ...
     'empty_filename' => $rfm_options->EmptyFilename ?? false,
@@ -481,7 +473,6 @@ $config = [
     'colorpicker.button.border'            => $rfm_options->ColorpickerButtonBorder ?? '0px',
     'colorpicker.title.color'              => $rfm_options->ColorpickerTitleColor ?? '#000',
 
-
     //The filter and sorter are managed through both javascript and php scripts because if you have a lot of
     //file in a folder the javascript script can't sort all or filter all, so the filemanager switch to php script.
     //The plugin automatic swich javascript to php when the current folder exceeds the below limit of files number
@@ -500,11 +491,9 @@ $config = [
     *******************/
     'url_upload'                             => $rfm_options->UrlUpload ?? true,
 
-
     //************************************
     //Thumbnail for external use creation
     //************************************
-
 
     // New image resized creation with fixed path from filemanager folder after uploading (thumbnails in fixed mode)
     // If you want create images resized out of upload folder for use with external script you can choose this method,
@@ -528,7 +517,6 @@ $config = [
     */
     'fixed_image_creation_option'             => $rfm_options->FixedImageCreationOption ?? ['crop', 'auto'], //set the type of the crop
 
-
     // New image resized creation with relative path inside to upload folder after uploading (thumbnails in relative mode)
     // With Responsive filemanager you can create automatically resized image inside the upload folder, also more than one at a time
     // just simply add a value in the array
@@ -549,7 +537,6 @@ $config = [
      */
     'relative_image_creation_option'          => $rfm_options->RelativeImageCreationOption ?? ['crop', 'crop'], //set the type of the crop
 
-
     // Remember text filter after close filemanager for future session
     'remember_text_filter'                    => $rfm_options->RememberTextFilter ?? false,
 
@@ -568,9 +555,9 @@ return array_merge(
         'tui_defaults_config' => [
             //'common.bi.image'                   => $config['common.bi.image'],
             //'common.bisize.width'               => $config['common.bisize.width'],
-            //'common.bisize.height'              => $config['common.bisize.height'], 
+            //'common.bisize.height'              => $config['common.bisize.height'],
             'common.backgroundImage'            => $config['common.backgroundImage'],
-            'common.backgroundColor'            => $config['common.backgroundColor'], 
+            'common.backgroundColor'            => $config['common.backgroundColor'],
             'common.border'                     => $config['common.border'],
             'header.backgroundImage'            => $config['header.backgroundImage'],
             'header.backgroundColor'            => $config['header.backgroundColor'],

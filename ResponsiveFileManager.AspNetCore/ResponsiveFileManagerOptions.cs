@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Pchp.Core;
 
 namespace ResponsiveFileManager;
@@ -680,12 +679,12 @@ public class ResponsiveFileManagerOptions
     /// <summary>
     /// Fixed image creation width.
     /// </summary>
-    public IList<int> FixedImageCreationWidth { get; set; } = [300, 400];
+    public PhpArray FixedImageCreationWidth { get; set; } = new PhpArray([300, 400]);
 
     /// <summary>
     /// Fixed image creation height.
     /// </summary>
-    public IList<int> FixedImageCreationHeight { get; set; } = [200, 300];
+    public PhpArray FixedImageCreationHeight { get; set; } = new PhpArray([200, 300]);
 
     /// <summary>
     /// Fixed image creation option.
@@ -715,12 +714,12 @@ public class ResponsiveFileManagerOptions
     /// <summary>
     /// Relative image creation width.
     /// </summary>
-    public IList<int> RelativeImageCreationWidth { get; set; } = [300, 400];
+    public PhpArray RelativeImageCreationWidth { get; set; } = new PhpArray([300, 400]);
 
     /// <summary>
     /// Relative image creation height.
     /// </summary>
-    public IList<int> RelativeImageCreationHeight { get; set; } = [200, 300];
+    public PhpArray RelativeImageCreationHeight { get; set; } = new PhpArray([200, 300]);
 
     /// <summary>
     /// Relative image creation option.
