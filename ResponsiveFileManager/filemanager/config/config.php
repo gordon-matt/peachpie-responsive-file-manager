@@ -107,7 +107,7 @@ $config = [
     | DO NOT put inside upload folder
     |
     */
-    'thumbs_upload_dir' => '/thumbs/',
+    'thumbs_upload_dir' => $rfm_options->ThumbsUploadDir ?? '/thumbs/',
 
 
     /*
@@ -272,9 +272,9 @@ $config = [
     // set maximum pixel width and/or maximum pixel height for all images
     // If you set a maximum width or height, oversized images are converted to those limits. Images smaller than the limit(s) are unaffected
     // if you don't need a limit set both to 0
-    'image_max_width'                         => 0,
-    'image_max_height'                        => 0,
-    'image_max_mode'                          => 'auto',
+    'image_max_width' => $rfm_options->ImageMaxWidth ?? 0,
+    'image_max_height' => $rfm_options->ImageMaxHeight ?? 0,
+    'image_max_mode' => $rfm_options->ImageMaxMode ?? 'auto',
     /*
     #  $option:  0 / exact = defined size;
     #            1 / portrait = keep aspect set height;
@@ -287,11 +287,11 @@ $config = [
     // If you set $image_resizing to TRUE the script converts all uploaded images exactly to image_resizing_width x image_resizing_height dimension
     // If you set width or height to 0 the script automatically calculates the other dimension
     // Is possible that if you upload very big images the script not work to overcome this increase the php configuration of memory and time limit
-    'image_resizing'                          => false,
-    'image_resizing_width'                    => 0,
-    'image_resizing_height'                   => 0,
-    'image_resizing_mode'                     => 'auto', // same as $image_max_mode
-    'image_resizing_override'                 => false,
+    'image_resizing' => $rfm_options->ImageResizing ?? false,
+    'image_resizing_width' => $rfm_options->ImageResizingWidth ?? 0,
+    'image_resizing_height' => $rfm_options->ImageResizingHeight ?? 0,
+    'image_resizing_mode' => $rfm_options->ImageResizingMode ?? 'auto', // same as $image_max_mode
+    'image_resizing_override' => $rfm_options->ImageResizingOverride ?? false,
     // If set to TRUE then you can specify bigger images than $image_max_width & height otherwise if image_resizing is
     // bigger than $image_max_width or height then it will be converted to those values
 
@@ -301,7 +301,7 @@ $config = [
     // WATERMARK IMAGE
     //
     //Watermark path or false
-    'image_watermark'                          => false,//"../watermark.png",
+    'image_watermark' => $rfm_options->ImageWatermark ?? false,
     # Could be a pre-determined position such as:
     #           tl = top left,
     #           t  = top (middle),
@@ -313,11 +313,11 @@ $config = [
     #           b  = bottom (middle),
     #           br = bottom right
     #           Or, it could be a co-ordinate position such as: 50x100
-    'image_watermark_position'                 => 'br',
+    'image_watermark_position' => $rfm_options->ImageWatermarkPosition ?? 'br',
     # padding: If using a pre-determined position you can
     #         adjust the padding from the edges by passing an amount
     #         in pixels. If using co-ordinates, this value is ignored.
-    'image_watermark_padding'                 => 10,
+    'image_watermark_padding' => $rfm_options->ImageWatermarkPadding ?? 10,
 
     //******************
     // Default layout setting
@@ -328,10 +328,10 @@ $config = [
     // YOU CAN ALSO PASS THIS PARAMETERS USING SESSION VAR => $_SESSION['RF']["VIEW"]=
     //
     //******************
-    'default_view'                            => 0,
+    'default_view' => $rfm_options->DefaultView ?? 0,
 
     //set if the filename is truncated when overflow first row
-    'ellipsis_title_after_first_row'          => true,
+    'ellipsis_title_after_first_row' => $rfm_options->EllipsisTitleAfterFirstRow ?? true,
 
     //*************************
     //Permissions configuration
@@ -392,11 +392,11 @@ $config = [
     //  If you insert an extensions blacklist array the filemanager don't check any extensions but simply block the extensions in the list
     //  otherwise check Allowed extensions configuration
     //*********************
-    'ext_blacklist'							  => false,//['exe','bat','jpg'],
+    'ext_blacklist' => $rfm_options->ExtBlacklist ?? false,
 
 
     //Empty filename permits like .htaccess, .env, ...
-    'empty_filename'                          => false,
+    'empty_filename' => $rfm_options->EmptyFilename ?? false,
 
     /*
     |--------------------------------------------------------------------------
@@ -406,7 +406,7 @@ $config = [
     | If you want to accept files without extension, remember to add '' extension on allowed extension
     |
     */
-    'files_without_extension'	              => false,
+    'files_without_extension' => $rfm_options->FilesWithoutExtension ?? false,
 
     /******************
     * TUI Image Editor config

@@ -28,14 +28,84 @@ public class ResponsiveFileManagerOptions
     public string ThumbsBasePath { get; set; } = "../thumbs/";
 
     /// <summary>
-    /// Maximum upload size in Megabytes.
+    /// Path from base_url to base of thumbs folder. Use final / and DO NOT put inside upload folder.
     /// </summary>
-    public int MaxSizeUpload { get; set; } = 10;
+    public string ThumbsUploadDir { get; set; } = "/thumbs/";
+
+    /// <summary>
+    /// MIME file control to define files extensions.
+    /// </summary>
+    public bool MimeExtensionRename { get; set; } = true;
+
+    /// <summary>
+    /// FTP host.
+    /// </summary>
+    public string? FtpHost { get; set; }
+
+    /// <summary>
+    /// FTP user.
+    /// </summary>
+    public string FtpUser { get; set; } = "user";
+
+    /// <summary>
+    /// FTP password.
+    /// </summary>
+    public string FtpPass { get; set; } = "pass";
+
+    /// <summary>
+    /// FTP base folder.
+    /// </summary>
+    public string FtpBaseFolder { get; set; } = "base_folder";
+
+    /// <summary>
+    /// FTP base URL.
+    /// </summary>
+    public string FtpBaseUrl { get; set; } = "http://site to ftp root";
+
+    /// <summary>
+    /// FTP temp folder.
+    /// </summary>
+    public string FtpTempFolder { get; set; } = "../temp/";
+
+    /// <summary>
+    /// FTP thumbs directory.
+    /// </summary>
+    public string FtpThumbsDir { get; set; } = "/thumbs/";
+
+    /// <summary>
+    /// FTP SSL.
+    /// </summary>
+    public bool FtpSsl { get; set; } = false;
+
+    /// <summary>
+    /// FTP port.
+    /// </summary>
+    public int FtpPort { get; set; } = 21;
+
+    /// <summary>
+    /// Multiple files selection.
+    /// </summary>
+    public bool MultipleSelection { get; set; } = true;
+
+    /// <summary>
+    /// Multiple selection action button.
+    /// </summary>
+    public bool MultipleSelectionActionButton { get; set; } = true;
+
+    /// <summary>
+    /// Access keys.
+    /// </summary>
+    public PhpArray AccessKeys { get; set; } = [];
 
     /// <summary>
     /// Maximum size of all files in source folder in Megabytes.
     /// </summary>
     public int? MaxSizeTotal { get; set; }
+
+    /// <summary>
+    /// Maximum upload size in Megabytes.
+    /// </summary>
+    public int MaxSizeUpload { get; set; } = 10;
 
     /// <summary>
     /// File permission (octal).
@@ -106,6 +176,71 @@ public class ResponsiveFileManagerOptions
     /// Add time value to returned images to prevent cache.
     /// </summary>
     public bool AddTimeToImg { get; set; } = false;
+
+    /// <summary>
+    /// Maximum pixel width for all images.
+    /// </summary>
+    public int ImageMaxWidth { get; set; } = 0;
+
+    /// <summary>
+    /// Maximum pixel height for all images.
+    /// </summary>
+    public int ImageMaxHeight { get; set; } = 0;
+
+    /// <summary>
+    /// Maximum image mode.
+    /// </summary>
+    public string ImageMaxMode { get; set; } = "auto";
+
+    /// <summary>
+    /// Automatic resizing.
+    /// </summary>
+    public bool ImageResizing { get; set; } = false;
+
+    /// <summary>
+    /// Image resizing width.
+    /// </summary>
+    public int ImageResizingWidth { get; set; } = 0;
+
+    /// <summary>
+    /// Image resizing height.
+    /// </summary>
+    public int ImageResizingHeight { get; set; } = 0;
+
+    /// <summary>
+    /// Image resizing mode.
+    /// </summary>
+    public string ImageResizingMode { get; set; } = "auto";
+
+    /// <summary>
+    /// Image resizing override.
+    /// </summary>
+    public bool ImageResizingOverride { get; set; } = false;
+
+    /// <summary>
+    /// Watermark path or false.
+    /// </summary>
+    public string? ImageWatermark { get; set; }
+
+    /// <summary>
+    /// Watermark position.
+    /// </summary>
+    public string ImageWatermarkPosition { get; set; } = "br";
+
+    /// <summary>
+    /// Watermark padding.
+    /// </summary>
+    public int ImageWatermarkPadding { get; set; } = 10;
+
+    /// <summary>
+    /// Default view.
+    /// </summary>
+    public int DefaultView { get; set; } = 0;
+
+    /// <summary>
+    /// Ellipsis title after first row.
+    /// </summary>
+    public bool EllipsisTitleAfterFirstRow { get; set; } = true;
 
     /// <summary>
     /// Allow delete files.
@@ -253,174 +388,19 @@ public class ResponsiveFileManagerOptions
     public PhpArray ExtMisc { get; set; } = new PhpArray(["zip", "rar", "gz", "tar", "iso", "dmg"]);
 
     /// <summary>
-    /// Multiple files selection.
+    /// Extensions blacklist.
     /// </summary>
-    public bool MultipleSelection { get; set; } = true;
+    public PhpArray? ExtBlacklist { get; set; }
 
     /// <summary>
-    /// Multiple selection action button.
+    /// Empty filename permits like .htaccess, .env, ...
     /// </summary>
-    public bool MultipleSelectionActionButton { get; set; } = true;
+    public bool EmptyFilename { get; set; } = false;
 
     /// <summary>
-    /// Access keys.
+    /// Accept files without extension.
     /// </summary>
-    public PhpArray AccessKeys { get; set; } = [];
-
-    /// <summary>
-    /// FTP host.
-    /// </summary>
-    public string? FtpHost { get; set; }
-
-    /// <summary>
-    /// FTP user.
-    /// </summary>
-    public string FtpUser { get; set; } = "user";
-
-    /// <summary>
-    /// FTP password.
-    /// </summary>
-    public string FtpPass { get; set; } = "pass";
-
-    /// <summary>
-    /// FTP base folder.
-    /// </summary>
-    public string FtpBaseFolder { get; set; } = "base_folder";
-
-    /// <summary>
-    /// FTP base URL.
-    /// </summary>
-    public string FtpBaseUrl { get; set; } = "http://site to ftp root";
-
-    /// <summary>
-    /// FTP temp folder.
-    /// </summary>
-    public string FtpTempFolder { get; set; } = "../temp/";
-
-    /// <summary>
-    /// FTP thumbs directory.
-    /// </summary>
-    public string FtpThumbsDir { get; set; } = "/thumbs/";
-
-    /// <summary>
-    /// FTP SSL.
-    /// </summary>
-    public bool FtpSsl { get; set; } = false;
-
-    /// <summary>
-    /// FTP port.
-    /// </summary>
-    public int FtpPort { get; set; } = 21;
-
-    /// <summary>
-    /// MIME extension rename.
-    /// </summary>
-    public bool MimeExtensionRename { get; set; } = true;
-
-    /// <summary>
-    /// Default view.
-    /// </summary>
-    public int DefaultView { get; set; } = 0;
-
-    /// <summary>
-    /// Ellipsis title after first row.
-    /// </summary>
-    public bool EllipsisTitleAfterFirstRow { get; set; } = true;
-
-    /// <summary>
-    /// File number limit JS.
-    /// </summary>
-    public int FileNumberLimitJs { get; set; } = 500;
-
-    /// <summary>
-    /// Hidden folders.
-    /// </summary>
-    public PhpArray HiddenFolders { get; set; } = [];
-
-    /// <summary>
-    /// Hidden files.
-    /// </summary>
-    public PhpArray HiddenFiles { get; set; } = new PhpArray(["config.php"]);
-
-    /// <summary>
-    /// URL upload.
-    /// </summary>
-    public bool UrlUpload { get; set; } = true;
-
-    /// <summary>
-    /// Fixed image creation.
-    /// </summary>
-    public bool FixedImageCreation { get; set; } = false;
-
-    /// <summary>
-    /// Fixed path from filemanager.
-    /// </summary>
-    public PhpArray FixedPathFromFilemanager { get; set; } = new PhpArray(["../test/", "../test1/"]);
-
-    /// <summary>
-    /// Fixed image creation name to prepend.
-    /// </summary>
-    public PhpArray FixedImageCreationNameToPrepend { get; set; } = new PhpArray(["", "test_"]);
-
-    /// <summary>
-    /// Fixed image creation to append.
-    /// </summary>
-    public PhpArray FixedImageCreationToAppend { get; set; } = new PhpArray(["_test", ""]);
-
-    /// <summary>
-    /// Fixed image creation width.
-    /// </summary>
-    public IList<int> FixedImageCreationWidth { get; set; } = [300, 400];
-
-    /// <summary>
-    /// Fixed image creation height.
-    /// </summary>
-    public IList<int> FixedImageCreationHeight { get; set; } = [200, 300];
-
-    /// <summary>
-    /// Fixed image creation option.
-    /// </summary>
-    public PhpArray FixedImageCreationOption { get; set; } = new PhpArray(["crop", "auto"]);
-
-    /// <summary>
-    /// Relative image creation.
-    /// </summary>
-    public bool RelativeImageCreation { get; set; } = false;
-
-    /// <summary>
-    /// Relative path from current position.
-    /// </summary>
-    public PhpArray RelativePathFromCurrentPos { get; set; } = new PhpArray(["./", "./"]);
-
-    /// <summary>
-    /// Relative image creation name to prepend.
-    /// </summary>
-    public PhpArray RelativeImageCreationNameToPrepend { get; set; } = new PhpArray(["", ""]);
-
-    /// <summary>
-    /// Relative image creation name to append.
-    /// </summary>
-    public PhpArray RelativeImageCreationNameToAppend { get; set; } = new PhpArray(["_thumb", "_thumb1"]);
-
-    /// <summary>
-    /// Relative image creation width.
-    /// </summary>
-    public IList<int> RelativeImageCreationWidth { get; set; } = [300, 400];
-
-    /// <summary>
-    /// Relative image creation height.
-    /// </summary>
-    public IList<int> RelativeImageCreationHeight { get; set; } = [200, 300];
-
-    /// <summary>
-    /// Relative image creation option.
-    /// </summary>
-    public PhpArray RelativeImageCreationOption { get; set; } = new PhpArray(["crop", "crop"]);
-
-    /// <summary>
-    /// Remember text filter.
-    /// </summary>
-    public bool RememberTextFilter { get; set; } = false;
+    public bool FilesWithoutExtension { get; set; } = false;
 
     /// <summary>
     /// TUI active.
@@ -656,4 +636,99 @@ public class ResponsiveFileManagerOptions
     /// Colorpicker title color.
     /// </summary>
     public string ColorpickerTitleColor { get; set; } = "#000";
+
+    /// <summary>
+    /// File number limit JS.
+    /// </summary>
+    public int FileNumberLimitJs { get; set; } = 500;
+
+    /// <summary>
+    /// Hidden folders.
+    /// </summary>
+    public PhpArray HiddenFolders { get; set; } = [];
+
+    /// <summary>
+    /// Hidden files.
+    /// </summary>
+    public PhpArray HiddenFiles { get; set; } = new PhpArray(["config.php"]);
+
+    /// <summary>
+    /// URL upload.
+    /// </summary>
+    public bool UrlUpload { get; set; } = true;
+
+    /// <summary>
+    /// Fixed image creation.
+    /// </summary>
+    public bool FixedImageCreation { get; set; } = false;
+
+    /// <summary>
+    /// Fixed path from filemanager.
+    /// </summary>
+    public PhpArray FixedPathFromFilemanager { get; set; } = new PhpArray(["../test/", "../test1/"]);
+
+    /// <summary>
+    /// Fixed image creation name to prepend.
+    /// </summary>
+    public PhpArray FixedImageCreationNameToPrepend { get; set; } = new PhpArray(["", "test_"]);
+
+    /// <summary>
+    /// Fixed image creation to append.
+    /// </summary>
+    public PhpArray FixedImageCreationToAppend { get; set; } = new PhpArray(["_test", ""]);
+
+    /// <summary>
+    /// Fixed image creation width.
+    /// </summary>
+    public IList<int> FixedImageCreationWidth { get; set; } = [300, 400];
+
+    /// <summary>
+    /// Fixed image creation height.
+    /// </summary>
+    public IList<int> FixedImageCreationHeight { get; set; } = [200, 300];
+
+    /// <summary>
+    /// Fixed image creation option.
+    /// </summary>
+    public PhpArray FixedImageCreationOption { get; set; } = new PhpArray(["crop", "auto"]);
+
+    /// <summary>
+    /// Relative image creation.
+    /// </summary>
+    public bool RelativeImageCreation { get; set; } = false;
+
+    /// <summary>
+    /// Relative path from current position.
+    /// </summary>
+    public PhpArray RelativePathFromCurrentPos { get; set; } = new PhpArray(["./", "./"]);
+
+    /// <summary>
+    /// Relative image creation name to prepend.
+    /// </summary>
+    public PhpArray RelativeImageCreationNameToPrepend { get; set; } = new PhpArray(["", ""]);
+
+    /// <summary>
+    /// Relative image creation name to append.
+    /// </summary>
+    public PhpArray RelativeImageCreationNameToAppend { get; set; } = new PhpArray(["_thumb", "_thumb1"]);
+
+    /// <summary>
+    /// Relative image creation width.
+    /// </summary>
+    public IList<int> RelativeImageCreationWidth { get; set; } = [300, 400];
+
+    /// <summary>
+    /// Relative image creation height.
+    /// </summary>
+    public IList<int> RelativeImageCreationHeight { get; set; } = [200, 300];
+
+    /// <summary>
+    /// Relative image creation option.
+    /// </summary>
+    public PhpArray RelativeImageCreationOption { get; set; } = new PhpArray(["crop", "crop"]);
+
+    /// <summary>
+    /// Remember text filter.
+    /// </summary>
+    public bool RememberTextFilter { get; set; } = false;
 }
