@@ -36,7 +36,9 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="TinyMCE7">Tiny MCE 7</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="IFrame">IFrame</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Standalone">Standalone</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="CKEditor">CKEditor</a></li>
+
+                    @* TODO: The CKEditor has a bug trying to navigate to subfolders. *@
+                    @* <li><a asp-area="" asp-controller="Home" asp-action="CKEditor">CKEditor</a></li> *@
                 </ul>
             </div>
         </div>
