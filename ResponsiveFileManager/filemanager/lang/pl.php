@@ -1,10 +1,10 @@
 <?php
 
-return array(
+return [
 
     'Select' => 'Wybierz',
-    'Deselect_All' => 'Deselect All',
-    'Select_All' => 'Select All',
+    'Deselect_All' => 'Odznacz wszystkie',
+    'Select_All' => 'Zaznacz wszystkie',
     'Erase' => 'Usuń',
     'Open' => 'Otwórz',
     'Confirm_del' => 'Czy jesteś pewien, że chcesz usunąć ten plik?',
@@ -41,30 +41,30 @@ return array(
     'Text_filter' => 'wpisz txt',
     'Swipe_help' => 'Kliknij w nazwę pliku/folderu by wyświetlić dostępne opcje',
     'Upload_base' => 'Wgrywanie standardowe',
-    'Upload_base_help' => "Drag & Drop files(modern browsers) or click in upper button to Add the file(s) and click on Start upload. When the upload is complete, click the 'Return to files list' button.",
-    'Upload_add_files' => 'Add file(s)',
-    'Upload_start' => 'Start upload',
-    'Upload_error_messages' =>array(
-        1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
-        2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
-        3 => 'The uploaded file was only partially uploaded',
-        4 => 'No file was uploaded',
-        6 => 'Missing a temporary folder',
-        7 => 'Failed to write file to disk',
-        8 => 'A PHP extension stopped the file upload',
-        'post_max_size' => 'The uploaded file exceeds the post_max_size directive in php.ini',
-        'max_file_size' => 'File is too big',
-        'min_file_size' => 'File is too small',
-        'accept_file_types' => 'Filetype not allowed',
-        'max_number_of_files' => 'Maximum number of files exceeded',
-        'max_width' => 'Image exceeds maximum width',
-        'min_width' => 'Image requires a minimum width',
-        'max_height' => 'Image exceeds maximum height',
-        'min_height' => 'Image requires a minimum height',
-        'abort' => 'File upload aborted',
-        'image_resize' => 'Failed to resize image'
-    ),
-    'Upload_url' => 'From url',
+    'Upload_base_help' => "Usuń zaznaczenie wszystkich plików przeciągnij i upuść (nowoczesne przeglądarki) lub kliknij górny przycisk, aby dodać plik (i) i kliknij Rozpocznij przesyłanie. Po zakończeniu przesyłania kliknij przycisk „Powrót do listy plików”.",
+    'Upload_add_files' => 'Dodaj plik(i)',
+    'Upload_start' => 'Rozpocznij wgrywanie',
+    'Upload_error_messages' => [
+        1 => 'Przesyłany plik jest zbyt duży. Maksymalny rozmiar pliku to 10MB', //upload_max_filesize
+        2 => 'Przesyłany plik jest zbyt duży. Maksymalny rozmiar pliku to 10MB',//MAX_FILE_SIZE - takie coś można dodać w html w formie. Dodaje sie inputa typu hidden o name="MAX_FILE_SIZE" i w value podajesz maksymalna wartosc pliku w bitach
+        3 => 'Przesłany plik został przesłany tylko częściowo',
+        4 => 'Żaden plik nie został przesłany',
+        6 => 'Brak folderu tymczasowego',
+        7 => 'Nie udało się zapisać pliku na serwerze',
+        8 => 'Rozszerzenie PHP zatrzymało przesyłanie pliku', // PHP nie pozwala ustalić, które rozszerzenie spowodowało zatrzymanie przesyłania pliku; pomocne może być sprawdzenie listy załadowanych rozszerzeń za pomocą phpinfo () .
+        'post_max_size' => 'Przesyłany plik jest zbyt duży. Maksymalny rozmiar pliku to 10MB',
+        'max_file_size' => 'Plik jest za duży',
+        'min_file_size' => 'Plik jest za mały',
+        'accept_file_types' => 'Typ pliku jest niedozwolony',
+        'max_number_of_files' => 'Przekroczono maksymalną liczbę plików',
+        'max_width' => 'Obraz przekracza maksymalną szerokość',
+        'min_width' => 'Obraz ma zbyt małą szerokość',
+        'max_height' => 'Obraz przekracza maksymalną wysokość',
+        'min_height' => 'Obraz ma zbyt małą wysokość',
+        'abort' => 'Przesyłanie pliku przerwane',
+        'image_resize' => 'Nie można zmienić rozmiaru obrazu'
+    ],
+    'Upload_url' => 'Z adresu URL',
     'Type_dir' => 'FLD',
     'Type' => 'Roz.',
     'Dimension' => 'Rozmiar',
@@ -96,9 +96,9 @@ return array(
     'Copy_Cut_Count_Limit' => 'Wybrałeś zbyt wiele plików/folderów by wykonać operację %s. Limit: %d plików/etap operacji', // %s = cut or copy
     'Copy_Cut_Not_Allowed' => 'Nie masz uprawnień do wykonania działania %s na tych plikach.', // %s(1) = cut or copy, %s(2) = files or folders
     'Image_Editor_No_Save' => 'Nie można zapisać obrazka',
-    'Image_Editor_Exit' => "Exit",
-    'Image_Editor_Save' => "Save",
-    'Zip_No_Extract' => 'Archiwum ZIP nie może zostać rozpakowane tam. Plik może być uszkodzony.',
+    'Image_Editor_Exit' => "Wyjście",
+    'Image_Editor_Save' => "Zapisz",
+    'Zip_No_Extract' => 'Archiwum ZIP nie może zostać ram rozpakowane. Plik może być uszkodzony.',
     'Zip_Invalid' => 'Te rozszerzenia plików nie posiadają tutaj naszego wspierane. Dopuszczamy tylko format: zip, gz, tar.',
     'Dir_No_Write' => 'Folder który wybrałeś, nie posiada uprawnień chmod umożliwiających poprawny zapis.',
     'Function_Disabled' => 'Operacja %s została zablokowana przez oprogramowanie Twojego serwera.', // %s = cut or copy
@@ -144,4 +144,4 @@ return array(
     'GB' => "GB",
     'TB' => "TB",
     'total size' => "Całkowity rozmiar",
-);
+];

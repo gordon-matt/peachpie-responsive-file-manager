@@ -6,7 +6,6 @@ if (session_id() == '') {
 
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
-mb_http_input('UTF-8');
 mb_language('uni');
 mb_regex_encoding('UTF-8');
 /*ob_start('mb_output_handler');*/
@@ -58,7 +57,7 @@ define('DEBUG_ERROR_MESSAGE', false); // TRUE or FALSE
 |    |   |   |   |   |- plugin.min.js
 */
 
-$config = array(
+$config = [
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +76,7 @@ $config = array(
     | with start and final /
     |
     */
-	'upload_dir' => $rfm_options->UploadDirectory,
+    'upload_dir' => $rfm_options->UploadDirectory,
     /*
     |--------------------------------------------------------------------------
     | relative path from filemanager folder to upload folder
@@ -86,7 +85,7 @@ $config = array(
     | with final /
     |
     */
-	'current_path' => $rfm_options->CurrentPath,
+    'current_path' => $rfm_options->CurrentPath,
 
     /*
     |--------------------------------------------------------------------------
@@ -97,7 +96,7 @@ $config = array(
     | DO NOT put inside upload folder
     |
     */
-	'thumbs_base_path' => $rfm_options->ThumbsBasePath,
+    'thumbs_base_path' => $rfm_options->ThumbsBasePath,
 
     /*
     |--------------------------------------------------------------------------
@@ -108,8 +107,7 @@ $config = array(
     | DO NOT put inside upload folder
     |
     */
-    'thumbs_upload_dir' => '/thumbs/',
-
+    'thumbs_upload_dir' => $rfm_options->ThumbsUploadDir ?? '/thumbs/',
 
     /*
     |--------------------------------------------------------------------------
@@ -119,8 +117,7 @@ $config = array(
     | If you want to be forced to assign the extension starting from the mime type
     |
     */
-    'mime_extension_rename'	=> true,
-
+    'mime_extension_rename'	=> $rfm_options->MimeExtensionRename ?? true,
 
     /*
     |--------------------------------------------------------------------------
@@ -132,21 +129,21 @@ $config = array(
     | upload dir will be ftp_base_folder + upload_dir so without final /
     |
     */
-    'ftp_host'         => false, //put the FTP host
-    'ftp_user'         => "user",
-    'ftp_pass'         => "pass",
-    'ftp_base_folder'  => "base_folder",
-    'ftp_base_url'     => "http://site to ftp root",
+    'ftp_host'         => $rfm_options->FtpHost ?? false,
+    'ftp_user'         => $rfm_options->FtpUser ?? "user",
+    'ftp_pass'         => $rfm_options->FtpPass ?? "pass",
+    'ftp_base_folder'  => $rfm_options->FtpBaseFolder ?? "base_folder",
+    'ftp_base_url'     => $rfm_options->FtpBaseUrl ?? "http://site to ftp root",
     // Directory where place files before to send to FTP with final /
-    'ftp_temp_folder'  => "../temp/",
+    'ftp_temp_folder'  => $rfm_options->FtpTempFolder ?? "../temp/",
     /*
     |---------------------------------------------------------------------------
     | path from ftp_base_folder to base of thumbs folder with start and final /
     |---------------------------------------------------------------------------
     */
-    'ftp_thumbs_dir' => '/thumbs/',
-    'ftp_ssl' => false,
-    'ftp_port' => 21,
+    'ftp_thumbs_dir' => $rfm_options->FtpThumbsDir ?? '/thumbs/',
+    'ftp_ssl' => $rfm_options->FtpSsl ?? false,
+    'ftp_port' => $rfm_options->FtpPort ?? 21,
 
     /* EXAMPLE
     'ftp_host'         => "host.com",
@@ -162,7 +159,7 @@ $config = array(
     |--------------------------------------------------------------------------
     | The user can delete multiple files, select all files , deselect all files
     */
-    'multiple_selection' => true,
+    'multiple_selection' => $rfm_options->MultipleSelection ?? true,
 
     /*
     |
@@ -170,7 +167,7 @@ $config = array(
     | If you use responsivefilemanager tinymce extension can copy into editor multiple object like images, videos, audios, links in the same time
     |
      */
-    'multiple_selection_action_button' => true,
+    'multiple_selection_action_button' => $rfm_options->MultipleSelectionActionButton ?? true,
 
     /*
     |--------------------------------------------------------------------------
@@ -188,7 +185,7 @@ $config = array(
     |
     */
 
-    'access_keys' => array(),
+    'access_keys' => $rfm_options->AccessKeys ?? [],
 
     //--------------------------------------------------------------------------------------------------------
     // YOU CAN COPY AND CHANGE THESE VARIABLES INTO FOLDERS config.php FILES TO CUSTOMIZE EACH FOLDER OPTIONS
@@ -202,7 +199,7 @@ $config = array(
     | in Megabytes
     |
     */
-    'MaxSizeTotal' => false,
+    'MaxSizeTotal' => $rfm_options->MaxSizeTotal ?? false,
 
     /*
     |--------------------------------------------------------------------------
@@ -220,16 +217,15 @@ $config = array(
     |--------------------------------------------------------------------------
     |
     */
-    'filePermission' => 0755,
-    'folderPermission' => 0777,
-
+    'filePermission' => $rfm_options->FilePermission ?? 0755,
+    'folderPermission' => $rfm_options->FolderPermission ?? 0777,
 
     /*
     |--------------------------------------------------------------------------
     | default language file name
     |--------------------------------------------------------------------------
     */
-    'default_language' => "en_EN",
+    'default_language' => $rfm_options->DefaultLanguage ?? "en_EN",
 
     /*
     |--------------------------------------------------------------------------
@@ -240,31 +236,29 @@ $config = array(
     | Can be set to custom icon inside filemanager/img
     |
     */
-    'icon_theme' => "ico",
-
+    'icon_theme' => $rfm_options->IconTheme ?? "ico",
 
     //Show or not total size in filemanager (is possible to greatly increase the calculations)
-    'show_total_size'						=> false,
+    'show_total_size'						=> $rfm_options->ShowTotalSize ?? false,
     //Show or not show folder size in list view feature in filemanager (is possible, if there is a large folder, to greatly increase the calculations)
-    'show_folder_size'						=> false,
+    'show_folder_size'						=> $rfm_options->ShowFolderSize ?? false,
     //Show or not show sorting feature in filemanager
-    'show_sorting_bar'						=> true,
+    'show_sorting_bar'						=> $rfm_options->ShowSortingBar ?? true,
     //Show or not show filters button in filemanager
-    'show_filter_buttons'                   => true,
+    'show_filter_buttons'                   => $rfm_options->ShowFilterButtons ?? true,
     //Show or not language selection feature in filemanager
-    'show_language_selection'				=> true,
+    'show_language_selection'				=> $rfm_options->ShowLanguageSelection ?? true,
     //active or deactive the transliteration (mean convert all strange characters in A..Za..z0..9 characters)
-    'transliteration'						=> false,
+    'transliteration'						=> $rfm_options->Transliteration ?? false,
     //convert all spaces on files name and folders name with $replace_with variable
-    'convert_spaces'						=> false,
+    'convert_spaces'						=> $rfm_options->ConvertSpaces ?? false,
     //convert all spaces on files name and folders name this value
-    'replace_with'							=> "_",
+    'replace_with'							=> $rfm_options->ReplaceWith ?? "_",
     //convert to lowercase the files and folders name
-    'lower_case'							=> false,
+    'lower_case'							=> $rfm_options->LowerCase ?? false,
 
     //Add ?484899493349 (time value) to returned images to prevent cache
-    'add_time_to_img'                       => false,
-
+    'add_time_to_img'                       => $rfm_options->AddTimeToImg ?? false,
 
     //*******************************************
     //Images limit and resizing configuration
@@ -273,9 +267,9 @@ $config = array(
     // set maximum pixel width and/or maximum pixel height for all images
     // If you set a maximum width or height, oversized images are converted to those limits. Images smaller than the limit(s) are unaffected
     // if you don't need a limit set both to 0
-    'image_max_width'                         => 0,
-    'image_max_height'                        => 0,
-    'image_max_mode'                          => 'auto',
+    'image_max_width' => $rfm_options->ImageMaxWidth ?? 0,
+    'image_max_height' => $rfm_options->ImageMaxHeight ?? 0,
+    'image_max_mode' => $rfm_options->ImageMaxMode ?? 'auto',
     /*
     #  $option:  0 / exact = defined size;
     #            1 / portrait = keep aspect set height;
@@ -288,21 +282,20 @@ $config = array(
     // If you set $image_resizing to TRUE the script converts all uploaded images exactly to image_resizing_width x image_resizing_height dimension
     // If you set width or height to 0 the script automatically calculates the other dimension
     // Is possible that if you upload very big images the script not work to overcome this increase the php configuration of memory and time limit
-    'image_resizing'                          => false,
-    'image_resizing_width'                    => 0,
-    'image_resizing_height'                   => 0,
-    'image_resizing_mode'                     => 'auto', // same as $image_max_mode
-    'image_resizing_override'                 => false,
+    'image_resizing' => $rfm_options->ImageResizing ?? false,
+    'image_resizing_width' => $rfm_options->ImageResizingWidth ?? 0,
+    'image_resizing_height' => $rfm_options->ImageResizingHeight ?? 0,
+    'image_resizing_mode' => $rfm_options->ImageResizingMode ?? 'auto', // same as $image_max_mode
+    'image_resizing_override' => $rfm_options->ImageResizingOverride ?? false,
     // If set to TRUE then you can specify bigger images than $image_max_width & height otherwise if image_resizing is
     // bigger than $image_max_width or height then it will be converted to those values
-
 
     //******************
     //
     // WATERMARK IMAGE
     //
     //Watermark path or false
-    'image_watermark'                          => false,//"../watermark.png",
+    'image_watermark' => $rfm_options->ImageWatermark ?? false,
     # Could be a pre-determined position such as:
     #           tl = top left,
     #           t  = top (middle),
@@ -314,11 +307,11 @@ $config = array(
     #           b  = bottom (middle),
     #           br = bottom right
     #           Or, it could be a co-ordinate position such as: 50x100
-    'image_watermark_position'                 => 'br',
+    'image_watermark_position' => $rfm_options->ImageWatermarkPosition ?? 'br',
     # padding: If using a pre-determined position you can
     #         adjust the padding from the edges by passing an amount
     #         in pixels. If using co-ordinates, this value is ignored.
-    'image_watermark_padding'                 => 10,
+    'image_watermark_padding' => $rfm_options->ImageWatermarkPadding ?? 10,
 
     //******************
     // Default layout setting
@@ -329,75 +322,73 @@ $config = array(
     // YOU CAN ALSO PASS THIS PARAMETERS USING SESSION VAR => $_SESSION['RF']["VIEW"]=
     //
     //******************
-    'default_view'                            => 0,
+    'default_view' => $rfm_options->DefaultView ?? 0,
 
     //set if the filename is truncated when overflow first row
-    'ellipsis_title_after_first_row'          => true,
+    'ellipsis_title_after_first_row' => $rfm_options->EllipsisTitleAfterFirstRow ?? true,
 
     //*************************
     //Permissions configuration
     //******************
-    'delete_files'                            => true,
-    'create_folders'                          => true,
-    'delete_folders'                          => true,
-    'upload_files'                            => true,
-    'rename_files'                            => true,
-    'rename_folders'                          => true,
-    'duplicate_files'                         => true,
-    'extract_files'                           => true,
-    'copy_cut_files'                          => true, // for copy/cut files
-    'copy_cut_dirs'                           => true, // for copy/cut directories
-    'chmod_files'                             => true, // change file permissions
-    'chmod_dirs'                              => true, // change folder permissions
-    'preview_text_files'                      => true, // eg.: txt, log etc.
-    'edit_text_files'                         => true, // eg.: txt, log etc.
-    'create_text_files'                       => true, // only create files with exts. defined in $config['editable_text_file_exts']
-    'download_files'			  => true, // allow download files or just preview
+    'delete_files'                            => $rfm_options->DeleteFiles ?? true,
+    'create_folders'                          => $rfm_options->CreateFolders ?? true,
+    'delete_folders'                          => $rfm_options->DeleteFolders ?? true,
+    'upload_files'                            => $rfm_options->UploadFiles ?? true,
+    'rename_files'                            => $rfm_options->RenameFiles ?? true,
+    'rename_folders'                          => $rfm_options->RenameFolders ?? true,
+    'duplicate_files'                         => $rfm_options->DuplicateFiles ?? true,
+    'extract_files'                           => $rfm_options->ExtractFiles ?? true,
+    'copy_cut_files'                          => $rfm_options->CopyCutFiles ?? true, // for copy/cut files
+    'copy_cut_dirs'                           => $rfm_options->CopyCutDirs ?? true, // for copy/cut directories
+    'chmod_files'                             => $rfm_options->ChmodFiles ?? true, // change file permissions
+    'chmod_dirs'                              => $rfm_options->ChmodDirs ?? true, // change folder permissions
+    'preview_text_files'                      => $rfm_options->PreviewTextFiles ?? true, // eg.: txt, log etc.
+    'edit_text_files'                         => $rfm_options->EditTextFiles ?? true, // eg.: txt, log etc.
+    'create_text_files'                       => $rfm_options->CreateTextFiles ?? true, // only create files with exts. defined in $config['editable_text_file_exts']
+    'download_files'			              => $rfm_options->DownloadFiles ?? true, // allow download files or just preview
 
     // you can preview these type of files if $preview_text_files is true
-    'previewable_text_file_exts'              => array( "bsh", "c","css", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html", "java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh", "xhtml", "xml","xsl",'txt', 'log','' ),
+    'previewable_text_file_exts'              => $rfm_options->PreviewableTextFileExts ?? ["bsh", "c","css", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html", "java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh", "xhtml", "xml","xsl",'txt', 'log',''],
 
     // you can edit these type of files if $edit_text_files is true (only text based files)
     // you can create these type of files if $config['create_text_files'] is true (only text based files)
     // if you want you can add html,css etc.
     // but for security reasons it's NOT RECOMMENDED!
-    'editable_text_file_exts'                 => array( 'txt', 'log', 'xml', 'html', 'css', 'htm', 'js','' ),
+    'editable_text_file_exts'                 => $rfm_options->EditableTextFileExts ?? ['txt', 'log', 'xml', 'html', 'css', 'htm', 'js',''],
 
-    'jplayer_exts'                            => array("mp4","flv","webmv","webma","webm","m4a","m4v","ogv","oga","mp3","midi","mid","ogg","wav"),
+    'jplayer_exts'                            => $rfm_options->JPlayerExts ?? ["mp4","flv","webmv","webma","webm","m4a","m4v","ogv","oga","mp3","midi","mid","ogg","wav"],
 
-    'cad_exts'                                => array('dwg', 'dxf', 'hpgl', 'plt', 'spl', 'step', 'stp', 'iges', 'igs', 'sat', 'cgm', 'svg'),
+    'cad_exts'                                => $rfm_options->CadExts ?? ['dwg', 'dxf', 'hpgl', 'plt', 'spl', 'step', 'stp', 'iges', 'igs', 'sat', 'cgm', 'svg'],
 
     // Preview with Google Documents
-    'googledoc_enabled'                       => true,
-    'googledoc_file_exts'                     => array( 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx' , 'pdf', 'odt', 'odp', 'ods'),
+    'googledoc_enabled'                       => $rfm_options->GoogledocEnabled ?? true,
+    'googledoc_file_exts'                     => $rfm_options->GoogledocFileExts ?? ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx' , 'pdf', 'odt', 'odp', 'ods'],
 
     // defines size limit for paste in MB / operation
     // set 'FALSE' for no limit
-    'copy_cut_max_size'                       => 100,
+    'copy_cut_max_size'                       => $rfm_options->CopyCutMaxSize ?? 100,
     // defines file count limit for paste / operation
     // set 'FALSE' for no limit
-    'copy_cut_max_count'                      => 200,
+    'copy_cut_max_count'                      => $rfm_options->CopyCutMaxCount ?? 200,
     //IF any of these limits reached, operation won't start and generate warning
 
     //**********************
     //Allowed extensions (lowercase insert)
     //**********************
-    'ext_img'                                 => array( 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'ico' ), //Images
-    'ext_file'                                => array( 'doc', 'docx', 'rtf', 'pdf', 'xls', 'xlsx', 'txt', 'csv', 'html', 'xhtml', 'psd', 'sql', 'log', 'fla', 'xml', 'ade', 'adp', 'mdb', 'accdb', 'ppt', 'pptx', 'odt', 'ots', 'ott', 'odb', 'odg', 'otp', 'otg', 'odf', 'ods', 'odp', 'css', 'ai', 'kmz','dwg', 'dxf', 'hpgl', 'plt', 'spl', 'step', 'stp', 'iges', 'igs', 'sat', 'cgm', 'tiff',''), //Files
-    'ext_video'                               => array( 'mov', 'mpeg', 'm4v', 'mp4', 'avi', 'mpg', 'wma', "flv", "webm" ), //Video
-    'ext_music'                               => array( 'mp3', 'mpga', 'm4a', 'ac3', 'aiff', 'mid', 'ogg', 'wav' ), //Audio
-    'ext_misc'                                => array( 'zip', 'rar', 'gz', 'tar', 'iso', 'dmg' ), //Archives
-
+    'ext_img'                                 => $rfm_options->ExtImg ?? ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'ico', 'webp'], //Images
+    'ext_file'                                => $rfm_options->ExtFile ?? ['doc', 'docx', 'rtf', 'pdf', 'xls', 'xlsx', 'txt', 'csv', 'html', 'xhtml', 'psd', 'sql', 'log', 'fla', 'xml', 'ade', 'adp', 'mdb', 'accdb', 'ppt', 'pptx', 'odt', 'ots', 'ott', 'odb', 'odg', 'otp', 'otg', 'odf', 'ods', 'odp', 'css', 'ai', 'kmz','dwg', 'dxf', 'hpgl', 'plt', 'spl', 'step', 'stp', 'iges', 'igs', 'sat', 'cgm', 'tiff',''], //Files
+    'ext_video'                               => $rfm_options->ExtVideo ?? ['mov', 'mpeg', 'm4v', 'mp4', 'avi', 'mpg', 'wma', "flv", "webm"], //Video
+    'ext_music'                               => $rfm_options->ExtMusic ?? ['mp3', 'mpga', 'm4a', 'ac3', 'aiff', 'mid', 'ogg', 'wav'], //Audio
+    'ext_misc'                                => $rfm_options->ExtMisc ?? ['zip', 'rar', 'gz', 'tar', 'iso', 'dmg'], //Archives
 
     //*********************
     //  If you insert an extensions blacklist array the filemanager don't check any extensions but simply block the extensions in the list
     //  otherwise check Allowed extensions configuration
     //*********************
-    'ext_blacklist'							  => false,//['exe','bat','jpg'],
-
+    'ext_blacklist' => $rfm_options->ExtBlacklist ?? false,
 
     //Empty filename permits like .htaccess, .env, ...
-    'empty_filename'                          => false,
+    'empty_filename' => $rfm_options->EmptyFilename ?? false,
 
     /*
     |--------------------------------------------------------------------------
@@ -407,105 +398,102 @@ $config = array(
     | If you want to accept files without extension, remember to add '' extension on allowed extension
     |
     */
-    'files_without_extension'	              => false,
+    'files_without_extension' => $rfm_options->FilesWithoutExtension ?? false,
 
     /******************
     * TUI Image Editor config
     *******************/
     // Add or modify the options below as needed - they will be json encoded when added to the configuration so arrays can be utilized as needed
-    'tui_active'                           => true,
-    'tui_position'                         => 'bottom',
+    'tui_active'                           => $rfm_options->TuiActive ?? true,
+    'tui_position'                         => $rfm_options->TuiPosition ?? 'bottom',
     // 'common.bi.image'                      => "../assets/images/logo.png",
     // 'common.bisize.width'                  => '70px',
     // 'common.bisize.height'                 => '25px',
-    'common.backgroundImage'               => 'none',
-    'common.backgroundColor'               => '#ececec',
-    'common.border'                        => '1px solid #E6E7E8',
+    'common.backgroundImage'               => $rfm_options->CommonBackgroundImage ?? 'none',
+    'common.backgroundColor'               => $rfm_options->CommonBackgroundColor ?? '#ececec',
+    'common.border'                        => $rfm_options->CommonBorder ?? '1px solid #E6E7E8',
 
     // header
-    'header.backgroundImage'               => 'none',
-    'header.backgroundColor'               => '#ececec',
-    'header.border'                        => '0px',
+    'header.backgroundImage'               => $rfm_options->HeaderBackgroundImage ?? 'none',
+    'header.backgroundColor'               => $rfm_options->HeaderBackgroundColor ?? '#ececec',
+    'header.border'                        => $rfm_options->HeaderBorder ?? '0px',
 
     // main icons
-    'menu.normalIcon.path'                 => 'svg/icon-d.svg',
-    'menu.normalIcon.name'                 => 'icon-d',
-    'menu.activeIcon.path'                 => 'svg/icon-b.svg',
-    'menu.activeIcon.name'                 => 'icon-b',
-    'menu.disabledIcon.path'               => 'svg/icon-a.svg',
-    'menu.disabledIcon.name'               => 'icon-a',
-    'menu.hoverIcon.path'                  => 'svg/icon-c.svg',
-    'menu.hoverIcon.name'                  => 'icon-c',
-    'menu.iconSize.width'                  => '24px',
-    'menu.iconSize.height'                 => '24px',
+    'menu.normalIcon.path'                 => $rfm_options->MenuNormalIconPath ?? 'svg/icon-d.svg',
+    'menu.normalIcon.name'                 => $rfm_options->MenuNormalIconName ?? 'icon-d',
+    'menu.activeIcon.path'                 => $rfm_options->MenuActiveIconPath ?? 'svg/icon-b.svg',
+    'menu.activeIcon.name'                 => $rfm_options->MenuActiveIconName ?? 'icon-b',
+    'menu.disabledIcon.path'               => $rfm_options->MenuDisabledIconPath ?? 'svg/icon-a.svg',
+    'menu.disabledIcon.name'               => $rfm_options->MenuDisabledIconName ?? 'icon-a',
+    'menu.hoverIcon.path'                  => $rfm_options->MenuHoverIconPath ?? 'svg/icon-c.svg',
+    'menu.hoverIcon.name'                  => $rfm_options->MenuHoverIconName ?? 'icon-c',
+    'menu.iconSize.width'                  => $rfm_options->MenuIconSizeWidth ?? '24px',
+    'menu.iconSize.height'                 => $rfm_options->MenuIconSizeHeight ?? '24px',
 
     // submenu primary color
-    'submenu.backgroundColor'              => '#ececec',
-    'submenu.partition.color'              => '#000000',
+    'submenu.backgroundColor'              => $rfm_options->SubmenuBackgroundColor ?? '#ececec',
+    'submenu.partition.color'              => $rfm_options->SubmenuPartitionColor ?? '#000000',
 
     // submenu icons
-    'submenu.normalIcon.path'              => 'svg/icon-d.svg',
-    'submenu.normalIcon.name'              => 'icon-d',
-    'submenu.activeIcon.path'              => 'svg/icon-b.svg',
-    'submenu.activeIcon.name'              => 'icon-b',
-    'submenu.iconSize.width'               => '32px',
-    'submenu.iconSize.height'              => '32px',
+    'submenu.normalIcon.path'              => $rfm_options->SubmenuNormalIconPath ?? 'svg/icon-d.svg',
+    'submenu.normalIcon.name'              => $rfm_options->SubmenuNormalIconName ?? 'icon-d',
+    'submenu.activeIcon.path'              => $rfm_options->SubmenuActiveIconPath ?? 'svg/icon-b.svg',
+    'submenu.activeIcon.name'              => $rfm_options->SubmenuActiveIconName ?? 'icon-b',
+    'submenu.iconSize.width'               => $rfm_options->SubmenuIconSizeWidth ?? '32px',
+    'submenu.iconSize.height'              => $rfm_options->SubmenuIconSizeHeight ?? '32px',
 
     // submenu labels
-    'submenu.normalLabel.color'            => '#000',
-    'submenu.normalLabel.fontWeight'       => 'normal',
-    'submenu.activeLabel.color'            => '#000',
-    'submenu.activeLabel.fontWeight'       => 'normal',
+    'submenu.normalLabel.color'            => $rfm_options->SubmenuNormalLabelColor ?? '#000',
+    'submenu.normalLabel.fontWeight'       => $rfm_options->SubmenuNormalLabelFontWeight ?? 'normal',
+    'submenu.activeLabel.color'            => $rfm_options->SubmenuActiveLabelColor ?? '#000',
+    'submenu.activeLabel.fontWeight'       => $rfm_options->SubmenuActiveLabelFontWeight ?? 'normal',
 
     // checkbox style
-    'checkbox.border'                      => '1px solid #E6E7E8',
-    'checkbox.backgroundColor'             => '#000',
+    'checkbox.border'                      => $rfm_options->CheckboxBorder ?? '1px solid #E6E7E8',
+    'checkbox.backgroundColor'             => $rfm_options->CheckboxBackgroundColor ?? '#000',
 
     // rango style
-    'range.pointer.color'                  => '#333',
-    'range.bar.color'                      => '#ccc',
-    'range.subbar.color'                   => '#606060',
+    'range.pointer.color'                  => $rfm_options->RangePointerColor ?? '#333',
+    'range.bar.color'                      => $rfm_options->RangeBarColor ?? '#ccc',
+    'range.subbar.color'                   => $rfm_options->RangeSubbarColor ?? '#606060',
 
-    'range.disabledPointer.color'          => '#d3d3d3',
-    'range.disabledBar.color'              => 'rgba(85,85,85,0.06)',
-    'range.disabledSubbar.color'           => 'rgba(51,51,51,0.2)',
+    'range.disabledPointer.color'          => $rfm_options->RangeDisabledPointerColor ?? '#d3d3d3',
+    'range.disabledBar.color'              => $rfm_options->RangeDisabledBarColor ?? 'rgba(85,85,85,0.06)',
+    'range.disabledSubbar.color'           => $rfm_options->RangeDisabledSubbarColor ?? 'rgba(51,51,51,0.2)',
 
-    'range.value.color'                    => '#000',
-    'range.value.fontWeight'               => 'normal',
-    'range.value.fontSize'                 => '11px',
-    'range.value.border'                   => '0',
-    'range.value.backgroundColor'          => '#f5f5f5',
-    'range.title.color'                    => '#000',
-    'range.title.fontWeight'               => 'lighter',
+    'range.value.color'                    => $rfm_options->RangeValueColor ?? '#000',
+    'range.value.fontWeight'               => $rfm_options->RangeValueFontWeight ?? 'normal',
+    'range.value.fontSize'                 => $rfm_options->RangeValueFontSize ?? '11px',
+    'range.value.border'                   => $rfm_options->RangeValueBorder ?? '0',
+    'range.value.backgroundColor'          => $rfm_options->RangeValueBackgroundColor ?? '#f5f5f5',
+    'range.title.color'                    => $rfm_options->RangeTitleColor ?? '#000',
+    'range.title.fontWeight'               => $rfm_options->RangeTitleFontWeight ?? 'lighter',
 
     // colorpicker style
-    'colorpicker.button.border'            => '0px',
-    'colorpicker.title.color'              => '#000',
-
+    'colorpicker.button.border'            => $rfm_options->ColorpickerButtonBorder ?? '0px',
+    'colorpicker.title.color'              => $rfm_options->ColorpickerTitleColor ?? '#000',
 
     //The filter and sorter are managed through both javascript and php scripts because if you have a lot of
     //file in a folder the javascript script can't sort all or filter all, so the filemanager switch to php script.
     //The plugin automatic swich javascript to php when the current folder exceeds the below limit of files number
-    'file_number_limit_js'                    => 500,
+    'file_number_limit_js'                    => $rfm_options->FileNumberLimitJs ?? 500,
 
     //**********************
     // Hidden files and folders
     //**********************
     // set the names of any folders you want hidden (eg "hidden_folder1", "hidden_folder2" ) Remember all folders with these names will be hidden (you can set any exceptions in config.php files on folders)
-    'hidden_folders'                          => array(),
+    'hidden_folders'                          => $rfm_options->HiddenFolders ?? [],
     // set the names of any files you want hidden. Remember these names will be hidden in all folders (eg "this_document.pdf", "that_image.jpg" )
-    'hidden_files'                            => array( 'config.php' ),
+    'hidden_files'                            => $rfm_options->HiddenFiles ?? ['config.php'],
 
     /*******************
     * URL upload
     *******************/
-    'url_upload'                             => true,
-
+    'url_upload'                             => $rfm_options->UrlUpload ?? true,
 
     //************************************
     //Thumbnail for external use creation
     //************************************
-
 
     // New image resized creation with fixed path from filemanager folder after uploading (thumbnails in fixed mode)
     // If you want create images resized out of upload folder for use with external script you can choose this method,
@@ -514,12 +502,12 @@ $config = array(
     // path_from_filemanager/test/test1/
     // PS if there isn't write permission in your destination folder you must set it
     //
-    'fixed_image_creation'                    => false, //activate or not the creation of one or more image resized with fixed path from filemanager folder
-    'fixed_path_from_filemanager'             => array( '../test/', '../test1/' ), //fixed path of the image folder from the current position on upload folder
-    'fixed_image_creation_name_to_prepend'    => array( '', 'test_' ), //name to prepend on filename
-    'fixed_image_creation_to_append'          => array( '_test', '' ), //name to appendon filename
-    'fixed_image_creation_width'              => array( 300, 400 ), //width of image
-    'fixed_image_creation_height'             => array( 200, 300 ), //height of image
+    'fixed_image_creation'                    => $rfm_options->FixedImageCreation ?? false, //activate or not the creation of one or more image resized with fixed path from filemanager folder
+    'fixed_path_from_filemanager'             => $rfm_options->FixedPathFromFilemanager ?? ['../test/', '../test1/'], //fixed path of the image folder from the current position on upload folder
+    'fixed_image_creation_name_to_prepend'    => $rfm_options->FixedImageCreationNameToPrepend ?? ['', 'test_'], //name to prepend on filename
+    'fixed_image_creation_to_append'          => $rfm_options->FixedImageCreationToAppend ?? ['_test', ''], //name to appendon filename
+    'fixed_image_creation_width'              => $rfm_options->FixedImageCreationWidth ?? [300, 400], //width of image
+    'fixed_image_creation_height'             => $rfm_options->FixedImageCreationHeight ?? [200, 300], //height of image
     /*
     #             $option:     0 / exact = defined size;
     #                          1 / portrait = keep aspect set height;
@@ -527,20 +515,19 @@ $config = array(
     #                          3 / auto = auto;
     #                          4 / crop= resize and crop;
     */
-    'fixed_image_creation_option'             => array( 'crop', 'auto' ), //set the type of the crop
-
+    'fixed_image_creation_option'             => $rfm_options->FixedImageCreationOption ?? ['crop', 'auto'], //set the type of the crop
 
     // New image resized creation with relative path inside to upload folder after uploading (thumbnails in relative mode)
     // With Responsive filemanager you can create automatically resized image inside the upload folder, also more than one at a time
     // just simply add a value in the array
     // The image creation path is always relative so if i'm inside source/test/test1 and I upload an image, the path start from here
     //
-    'relative_image_creation'                 => false, //activate or not the creation of one or more image resized with relative path from upload folder
-    'relative_path_from_current_pos'          => array( './', './' ), //relative path of the image folder from the current position on upload folder
-    'relative_image_creation_name_to_prepend' => array( '', '' ), //name to prepend on filename
-    'relative_image_creation_name_to_append'  => array( '_thumb', '_thumb1' ), //name to append on filename
-    'relative_image_creation_width'           => array( 300, 400 ), //width of image
-    'relative_image_creation_height'          => array( 200, 300 ), //height of image
+    'relative_image_creation'                 => $rfm_options->RelativeImageCreation ?? false, //activate or not the creation of one or more image resized with relative path from upload folder
+    'relative_path_from_current_pos'          => $rfm_options->RelativePathFromCurrentPos ?? ['./', './'], //relative path of the image folder from the current position on upload folder
+    'relative_image_creation_name_to_prepend' => $rfm_options->RelativeImageCreationNameToPrepend ?? ['', ''], //name to prepend on filename
+    'relative_image_creation_name_to_append'  => $rfm_options->RelativeImageCreationNameToAppend ?? ['_thumb', '_thumb1'], //name to append on filename
+    'relative_image_creation_width'           => $rfm_options->RelativeImageCreationWidth ?? [300, 400], //width of image
+    'relative_image_creation_height'          => $rfm_options->RelativeImageCreationHeight ?? [200, 300], //height of image
     /*
      * $option:     0 / exact = defined size;
      *              1 / portrait = keep aspect set height;
@@ -548,17 +535,16 @@ $config = array(
      *              3 / auto = auto;
      *              4 / crop= resize and crop;
      */
-    'relative_image_creation_option'          => array( 'crop', 'crop' ), //set the type of the crop
-
+    'relative_image_creation_option'          => $rfm_options->RelativeImageCreationOption ?? ['crop', 'crop'], //set the type of the crop
 
     // Remember text filter after close filemanager for future session
-    'remember_text_filter'                    => false,
+    'remember_text_filter'                    => $rfm_options->RememberTextFilter ?? false,
 
-);
+];
 
 return array_merge(
     $config,
-    array(
+    [
         'ext' => array_merge(
             $config['ext_img'],
             $config['ext_file'],
@@ -566,12 +552,12 @@ return array_merge(
             $config['ext_video'],
             $config['ext_music']
         ),
-        'tui_defaults_config' => array(
+        'tui_defaults_config' => [
             //'common.bi.image'                   => $config['common.bi.image'],
             //'common.bisize.width'               => $config['common.bisize.width'],
-            //'common.bisize.height'              => $config['common.bisize.height'], 
+            //'common.bisize.height'              => $config['common.bisize.height'],
             'common.backgroundImage'            => $config['common.backgroundImage'],
-            'common.backgroundColor'            => $config['common.backgroundColor'], 
+            'common.backgroundColor'            => $config['common.backgroundColor'],
             'common.border'                     => $config['common.border'],
             'header.backgroundImage'            => $config['header.backgroundImage'],
             'header.backgroundColor'            => $config['header.backgroundColor'],
@@ -615,6 +601,6 @@ return array_merge(
             'range.title.fontWeight'            => $config['range.title.fontWeight'],
             'colorpicker.button.border'         => $config['colorpicker.button.border'],
             'colorpicker.title.color'           => $config['colorpicker.title.color']
-        ),
-    )
+        ],
+    ]
 );

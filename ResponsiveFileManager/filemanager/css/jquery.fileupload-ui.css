@@ -14,7 +14,11 @@
 .fileupload-buttonbar .toggle {
   margin-bottom: 5px;
 }
-
+.progress-animated .progress-bar,
+.progress-animated .bar {
+  background: url("../img/progressbar.gif") !important;
+  filter: none;
+}
 .fileupload-process {
   float: right;
   display: none;

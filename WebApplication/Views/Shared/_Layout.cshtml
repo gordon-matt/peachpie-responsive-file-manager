@@ -30,13 +30,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="TinyMCE4">Tiny MCE 4 Demo</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="TinyMCE5">Tiny MCE 5 Demo</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="IFrame">IFrame Demo</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Standalone">Standalone Demo</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="CKEditor">CKEditor Demo</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="TinyMCE4">Tiny MCE 4</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="TinyMCE5">Tiny MCE 5</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="TinyMCE6">Tiny MCE 6</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="TinyMCE7">Tiny MCE 7</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="IFrame">IFrame</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Standalone">Standalone</a></li>
+
+                    @* TODO: The CKEditor has a bug trying to navigate to subfolders. *@
+                    @* <li><a asp-area="" asp-controller="Home" asp-action="CKEditor">CKEditor</a></li> *@
                 </ul>
-                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
