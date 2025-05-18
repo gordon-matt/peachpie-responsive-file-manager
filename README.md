@@ -28,7 +28,9 @@ Responsive File Manager running on .NET Core with Peachpie
 }
 ```
 
-3. Add ResponsiveFileManager as middleware within the `Configure` method:
+More options can be found in the demo app.
+
+3. Add ResponsiveFileManager as middleware:
 
 ```csharp
 app.UseResponsiveFileManager();
@@ -37,17 +39,22 @@ app.UseResponsiveFileManager();
 4. Optionally configure ResponsiveFileManager settings in the `ConfigureServices` method.
 
 ```csharp
-services.AddResponsiveFileManager(options =>
+builder.Services.AddResponsiveFileManager(options =>
 {
-	
+    options.MaxSizeUpload = 32;
+    //etc
 });
 ```
 
-**If you are wanting to use Peachpie for more than just ResponsiveFileManager, then it is recommended you ignore the ResponsiveFileManager.AspNetCore package, only acquire the base ResponsiveFileManager package and then manually configure the settings as follows:**
+**If you are wanting to use Peachpie for more than just ResponsiveFileManager, then it is recommended you ignore the
+ResponsiveFileManager.AspNetCore package, only acquire the base ResponsiveFileManager package and then manually
+configure the settings as follows:**
 
-1. Get the ResponsiveFileManager.AspNetCore NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager.AspNetCore/
+1. Get the ResponsiveFileManager NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager/
 
-2. Add the following to your **appsettings.json**:
+2. Copy the ResponsiveFileManagerOptions class from the ResponsiveFileManager.AspNetCore package into your project.
+
+3. Add the following to your **appsettings.json**:
 
 ```json
 "ResponsiveFileManagerOptions": {
@@ -64,9 +71,9 @@ services.AddResponsiveFileManager(options =>
 }
 ```
 
-There are more options available. Look at the demo app for an example.
+More options can be found in the demo app.
 
-3. Open your `Program.cs` and ensure it looks something like this:
+4. Open your `Program.cs` and ensure it looks something like this:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -87,23 +94,7 @@ var app = builder.Build();
 app.UseSession();
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.UseResponsiveFileManager(); // Simple version. See advanced example below
 
-app.UseRouting();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
-
-app.Run();
-```
-
-Instead of calling `UseResponsiveFileManager` method, you can also handle the configuration yourself like so:
-```csharp
 const string filemanagerPath = "/filemanager";
 
 app.UseStaticFiles(new StaticFileOptions
@@ -122,6 +113,18 @@ app.UsePhp(filemanagerPath, (Context ctx) =>
     // pass the options object to PHP globals
     ctx.Globals["rfm_options"] = PhpValue.FromClass(options); // this is how config in appsettings.json is passed to PHP
 });
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
+
+app.Run();
 ```
 
 You can use the source code in this repo, as follows:
