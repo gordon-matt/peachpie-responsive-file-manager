@@ -43,8 +43,6 @@ services.AddResponsiveFileManager(options =>
 });
 ```
 
-5. For TinyMCE integration, you will need to copy the plugin from this solution to your tinymce/plugins folder. Plugins for TinyMCE versions 4 and 5 can be found in `/Misc/TinyMCE Plugin`.
-
 **If you are wanting to use Peachpie for more than just ResponsiveFileManager, then it is recommended you ignore the ResponsiveFileManager.AspNetCore package, only acquire the base ResponsiveFileManager package and then manually configure the settings as follows:**
 
 1. Get the ResponsiveFileManager NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager/
@@ -93,63 +91,75 @@ public class ResponsiveFileManagerOptions
 }
 ```
 
+There are more options available. Look at the demo app for an example.
+
 4. Open your `Startup.cs` and ensure it looks something like this:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
 {
-    // etc
-	
-    // Adds a default in-memory implementation of IDistributedCache.
-    services.AddDistributedMemoryCache();
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+});
 
-    services.AddSession(options =>
-    {
-        options.IdleTimeout = TimeSpan.FromMinutes(30);
-        options.Cookie.HttpOnly = true;
-    });
-	
-    // etc
-}
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+builder.Services.AddResponsiveFileManager(options => options.MaxSizeUpload = 32);
 
-public void Configure(IApplicationBuilder app)
+var app = builder.Build();
+
+app.UseSession();
+app.UseDefaultFiles();
+app.UseStaticFiles();
+app.UseResponsiveFileManager(); // Simple version. See advanced example below
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
+
+app.Run();
+```
+
+Instead of calling `UseResponsiveFileManager` method, you can handle the configuration yourself like so:
+```csharp
+const string filemanagerPath = "/filemanager";
+
+app.UseStaticFiles(new StaticFileOptions
 {
-    // etc
+    RequestPath = filemanagerPath,
+    FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, ".." + filemanagerPath))),
+});
 
-    app.UseSession();
+app.UsePhp(filemanagerPath, (Context ctx) =>
+{
+    // construct the options
+    var options = new ResponsiveFileManagerOptions();
+    ctx.GetService<IConfiguration>().GetSection("ResponsiveFileManagerOptions").Bind(options);
+    ctx.GetService<IConfigureOptions<ResponsiveFileManagerOptions>>()?.Configure(options);
 
-    var rfmOptions = new ResponsiveFileManagerOptions();
-    Configuration.GetSection("ResponsiveFileManagerOptions").Bind(rfmOptions);
-
-    app.UseDefaultFiles();
-    app.UseStaticFiles(); // shortcut for HostEnvironment.WebRootFileProvider
-    app.UseStaticFiles(new StaticFileOptions
-    {
-        RequestPath = new PathString("/filemanager"),
-        FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(Assembly.GetEntryAssembly().Location, "../filemanager"))),
-    });
-
-    app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "ResponsiveFileManager")
-    {
-        BeforeRequest = (Context ctx) =>
-        {
-            ctx.Globals["rfm_options"] = PhpValue.FromClass(rfmOptions);
-        }
-    });
-
-    // etc
-}
+    // pass the options object to PHP globals
+    ctx.Globals["rfm_options"] = PhpValue.FromClass(options); // this is how config in appsettings.json is passed to PHP
+});
 ```
 
 You can use the source code in this repo, as follows:
 
-1. Open the solution in Visual Studio 2017 or newer.
+1. Open the solution in Visual Studio or newer.
 2. Set the **WebApplication** project as the default, if it isn't already.
 3. restore libs in WebApplication folder:
   - `dotnet tool install -g Microsoft.Web.LibraryManager.Cli`
   - `libman restore`
 4. Run and test one of the demo pages
-5. Look at the `Startup.cs` file for configuration to copy to your own project to use with the NuGet package.
+5. Look at the `Program.cs` file for configuration to copy to your own project to use with the NuGet package.
 
 ## Donate
 If you find this project helpful, consider buying me a cup of coffee.  :-)
