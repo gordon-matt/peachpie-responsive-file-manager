@@ -45,36 +45,9 @@ services.AddResponsiveFileManager(options =>
 
 **If you are wanting to use Peachpie for more than just ResponsiveFileManager, then it is recommended you ignore the ResponsiveFileManager.AspNetCore package, only acquire the base ResponsiveFileManager package and then manually configure the settings as follows:**
 
-1. Get the ResponsiveFileManager NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager/
+1. Get the ResponsiveFileManager.AspNetCore NuGet package from: https://www.nuget.org/packages/ResponsiveFileManager.AspNetCore/
 
-2. Create the following class:
-
-```csharp
-public class ResponsiveFileManagerOptions
-{
-    /// <summary>
-    /// Path from base_url to base of upload folder. Use start and final /
-    /// </summary>
-    public string UploadDirectory { get; set; }
-
-    /// <summary>
-    /// Relative path from filemanager folder to upload folder. Use final /
-    /// </summary>
-    public string CurrentPath { get; set; }
-
-    /// <summary>
-    /// Relative path from filemanager folder to thumbs folder. Use final / and DO NOT put inside upload folder.
-    /// </summary>
-    public string ThumbsBasePath { get; set; }
-
-    /// <summary>
-    /// Maximum upload size in Megabytes.
-    /// </summary>
-    public int? MaxSizeUpload { get; set; }
-}
-```
-
-3. Add the following to your **appsettings.json**:
+2. Add the following to your **appsettings.json**:
 
 ```json
 "ResponsiveFileManagerOptions": {
@@ -93,7 +66,7 @@ public class ResponsiveFileManagerOptions
 
 There are more options available. Look at the demo app for an example.
 
-4. Open your `Startup.cs` and ensure it looks something like this:
+3. Open your `Program.cs` and ensure it looks something like this:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -129,7 +102,7 @@ app.MapRazorPages();
 app.Run();
 ```
 
-Instead of calling `UseResponsiveFileManager` method, you can handle the configuration yourself like so:
+Instead of calling `UseResponsiveFileManager` method, you can also handle the configuration yourself like so:
 ```csharp
 const string filemanagerPath = "/filemanager";
 
