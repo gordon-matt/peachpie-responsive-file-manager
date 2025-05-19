@@ -43,11 +43,18 @@ builder.Services.AddResponsiveFileManager(options =&gt;
 ```;</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Version>2.0.0-beta2</Version>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Peachpie.AspNetCore.Web" Version="$(PeachpieVersion)" />
     <ProjectReference Include="..\ResponsiveFileManager\ResponsiveFileManager.msbuildproj">
       <PrivateAssets>None</PrivateAssets>
