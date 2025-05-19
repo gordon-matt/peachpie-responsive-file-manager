@@ -7,6 +7,12 @@
     <Version>2.0.0-beta2</Version>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="wwwroot\Media\**" />
+    <Content Remove="wwwroot\Media\**" />
+    <EmbeddedResource Remove="wwwroot\Media\**" />
+    <None Remove="wwwroot\Media\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Peachpie.AspNetCore.Web" Version="1.1.11" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.5" />
@@ -24,9 +30,5 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\Media\Thumbs\" />
-    <Folder Include="wwwroot\Media\Uploads\" />
   </ItemGroup>
 </Project>

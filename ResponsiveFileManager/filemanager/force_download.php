@@ -72,7 +72,8 @@ if ($ftp) {
         ini_set('zlib.output_compression', 'Off');
     }
     header('Content-Type: ' . $mime_type);
-    header('Content-Disposition: attachment; filename="' . $file_name . '"');
+    $encoded_filename = rawurlencode($file_name);
+    header('Content-Disposition: attachment; filename="' . $encoded_filename . '"; filename*=UTF-8\'\'' . $encoded_filename);
     header("Content-Transfer-Encoding: binary");
     header('Accept-Ranges: bytes');
 
