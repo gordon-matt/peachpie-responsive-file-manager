@@ -2,23 +2,47 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Title>Responsive File Manager for ASP.NET Core</Title>
-    <Description>The whole of Responsive File Manager, compiled, packed and provided as an ASP.NET Core package. Does not require PHP, becomes a part of ASP.NET Core application.
+    <Description>
+The whole of Responsive File Manager, compiled, packed and provided as an ASP.NET Core package. Does not require PHP, becomes a part of ASP.NET Core application.
 
 Usage:
 
 1. Add a package reference to "ResponsiveFileManager.AspNetCore"
-2. Add ResponsiveFileManager as middleware within "Configure" method:
 
-      app.UseResponsiveFileManager();
+2. Add the following to your **appsettings.json**:
 
-3. Optionally configure ResponsiveFileManager settings in "ConfigureServices" method.
+```json
+"ResponsiveFileManagerOptions": {
+// Path from base_url to base of upload folder. Use start and final /
+"UploadDirectory": "/Media/Uploads/",
 
-      services.AddResponsiveFileManager(options =&gt;
-      {
-      //
-      });</Description>
+// Relative path from filemanager folder to upload folder. Use final /
+"CurrentPath": "../Media/Uploads/",
+
+// Relative path from filemanager folder to thumbs folder. Use final / and DO NOT put inside upload folder.
+"ThumbsBasePath": "../Media/Thumbs/",
+
+"MaxSizeUpload":  10
+}
+```
+
+3. Add ResponsiveFileManager as middleware:
+
+```csharp
+app.UseResponsiveFileManager();
+```
+
+4. Optionally configure ResponsiveFileManager settings:
+
+```csharp
+builder.Services.AddResponsiveFileManager(options =&gt;
+{
+	options.MaxSizeUpload = 32;
+	//etc
+});
+```;</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>2.0.0-beta</Version>
+    <Version>2.0.0-beta2</Version>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
