@@ -1,4 +1,4 @@
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=gordon_matt%40live%2ecom&lc=AU&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+[![NuGet](https://img.shields.io/nuget/v/ResponsiveFileManager.AspNetCore?style=flat-square&logo=nuget&label=Version)](https://www.nuget.org/packages/ResponsiveFileManager.AspNetCore) [![NuGet](https://img.shields.io/nuget/dt/ResponsiveFileManager.AspNetCore?style=flat-square&logo=nuget&label=Downloads)](https://www.nuget.org/packages/ResponsiveFileManager.AspNetCore) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=gordon_matt%40live%2ecom&lc=AU&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ![Peachpie Responsive File Manager](https://github.com/gordon-matt/peachpie-responsive-file-manager/raw/master/Misc/logo.png)
 
