@@ -481,7 +481,7 @@ if (isset($_GET['action'])) {
 
             $ret = '<div id="files_permission_start">
             <form id="chmod_form">
-                <table class="table file-perms-table">
+                <table class="table table-sm file-perms-table">
                     <thead>
                         <tr>
                             <td></td>

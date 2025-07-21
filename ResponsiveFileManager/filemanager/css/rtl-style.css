@@ -1,11 +1,22 @@
-/* RTL */
+/* ========================================
+   Responsive File Manager - RTL Styles
+   ======================================== */
+
+/* RTL Font Family */
 body.no-touch {
     font-family: Nubmer, Yekan, "Open Sans", Tahoma;
 }
-.container-fluid,.uploader,.row-fluid,input {direction: rtl;}
+
+/* RTL Direction */
+.container-fluid, .uploader, .row-fluid, input {
+    direction: rtl;
+}
+
 .row-fluid [class*=span] {
     text-align: left;
 }
+
+/* RTL Placeholders */
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     font-family: Nubmer, Yekan, "Open Sans", Tahoma;
 }
@@ -18,18 +29,59 @@ body.no-touch {
 :-moz-placeholder { /* Firefox 18- */
     font-family: Nubmer, Yekan, "Open Sans", Tahoma;
 }
+
+/* RTL Form Elements */
 button, input, select, textarea {
     font-family: Nubmer, Yekan, "Open Sans", Tahoma;
 }
+
+/* RTL Filter Types */
 .filters .types {
     text-align: right !important;
 }
+
+/* RTL Float Utilities */
 .pull-right {
     float: left;
 }
 .pull-left {
     float: right;
 }
+
+/* RTL Flex Utilities */
+.flex-shrink-0 {
+    .btn {
+        margin: 0 0.25rem 0 0 !important;
+    }
+    
+    small {
+        margin: 0 0.25rem 0 0 !important;
+    }
+}
+
+/* RTL Action Buttons */
+.ms-auto {
+    .btn {
+        margin: 0 0.125rem 0 0 !important;
+    }
+    
+    small {
+        margin: 0 0.25rem 0 0 !important;
+    }
+}
+
+/* RTL Breadcrumb */
+.breadcrumb {
+    .breadcrumb-item {
+        &::before {
+            float: right;
+            padding-left: 0.5rem;
+            padding-right: 0;
+        }
+    }
+}
+
+/* RTL Sorter Container */
 .sorter-container .file-date,
 .sorter-container .file-extension,
 .sorter-container .file-name,
@@ -38,101 +90,274 @@ button, input, select, textarea {
 .sorter-container .img-dimension {
     text-align: right;
 }
+
 .sorter-container .file-name {
     width: 50px;
-	left: auto;
+    left: auto;
     right: 52px;
 }
+
 .sorter-container .file-date {
     width: 70px;
-	right: auto;
+    right: auto;
     left: 188px;
 }
+
 .sorter-container .file-size {
     width: 55px;
-	right: auto;
+    right: auto;
     left: 258px;
 }
+
 .sorter-container .img-dimension {
     width: 65px;
     right: auto;
     left: 123px;
 }
+
 .sorter-container .file-extension {
     width: 40px;
     right: auto;
     left: 313px;
 }
+
 .sorter-container .file-operations {
     width: 110px;
     right: auto;
     left: 0;
 }
-.list-view1.grid .file-date, .list-view1.grid .file-extension, .list-view1.grid .file-size, .list-view1.grid .img-dimension {
+
+/* RTL List Views */
+.list-view1.grid .file-date, 
+.list-view1.grid .file-extension, 
+.list-view1.grid .file-size, 
+.list-view1.grid .img-dimension {
     text-align: right;
 }
-.list-view1.grid li figure .box, .list-view2.grid li figure .box {
+
+.list-view1.grid li figure .box, 
+.list-view2.grid li figure .box {
     margin-left: 0;
-    margin-right: 50px;
+    margin-right: 70px; /* Updated to match consolidated styles */
 }
+
 .list-view1.grid figure .box {
     padding-right: 0;
     padding-left: 352px;
 }
-.list-view1.grid li figure .box h4, .list-view2.grid li figure .box h4 {
+
+.list-view1.grid li figure .box h4, 
+.list-view2.grid li figure .box h4 {
     padding-top: 1px;
     font-size: 13px;
     text-align: right;
 }
-.list-view1.grid figcaption, .list-view2.grid figcaption {
+
+.list-view1.grid figcaption, 
+.list-view2.grid figcaption {
     right: auto;
     left: 0;
     text-align: left;
 }
+
+/* RTL List View 1 Specific Positioning */
 .list-view1.grid .file-date {
     width: 70px;
     right: auto;
     left: 185px;
 }
+
 .list-view1.grid .img-dimension {
     width: 65px;
     right: auto;
     left: 120px;
 }
+
 .list-view1.grid .file-extension {
     width: 40px;
     right: auto;
     left: 310px;
 }
+
 .list-view1.grid .file-size {
     width: 55px;
     right: auto;
     left: 255px;
 }
-#main-item-container {text-align: right;}
+
+/* RTL List View 2 */
 .list-view2.grid figure .box {
     padding-left: 115px;
     padding-right: 0;
 }
+
+/* RTL Main Container */
+#main-item-container {
+    text-align: right;
+}
+
+/* RTL Selector Positioning */
+.list-view1.grid, .list-view2.grid {
+    .selector {
+        left: auto;
+        right: 2px;
+    }
+}
+
+.list-view0.grid {
+    .selector {
+        left: auto;
+        right: 2px;
+    }
+}
+
+/* RTL Image Container Mini */
+.list-view1.grid, .list-view2.grid {
+    .img-precontainer-mini {
+        left: auto;
+        right: 22px;
+    }
+    
+    .img-container-mini {
+        left: auto;
+        right: 24px;
+    }
+    
+    &.no-selector {
+        .img-container-mini {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        figure {
+            .box {
+                margin-left: 0;
+                margin-right: 70px;
+            }
+        }
+    }
+}
+
+/* RTL Modal Styles */
 .modal-scrollable {
     direction: rtl;
 }
+
 .modal-footer .btn+.btn {
     margin-left: 0;
     margin-right: 5px;
 }
+
 .close {
     float: left;
 }
+
+/* RTL Dropdown and Sorting */
 ul.sorting {
     padding: 5px 10px;
+    left: auto;
+    right: -25px;
 }
+
 .dropdown-menu>li>a {
     padding: 5px 0px;
 }
+
 ul.sorting.dropdown-menu>li>a.descending {
-    background-position: 0px 12px;
+    background-position: calc(100% - 6px) 8px;
+    padding-left: 20px;
+    padding-right: 6px;
 }
+
 ul.sorting.dropdown-menu>li>a.ascending {
-    background-position: 0px 12px;
+    background-position: calc(100% - 6px) 8px;
+    padding-left: 20px;
+    padding-right: 6px;
+}
+
+.sorter-container {
+    a.descending {
+        padding-left: 0;
+        padding-right: 9px;
+        background-position: calc(100% - 0px) 3px;
+    }
+
+    a.ascending {
+        padding-left: 0;
+        padding-right: 9px;
+        background-position: calc(100% - 0px) 4px;
+    }
+}
+
+/* RTL Context Menu Icons */
+.context-menu-item.icon {
+    background-position: calc(100% - 4px) 5px;
+    padding-left: 5px;
+    padding-right: 30px;
+}
+
+/* RTL Filter Input */
+input#filter-input {
+    left: auto;
+    right: 1px;
+}
+
+/* RTL Navbar Brand */
+.navbar .navbar-inner .container-fluid .brand {
+    float: right;
+}
+
+/* RTL Grid Icons */
+.grid li i {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+/* RTL Upload Component */
+.uploader {
+    .upload-tabbable {
+        .nav {
+            li a {
+                text-align: right;
+            }
+        }
+    }
+}
+
+/* RTL Responsive Adjustments */
+@media (max-width: 839px) {
+    .filters .types {
+        text-align: right !important;
+    }
+    
+    .navbar .navbar-inner .container-fluid .brand {
+        display: block;
+        float: right;
+    }
+}
+
+/* RTL Bootstrap 5 Specific Overrides */
+.navbar-collapse {
+    .d-flex {
+        .btn {
+            margin: 0 0.125rem 0 0;
+        }
+    }
+}
+
+.types {
+    .ff-label-type-all,
+    .ff-label-type-1,
+    .ff-label-type-2,
+    .ff-label-type-3,
+    .ff-label-type-4,
+    .ff-label-type-5 {
+        margin: 0 0.125rem 0 0 !important;
+    }
+}
+
+/* RTL View Controller */
+.view-controller {
+    .btn {
+        margin: 0 0.125rem 0 0 !important;
+    }
 }
