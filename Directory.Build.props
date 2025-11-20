@@ -6,7 +6,7 @@
     <!-- global properties -->
     <PropertyGroup>
         <PackageProjectUrl>https://github.com/gordon-matt/peachpie-responsive-file-manager</PackageProjectUrl>
-        <Version>1.4.1</Version>
+        <Version>2.0.1</Version>
         <Authors>Matt Gordon, Jakub Misek</Authors>
         <Company>Matt Gordon</Company>
         <PackageIcon>assets/icon.png</PackageIcon>
