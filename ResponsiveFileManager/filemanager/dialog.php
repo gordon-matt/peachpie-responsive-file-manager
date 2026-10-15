@@ -454,20 +454,7 @@ echo $config['upload_dir']; ?>"/>
 echo $cur_dir; ?>"/>
 <input type="hidden" id="cur_dir_thumb" value="<?php
 echo $cur_dir_thumb; ?>"/>
-<input type="hidden" id="insert_folder_name" value="<?php
-echo trans('Insert_Folder_Name'); ?>"/>
-<input type="hidden" id="rename_existing_folder" value="<?php
-echo trans('Rename_existing_folder'); ?>"/>
-<input type="hidden" id="new_folder" value="<?php
-echo trans('New_Folder'); ?>"/>
-<input type="hidden" id="ok" value="<?php
-echo trans('OK'); ?>"/>
-<input type="hidden" id="cancel" value="<?php
-echo trans('Cancel'); ?>"/>
-<input type="hidden" id="rename" value="<?php
-echo trans('Rename'); ?>"/>
-<input type="hidden" id="lang_duplicate" value="<?php
-echo trans('Duplicate'); ?>"/>
+<!-- Translation hidden inputs removed - using JavaScript trans() function instead -->
 <input type="hidden" id="duplicate" value="<?php
 if ($config['duplicate_files']) {
     echo 1;
@@ -496,8 +483,7 @@ echo str_replace(
     [''],
     $config['base_url'] . htmlspecialchars($_SERVER['REQUEST_URI'])
 ); ?>"/>
-<input type="hidden" id="lang_show_url" value="<?php
-echo trans('Show_url'); ?>"/>
+<!-- lang_show_url removed - using trans('Show_url') directly -->
 <input type="hidden" id="copy_cut_files_allowed" value="<?php
 if ($config['copy_cut_files']) {
     echo 1;
@@ -514,28 +500,10 @@ if ($config['copy_cut_dirs']) {
 echo $config['copy_cut_max_size']; ?>"/>
 <input type="hidden" id="copy_cut_max_count" value="<?php
 echo $config['copy_cut_max_count']; ?>"/>
-<input type="hidden" id="lang_copy" value="<?php
-echo trans('Copy'); ?>"/>
-<input type="hidden" id="lang_cut" value="<?php
-echo trans('Cut'); ?>"/>
-<input type="hidden" id="lang_paste" value="<?php
-echo trans('Paste'); ?>"/>
-<input type="hidden" id="lang_paste_here" value="<?php
-echo trans('Paste_Here'); ?>"/>
-<input type="hidden" id="lang_paste_confirm" value="<?php
-echo trans('Paste_Confirm'); ?>"/>
-<input type="hidden" id="lang_files" value="<?php
-echo trans('Files'); ?>"/>
-<input type="hidden" id="lang_folders" value="<?php
-echo trans('Folders'); ?>"/>
-<input type="hidden" id="lang_files_on_clipboard" value="<?php
-echo trans('Files_ON_Clipboard'); ?>"/>
+<!-- Translation hidden inputs removed - using JavaScript trans() function directly -->
 <input type="hidden" id="clipboard" value="<?php
 echo((isset($_SESSION['RF']['clipboard']['path']) && trim($_SESSION['RF']['clipboard']['path']) != null) ? 1 : 0); ?>"/>
-<input type="hidden" id="lang_clear_clipboard_confirm" value="<?php
-echo trans('Clear_Clipboard_Confirm'); ?>"/>
-<input type="hidden" id="lang_file_permission" value="<?php
-echo trans('File_Permission'); ?>"/>
+<!-- More translation inputs removed - using trans() directly -->
 <input type="hidden" id="chmod_files_allowed" value="<?php
 if ($config['chmod_files']) {
     echo 1;
@@ -556,22 +524,7 @@ if ($config['edit_text_files']) {
 } else {
     echo 0;
 } ?>"/>
-<input type="hidden" id="lang_edit_file" value="<?php
-echo trans('Edit_File'); ?>"/>
-<input type="hidden" id="lang_new_file" value="<?php
-echo trans('New_File'); ?>"/>
-<input type="hidden" id="lang_filename" value="<?php
-echo trans('Filename'); ?>"/>
-<input type="hidden" id="lang_file_info" value="<?php
-echo fix_strtoupper(trans('File_info')); ?>"/>
-<input type="hidden" id="lang_edit_image" value="<?php
-echo trans('Edit_image'); ?>"/>
-<input type="hidden" id="lang_error_upload" value="<?php
-echo trans('Error_Upload'); ?>"/>
-<input type="hidden" id="lang_select" value="<?php
-echo trans('Select'); ?>"/>
-<input type="hidden" id="lang_extract" value="<?php
-echo trans('Extract'); ?>"/>
+<!-- All lang_* translation inputs removed - using JavaScript trans() function directly -->
 <input type="hidden" id="extract_files" value="<?php
 if ($config['extract_files']) {
     echo 1;
@@ -596,22 +549,19 @@ if ($config['upload_files']) { ?>
     <div class="uploader">
         <div class="d-flex flex-column">
             <div class="text-center">
-                <button class="btn btn-light close-uploader"><i class="bi bi-arrow-left"></i> <?php
-                    echo trans('Return_Files_List') ?></button>
+                <button class="btn btn-light close-uploader"><i class="bi bi-arrow-left"></i> <span data-bind="text: trans('Return_Files_List')"></span></button>
             </div>
             <div class="space10"></div>
             <div class="upload-tabbable">
                 <div class="container1">
                     <ul class="nav nav-tabs" id="uploadTabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="baseUpload-tab" data-bs-toggle="tab" data-bs-target="#baseUpload" type="button" role="tab" aria-controls="baseUpload" aria-selected="true"><?php
-                                echo trans('Upload_base'); ?></button>
+                            <button class="nav-link active" id="baseUpload-tab" data-bs-toggle="tab" data-bs-target="#baseUpload" type="button" role="tab" aria-controls="baseUpload" aria-selected="true"><span data-bind="text: trans('Upload_base')"></span></button>
                         </li>
                         <?php
                         if ($config['url_upload']) { ?>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="urlUpload-tab" data-bs-toggle="tab" data-bs-target="#urlUpload" type="button" role="tab" aria-controls="urlUpload" aria-selected="false"><?php
-                                    echo trans('Upload_url'); ?></button>
+                                <button class="nav-link" id="urlUpload-tab" data-bs-toggle="tab" data-bs-target="#urlUpload" type="button" role="tab" aria-controls="urlUpload" aria-selected="false"><span data-bind="text: trans('Upload_url')"></span></button>
                             </li>
                         <?php
                         } ?>
@@ -635,15 +585,13 @@ if ($config['upload_files']) { ?>
                                             <!-- The fileinput-button span is used to style the file input field as button -->
                                             <span class="btn btn-success fileinput-button">
                                         <i class="bi bi-plus"></i>
-                                        <span><?php
-                                            echo trans('Upload_add_files'); ?></span>
+                                        <span data-bind="text: trans('Upload_add_files')"></span>
                                         <input type="file" name="files[]" multiple="multiple" accept="<?php
                                         echo '.' . implode(',.', $config['ext']); ?>">
                                     </span>
                                             <button type="submit" class="btn btn-warning start">
                                                 <i class="bi bi-upload"></i>
-                                                <span><?php
-                                                    echo trans('Upload_start'); ?></span>
+                                                <span data-bind="text: trans('Upload_start')"></span>
                                             </button>
                                             <!-- The global file processing state -->
                                             <span class="fileupload-process"></span>
@@ -655,8 +603,7 @@ if ($config['upload_files']) { ?>
                                             <tbody class="files"></tbody>
                                         </table>
                                     </div>
-                                    <div class="upload-help"><?php
-                                        echo trans('Upload_base_help'); ?></div>
+                                    <div class="upload-help" data-bind="text: trans('Upload_base_help')"></div>
                                 </div>
                             </form>
                             <!-- The template to display files available for upload -->
@@ -734,17 +681,14 @@ if ($config['upload_files']) { ?>
                                 <br/>
                                 <form>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-2 col-form-label" for="url"><?php
-                                            echo trans('Upload_url'); ?></label>
+                                        <label class="col-sm-2 col-form-label" for="url" data-bind="text: trans('Upload_url')"></label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="url" placeholder="<?php
-                                            echo trans('Upload_url'); ?>">
+                                            <input type="text" class="form-control" id="url" data-bind="attr: { placeholder: trans('Upload_url') }">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <div class="col-sm-10 offset-sm-2">
-                                            <button class="btn btn-primary" id="uploadURL"><?php
-                                                echo trans('Upload_file'); ?></button>
+                                            <button class="btn btn-primary" id="uploadURL"><span data-bind="text: trans('Upload_file')"></span></button>
                                         </div>
                                     </div>
                                 </form>
@@ -944,30 +888,25 @@ if ($config['upload_files']) { ?>
                     <div class="d-flex flex-wrap align-items-center me-auto">
                                 <?php
                                 if ($config['upload_files']) { ?>
-                                                                        <button class="tip btn btn-sm btn-success upload-btn" title="<?php
-                                    echo trans('Upload_file'); ?>"><i class="rficon-upload"></i> <?php echo trans('Upload_file'); ?></button>
+                                    <button class="tip btn btn-sm btn-success upload-btn" data-bind="attr: { title: trans('Upload_file') }"><i class="rficon-upload"></i> <span data-bind="text: trans('Upload_file')"></span></button>
                                 <?php
                                 } ?>
                                 <?php
                                 if ($config['create_text_files']) { ?>
-                                    <button class="tip btn btn-sm btn-light create-file-btn" title="<?php
-                                echo trans('New_File'); ?>"><i class="bi bi-plus"></i><i class="bi bi-file-earmark"></i>
+                                    <button class="tip btn btn-sm btn-light create-file-btn" data-bind="attr: { title: trans('New_File') }"><i class="bi bi-plus"></i><i class="bi bi-file-earmark"></i>
                                 </button>
                                 <?php
                                 } ?>
                                 <?php
                                 if ($config['create_folders']) { ?>
-                                    <button class="tip btn btn-sm btn-light new-folder" title="<?php
-                                    echo trans('New_Folder') ?>"><i class="bi bi-plus"></i><i
+                                    <button class="tip btn btn-sm btn-light new-folder" data-bind="attr: { title: trans('New_Folder') }"><i class="bi bi-plus"></i><i
                                                 class="bi bi-folder-plus"></i></button>
                                 <?php
                                 } ?>
                                 <?php
                                 if ($config['copy_cut_files'] || $config['copy_cut_dirs']) { ?>
-                                    <button class="tip btn btn-sm btn-light paste-here-btn" title="<?php
-                                    echo trans('Paste_Here'); ?>"><i class="rficon-clipboard-apply"></i></button>
-                                    <button class="tip btn btn-sm btn-light clear-clipboard-btn" title="<?php
-                                    echo trans('Clear_Clipboard'); ?>"><i class="rficon-clipboard-clear"></i></button>
+                                    <button class="tip btn btn-sm btn-light paste-here-btn" data-bind="attr: { title: trans('Paste_Here') }"><i class="rficon-clipboard-apply"></i></button>
+                                    <button class="tip btn btn-sm btn-light clear-clipboard-btn" data-bind="attr: { title: trans('Clear_Clipboard') }"><i class="rficon-clipboard-clear"></i></button>
                                 <?php
                                 } ?>
                                 <div id="multiple-selection" style="display:none;">
@@ -975,20 +914,15 @@ if ($config['upload_files']) { ?>
                                     if ($config['multiple_selection']) { ?>
                                         <?php
                                         if ($config['delete_files']) { ?>
-                                            <button class="tip btn btn-sm btn-danger multiple-delete-btn" title="<?php
-                                            echo trans('Erase'); ?>" data-confirm="<?php
-                                            echo trans('Confirm_del'); ?>"><i class="bi bi-trash"></i></button>
+                                            <button class="tip btn btn-sm btn-danger multiple-delete-btn" data-bind="attr: { title: trans('Erase'), 'data-confirm': trans('Confirm_del') }"><i class="bi bi-trash"></i></button>
                                         <?php
                                         } ?>
-                                        <button class="tip btn btn-sm btn-light multiple-select-btn" title="<?php
-                                        echo trans('Select_All'); ?>"><i class="bi bi-check-square"></i></button>
-                                        <button class="tip btn btn-sm btn-light multiple-deselect-btn" title="<?php
-                                        echo trans('Deselect_All'); ?>"><i class="bi bi-square"></i></button>
+                                        <button class="tip btn btn-sm btn-light multiple-select-btn" data-bind="attr: { title: trans('Select_All') }"><i class="bi bi-check-square"></i></button>
+                                        <button class="tip btn btn-sm btn-light multiple-deselect-btn" data-bind="attr: { title: trans('Deselect_All') }"><i class="bi bi-square"></i></button>
                                         <?php
                                         if ($apply_type != "apply_none" && $config['multiple_selection_action_button']) { ?>
                                             <button class="btn btn-sm multiple-action-btn btn-light" data-function="<?php
-                                            echo $apply_type; ?>"><?php
-                                                echo trans('Select'); ?></button>
+                                            echo $apply_type; ?>"><span data-bind="text: trans('Select')"></span></button>
                                         <?php
                                         } ?>
                                     <?php
@@ -998,101 +932,71 @@ if ($config['upload_files']) { ?>
                     
                     <!-- Filters and controls on the right -->
                     <div class="d-flex flex-nowrap align-items-center ms-auto">
-                        <!-- View controllers -->
+                        <!-- View controllers (KnockoutJS) -->
                         <div class="view-controller me-2">
-                            <button class="btn btn-sm tip<?php
-                            if ($view == 0) {
-                                echo " btn-dark";
-                            } else {
-                                echo " btn-light";
-                            } ?>" id="view0" data-value="0" title="<?php
-                            echo trans('View_boxes'); ?>"><i class="bi bi-grid-3x3"></i></button>
-                            <button class="btn btn-sm tip<?php
-                            if ($view == 1) {
-                                echo " btn-dark";
-                            } else {
-                                echo " btn-light";
-                            } ?>" id="view1" data-value="1" title="<?php
-                            echo trans('View_list'); ?>"><i class="bi bi-list"></i></button>
-                            <button class="btn btn-sm tip<?php
-                            if ($view == 2) {
-                                echo " btn-dark";
-                            } else {
-                                echo " btn-light";
-                            } ?>" id="view2" data-value="2" title="<?php
-                            echo trans('View_columns_list'); ?>"><i class="bi bi-columns"></i></button>
+                            <button class="btn btn-sm tip" data-bind="css: { 'btn-dark': viewType() === 0, 'btn-light': viewType() !== 0 }, click: function() { changeView(0); }, attr: { title: trans('View_boxes') }" id="view0" data-value="0">
+                                <i class="bi bi-grid-3x3"></i>
+                            </button>
+                            <button class="btn btn-sm tip" data-bind="css: { 'btn-dark': viewType() === 1, 'btn-light': viewType() !== 1 }, click: function() { changeView(1); }, attr: { title: trans('View_list') }" id="view1" data-value="1">
+                                <i class="bi bi-list"></i>
+                            </button>
+                            <button class="btn btn-sm tip" data-bind="css: { 'btn-dark': viewType() === 2, 'btn-light': viewType() !== 2 }, click: function() { changeView(2); }, attr: { title: trans('View_columns_list') }" id="view2" data-value="2">
+                                <i class="bi bi-columns"></i>
+                            </button>
                         </div>
                         
-                        <!-- Filter types and search -->
+                        <!-- Filter types and search (KnockoutJS) -->
                         <div class="d-flex flex-nowrap align-items-center types">
-                                <span><?php
-                                    echo trans('Filters'); ?>:</span>
-                                <?php
-                                if ($_GET['type'] != 1 && $_GET['type'] != 3 && $config['show_filter_buttons']) { ?>
-                                    <?php
-                                    if (count($config['ext_file']) > 0) { ?>
-                                        <input id="select-type-1" name="radio-sort" type="radio"
-                                               data-item="ff-item-type-1" class="d-none"/>
-                                        <label id="ff-item-type-1" title="<?php
-                                        echo trans('Files'); ?>" for="select-type-1" class="tip btn btn-sm btn-light ff-label-type-1"><i
-                                                    class="bi bi-file-earmark"></i></label>
-                                    <?php
-                                    } ?>
-                                    <?php
-                                    if (count($config['ext_img']) > 0) { ?>
-                                        <input id="select-type-2" name="radio-sort" type="radio"
-                                               data-item="ff-item-type-2" class="d-none"/>
-                                        <label id="ff-item-type-2" title="<?php
-                                        echo trans('Images'); ?>" for="select-type-2" class="tip btn btn-sm btn-light ff-label-type-2"><i
-                                                    class="bi bi-image"></i></label>
-                                    <?php
-                                    } ?>
-                                    <?php
-                                    if (count($config['ext_misc']) > 0) { ?>
-                                        <input id="select-type-3" name="radio-sort" type="radio"
-                                               data-item="ff-item-type-3" class="d-none"/>
-                                        <label id="ff-item-type-3" title="<?php
-                                        echo trans('Archives'); ?>" for="select-type-3" class="tip btn btn-sm btn-light ff-label-type-3"><i
-                                                    class="bi bi-archive"></i></label>
-                                    <?php
-                                    } ?>
-                                    <?php
-                                    if (count($config['ext_video']) > 0) { ?>
-                                        <input id="select-type-4" name="radio-sort" type="radio"
-                                               data-item="ff-item-type-4" class="d-none"/>
-                                        <label id="ff-item-type-4" title="<?php
-                                        echo trans('Videos'); ?>" for="select-type-4" class="tip btn btn-sm btn-light ff-label-type-4"><i
-                                                    class="bi bi-camera-video"></i></label>
-                                    <?php
-                                    } ?>
-                                    <?php
-                                    if (count($config['ext_music']) > 0) { ?>
-                                        <input id="select-type-5" name="radio-sort" type="radio"
-                                               data-item="ff-item-type-5" class="d-none"/>
-                                        <label id="ff-item-type-5" title="<?php
-                                        echo trans('Music'); ?>" for="select-type-5" class="tip btn btn-sm btn-light ff-label-type-5"><i
-                                                    class="bi bi-music-note"></i></label>
-                                    <?php
-                                    } ?>
-                                <?php
-                                } ?>
-                                <input accesskey="f" type="text" class="form-control d-inline-block filter-input <?php
-                                echo(($_GET['type'] != 1 && $_GET['type'] != 3) ? '' : 'filter-input-notype'); ?>"
-                                       id="filter-input" name="filter" placeholder="<?php
-                                echo fix_strtolower(trans('Text_filter')); ?>..." value="<?php
-                                echo $filter; ?>" style="width: auto;"/><?php
-                                if ($n_files > $config['file_number_limit_js']) { ?><label id="filter" class="btn btn-sm btn-light"><i
-                                            class="bi bi-play-fill"></i></label><?php
-                                } ?>
+                                <span data-bind="text: trans('Filters') + ':'"></span>
+                                <!-- ko if: config.showFilterButtons -->
+                                    <!-- ko if: config.hasFiles -->
+                                        <input id="select-type-1" name="radio-sort" type="radio" data-item="ff-item-type-1" class="d-none" data-bind="checked: selectedFileType" value="files"/>
+                                        <label id="ff-item-type-1" for="select-type-1" class="tip btn btn-sm ff-label-type-1" data-bind="css: { 'btn-dark': selectedFileType() === 'files', 'btn-light': selectedFileType() !== 'files' }, attr: { title: trans('Files') }, click: function(data, event) { changeFileType('files', event); }">
+                                            <i class="bi bi-file-earmark"></i>
+                                        </label>
+                                    <!-- /ko -->
+                                    <!-- ko if: config.hasImages -->
+                                        <input id="select-type-2" name="radio-sort" type="radio" data-item="ff-item-type-2" class="d-none" data-bind="checked: selectedFileType" value="images"/>
+                                        <label id="ff-item-type-2" for="select-type-2" class="tip btn btn-sm ff-label-type-2" data-bind="css: { 'btn-dark': selectedFileType() === 'images', 'btn-light': selectedFileType() !== 'images' }, attr: { title: trans('Images') }, click: function(data, event) { changeFileType('images', event); }">
+                                            <i class="bi bi-image"></i>
+                                        </label>
+                                    <!-- /ko -->
+                                    <!-- ko if: config.hasArchives -->
+                                        <input id="select-type-3" name="radio-sort" type="radio" data-item="ff-item-type-3" class="d-none" data-bind="checked: selectedFileType" value="archives"/>
+                                        <label id="ff-item-type-3" for="select-type-3" class="tip btn btn-sm ff-label-type-3" data-bind="css: { 'btn-dark': selectedFileType() === 'archives', 'btn-light': selectedFileType() !== 'archives' }, attr: { title: trans('Archives') }, click: function(data, event) { changeFileType('archives', event); }">
+                                            <i class="bi bi-archive"></i>
+                                        </label>
+                                    <!-- /ko -->
+                                    <!-- ko if: config.hasVideos -->
+                                        <input id="select-type-4" name="radio-sort" type="radio" data-item="ff-item-type-4" class="d-none" data-bind="checked: selectedFileType" value="videos"/>
+                                        <label id="ff-item-type-4" for="select-type-4" class="tip btn btn-sm ff-label-type-4" data-bind="css: { 'btn-dark': selectedFileType() === 'videos', 'btn-light': selectedFileType() !== 'videos' }, attr: { title: trans('Videos') }, click: function(data, event) { changeFileType('videos', event); }">
+                                            <i class="bi bi-camera-video"></i>
+                                        </label>
+                                    <!-- /ko -->
+                                    <!-- ko if: config.hasMusic -->
+                                        <input id="select-type-5" name="radio-sort" type="radio" data-item="ff-item-type-5" class="d-none" data-bind="checked: selectedFileType" value="music"/>
+                                        <label id="ff-item-type-5" for="select-type-5" class="tip btn btn-sm ff-label-type-5" data-bind="css: { 'btn-dark': selectedFileType() === 'music', 'btn-light': selectedFileType() !== 'music' }, attr: { title: trans('Music') }, click: function(data, event) { changeFileType('music', event); }">
+                                            <i class="bi bi-music-note"></i>
+                                        </label>
+                                    <!-- /ko -->
+                                <!-- /ko -->
+                                <input accesskey="f" type="text" 
+                                       data-bind="value: textFilter, valueUpdate: 'keyup', event: { keyup: onTextFilterChange }, attr: { placeholder: trans('Text_filter') + '...' }"
+                                       class="form-control d-inline-block filter-input <?php echo(($_GET['type'] != 1 && $_GET['type'] != 3) ? '' : 'filter-input-notype'); ?>"
+                                       id="filter-input" name="filter" style="width: auto;"/>
+                                <!-- ko if: config.fileNumberLimit > config.fileNumberLimitJs -->
+                                    <button type="button" id="filter" class="btn btn-sm btn-light" data-bind="click: function(data, event) { onTextFilterChange(event); }">
+                                        <i class="bi bi-play-fill"></i>
+                                    </button>
+                                <!-- /ko -->
 
-                                <input id="select-type-all" name="radio-sort" type="radio" data-item="ff-item-type-all"
-                                       class="d-none"/>
-                                <label id="ff-item-type-all" title="<?php
-                                echo trans('All'); ?>" <?php
-                                       if ($_GET['type'] == 1 || $_GET['type'] == 3){ ?>style="visibility: hidden;" <?php
-                                } ?> data-item="ff-item-type-all" for="select-type-all" style="margin-right:0px;"
-                                       class="tip btn btn-sm btn-light ff-label-type-all"><?php
-                                    echo trans('All'); ?></label>
+                                <input id="select-type-all" name="radio-sort" type="radio" data-item="ff-item-type-all" class="d-none" data-bind="checked: selectedFileType" value="all"/>
+                                <label id="ff-item-type-all" for="select-type-all" 
+                                       class="tip btn btn-sm ff-label-type-all" data-item="ff-item-type-all"
+                                       style="margin-right:0px;"
+                                       data-bind="css: { 'btn-dark': selectedFileType() === 'all', 'btn-light': selectedFileType() !== 'all' }, attr: { title: trans('All') }, click: function(data, event) { changeFileType('all', event); }, visible: !config.hideAllButton">
+                                    <span data-bind="text: trans('All')"></span>
+                                </label>
                         </div>
                     </div>
                 </div>
@@ -1925,6 +1829,335 @@ if ($config['tui_active']) { ?>
         $('li').draggable({disabled: true});
     }
 </script>
+
+<script>
+        // Initialize configuration and language data
+        window.FileManagerConfig = {
+            initialized: false,
+            languages: null,
+            langVars: null,
+            currentLang: '<?php echo $lang; ?>'
+        };
+
+        // Translation function with fallback
+        function trans(key) {
+            if (!window.FileManagerConfig.langVars) {
+                // Fallback translations for essential UI elements
+                var fallbacks = {
+                    'Upload_file': 'Upload File',
+                    'New_File': 'New File', 
+                    'New_Folder': 'New Folder',
+                    'Erase': 'Delete',
+                    'Select_All': 'Select All',
+                    'Deselect_All': 'Deselect All',
+                    'Select': 'Select',
+                    'View_boxes': 'Grid View',
+                    'View_list': 'List View', 
+                    'View_columns_list': 'Column View',
+                    'Filters': 'Filters',
+                    'Text_filter': 'Filter',
+                    'Files': 'Files',
+                    'Images': 'Images',
+                    'Archives': 'Archives', 
+                    'Videos': 'Videos',
+                    'Music': 'Music',
+                    'All': 'All',
+                    'Folders': 'Folders',
+                    'Sorting': 'Sort',
+                    'Filename': 'Name',
+                    'Date': 'Date',
+                    'Size': 'Size',
+                    'Type': 'Type',
+                    'Back': 'Back',
+                    'Download': 'Download',
+                    'Preview': 'Preview',
+                    'Rename': 'Rename',
+                    'Paste_Here': 'Paste Here',
+                    'Clear_Clipboard': 'Clear Clipboard',
+                    'Confirm_del': 'Are you sure you want to delete?',
+                    'Return_Files_List': 'Return to Files List',
+                    'Upload_base': 'Upload',
+                    'Upload_url': 'Upload from URL',
+                    'Upload_add_files': 'Add files',
+                    'Upload_start': 'Start upload',
+                    'Upload_base_help': 'Drag files here or click to browse',
+                    'Insert_Folder_Name': 'Insert folder name',
+                    'Rename_existing_folder': 'Rename existing folder',
+                    'OK': 'OK',
+                    'Cancel': 'Cancel',
+                    'Duplicate': 'Duplicate',
+                    'Show_url': 'Show URL',
+                    'Copy': 'Copy',
+                    'Cut': 'Cut',
+                    'Paste': 'Paste',
+                    'Paste_Confirm': 'Confirm paste',
+                    'Files_ON_Clipboard': 'Files on clipboard',
+                    'Clear_Clipboard_Confirm': 'Clear clipboard?',
+                    'File_Permission': 'File permissions',
+                    'Lang_Change': 'Change language',
+                    'Edit_File': 'Edit file',
+                    'File_info': 'File info',
+                    'Edit_image': 'Edit image',
+                    'Error_Upload': 'Upload error',
+                    'Extract': 'Extract',
+                    'total size': 'Total size',
+                    'MB': 'MB',
+                    'Swipe_help': 'Swipe help',
+                    'Dimension': 'Dimensions',
+                    'Operations': 'Operations',
+                    'Type_dir': 'Folder',
+                    'Date_type': 'Y-m-d H:i:s',
+                    'Confirm_Folder_del': 'Are you sure you want to delete this folder?'
+                };
+                return fallbacks[key] || key;
+            }
+            return window.FileManagerConfig.langVars[key] || key;
+        }
+
+        // Initialize language data in localStorage
+        function initializeLanguageData() {
+            const storedLang = localStorage.getItem('fm_current_lang');
+            const storedLangVars = localStorage.getItem('fm_lang_vars');
+            
+            if (storedLang === window.FileManagerConfig.currentLang && storedLangVars) {
+                try {
+                    window.FileManagerConfig.langVars = JSON.parse(storedLangVars);
+                    return Promise.resolve();
+                } catch (e) {
+                    // Fall through to fetch new data
+                }
+            }
+            
+            return fetch(`api/language.php?lang=${window.FileManagerConfig.currentLang}`)
+                .then(response => response.json())
+                .then(data => {
+                    window.FileManagerConfig.langVars = data;
+                    localStorage.setItem('fm_current_lang', window.FileManagerConfig.currentLang);
+                    localStorage.setItem('fm_lang_vars', JSON.stringify(data));
+                });
+        }
+
+        // Initialize available languages
+        function initializeLanguages() {
+            const storedLanguages = localStorage.getItem('fm_languages');
+            
+            if (storedLanguages) {
+                try {
+                    window.FileManagerConfig.languages = JSON.parse(storedLanguages);
+                    return Promise.resolve();
+                } catch (e) {
+                    // Fall through to fetch new data
+                }
+            }
+            
+            return fetch('api/languages.php')
+                .then(response => response.json())
+                .then(data => {
+                    window.FileManagerConfig.languages = data;
+                    localStorage.setItem('fm_languages', JSON.stringify(data));
+                });
+        }
+
+        // Initialize all data
+        function initializeApp() {
+            return Promise.all([
+                initializeLanguages(),
+                initializeLanguageData()
+            ]).then(() => {
+                window.FileManagerConfig.initialized = true;
+                // Initialize Knockout ViewModel after data is loaded
+                if (typeof initializeViewModel === 'function') {
+                    initializeViewModel();
+                }
+            });
+        }
+    </script>
+
+
+<!-- KnockoutJS Integration -->
+<script>
+    function FileManagerViewModel() {
+        var self = this;
+        
+        // Observables for UI state
+        self.currentPath = ko.observable('<?php echo addslashes($subdir); ?>');
+        self.viewType = ko.observable(<?php echo $view; ?>);
+        self.textFilter = ko.observable('<?php echo addslashes($filter); ?>');
+        self.selectedFileType = ko.observable('all'); // all, files, images, archives, videos, music
+        
+        // Configuration data from PHP
+        self.config = {
+            showFilterButtons: <?php echo ($_GET['type'] != 1 && $_GET['type'] != 3 && $config['show_filter_buttons']) ? 'true' : 'false'; ?>,
+            hasFiles: <?php echo (count($config['ext_file']) > 0) ? 'true' : 'false'; ?>,
+            hasImages: <?php echo (count($config['ext_img']) > 0) ? 'true' : 'false'; ?>,
+            hasArchives: <?php echo (count($config['ext_misc']) > 0) ? 'true' : 'false'; ?>,
+            hasVideos: <?php echo (count($config['ext_video']) > 0) ? 'true' : 'false'; ?>,
+            hasMusic: <?php echo (count($config['ext_music']) > 0) ? 'true' : 'false'; ?>,
+            fileNumberLimit: <?php echo $n_files; ?>,
+            fileNumberLimitJs: <?php echo $config['file_number_limit_js']; ?>,
+            hideAllButton: <?php echo ($_GET['type'] == 1 || $_GET['type'] == 3) ? 'true' : 'false'; ?>
+        };
+        
+        // No need for translation observables - we'll use trans() function directly in bindings
+        
+        // Methods for UI interactions
+        self.changeView = function(newView) {
+            self.viewType(newView);
+            // Trigger existing JavaScript functionality
+            if (window.change_view) {
+                window.change_view(newView);
+            }
+        };
+        
+        self.changeFileType = function(fileType, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+            }
+            
+            console.log('Changing file type to:', fileType);
+            self.selectedFileType(fileType);
+            
+            // Map our file types to the existing system's expectations
+            var typeMap = {
+                'all': 'ff-item-type-all',
+                'files': 'ff-item-type-1', 
+                'images': 'ff-item-type-2',
+                'archives': 'ff-item-type-3',
+                'videos': 'ff-item-type-4',
+                'music': 'ff-item-type-5'
+            };
+            
+            // Trigger existing JavaScript functionality by clicking the radio button
+            var mappedType = typeMap[fileType] || 'ff-item-type-all';
+            console.log('Mapped type:', mappedType);
+            
+            // Use setTimeout to avoid any potential conflicts
+            setTimeout(function() {
+                // Find the radio button and trigger its click event
+                var radioButton = document.querySelector('input[data-item="' + mappedType + '"]');
+                if (radioButton) {
+                    console.log('Triggering radio button click for:', mappedType);
+                    // Trigger the actual click event that the original JavaScript listens for
+                    var clickEvent = new Event('click', { bubbles: true });
+                    radioButton.dispatchEvent(clickEvent);
+                } else {
+                    console.warn('Radio button not found for:', mappedType);
+                }
+            }, 10);
+            
+            return false; // Prevent any default action
+        };
+        
+        self.onTextFilterChange = function(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+            }
+            
+            console.log('Text filter change triggered');
+            
+            // Trigger existing JavaScript functionality
+            setTimeout(function() {
+                if (window.filter_files) {
+                    console.log('Calling filter_files function');
+                    window.filter_files();
+                } else if (window.filter) {
+                    console.log('Calling filter function');
+                    window.filter();
+                } else {
+                    console.warn('No filter function found');
+                    // Fallback: trigger the original filter button if it exists
+                    var filterBtn = document.getElementById('filter');
+                    if (filterBtn && filterBtn.onclick) {
+                        filterBtn.onclick();
+                    }
+                }
+            }, 10);
+            
+            return false;
+        };
+        
+        // CSS classes are now handled directly in the HTML with data-bind css
+        
+        // Initialize method called after data is loaded
+        self.init = function() {
+            console.log('FileManager KnockoutJS ViewModel initialized with UI bindings');
+            
+            // Make trans function globally available for data-bind expressions and include.js
+            window.trans = trans;
+            
+            // No need to update translation observables - trans() function is now globally available
+            
+            // No need to populate hidden inputs anymore - include.js now uses trans() directly
+        };
+        
+        console.log('FileManager KnockoutJS ViewModel created');
+        console.log('Config values:', {
+            fileNumberLimit: self.config.fileNumberLimit,
+            fileNumberLimitJs: self.config.fileNumberLimitJs,
+            showFilterButtons: self.config.showFilterButtons,
+            hideAllButton: self.config.hideAllButton,
+            'Should show play button': self.config.fileNumberLimit > self.config.fileNumberLimitJs,
+            'Should show All button': !self.config.hideAllButton
+        });
+    }
+
+    var fileManagerVM;
+    var initRetries = 0;
+    var maxRetries = 50; // 5 seconds max
+
+    function initializeViewModel() {
+        // Wait for KnockoutJS to be available
+        if (typeof ko === 'undefined') {
+            initRetries++;
+            if (initRetries > maxRetries) {
+                console.error('KnockoutJS failed to load after 5 seconds. Check if vendor.js is loading properly.');
+                console.error('Available scripts:', Array.from(document.scripts).map(s => s.src));
+                return;
+            }
+            console.warn('KnockoutJS not yet loaded, retrying in 100ms... (' + initRetries + '/' + maxRetries + ')');
+            setTimeout(initializeViewModel, 100);
+            return;
+        }
+        
+        console.log('KnockoutJS found, initializing view model...');
+        fileManagerVM = new FileManagerViewModel();
+        ko.applyBindings(fileManagerVM);
+        fileManagerVM.init();
+    }
+
+    // Initialize everything when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if KnockoutJS is already available
+        if (typeof ko !== 'undefined') {
+            console.log('KnockoutJS already available, initializing immediately...');
+            initializeApp();
+        } else {
+            // Wait for vendor.js to load, but with a fallback timeout
+            console.log('Waiting for vendor.js to load...');
+            var checkInterval = setInterval(function() {
+                if (typeof ko !== 'undefined') {
+                    console.log('KnockoutJS detected, initializing...');
+                    clearInterval(checkInterval);
+                    initializeApp();
+                }
+            }, 50);
+            
+            // Fallback timeout
+            setTimeout(function() {
+                clearInterval(checkInterval);
+                if (typeof ko === 'undefined') {
+                    console.error('KnockoutJS still not available after timeout. Attempting to initialize anyway...');
+                    initializeApp();
+                }
+            }, 3000);
+        }
+    });
+</script>
+
 <!-- Bootstrap 5 JavaScript bundled in vendor.js -->
 </body>
 </html>

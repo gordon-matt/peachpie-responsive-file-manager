@@ -3,7 +3,7 @@ var encodeURL,show_animation,hide_animation,apply,apply_none,apply_img,apply_any
 {
 	"use strict";
 
-	var version = "9.14.0";
+	var version = "9.20.0";
 	var active_contextmenu = true;
 	var myLazyLoad = null;
 	var clipboard = null;
