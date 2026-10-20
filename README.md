@@ -1,3 +1,14 @@
+> [!IMPORTANT]
+> **This project is no longer maintained.**
+>
+> Thank you to everyone who has used, contributed to, or supported this project! While this repository will remain available for reference, it is no longer actively maintained and may not receive further updates or bug fixes.
+>
+> **Looking for an alternative?** I recommend checking out [WebFilez](https://github.com/gordon-matt/WebFilez), which is a better choice going forward.
+>
+> I've also created a Bootstrap5 version of ResponsiveFileManager if you prefer to stay with this project instead. There's no NuGet package; look for the `feature/Bootstrap5` branch and use that.
+> 
+> Thank you for your interest and understanding!
+
 [![NuGet](https://img.shields.io/nuget/v/ResponsiveFileManager.AspNetCore?style=flat-square&logo=nuget&label=Version)](https://www.nuget.org/packages/ResponsiveFileManager.AspNetCore) [![NuGet](https://img.shields.io/nuget/dt/ResponsiveFileManager.AspNetCore?style=flat-square&logo=nuget&label=Downloads)](https://www.nuget.org/packages/ResponsiveFileManager.AspNetCore) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=gordon_matt%40live%2ecom&lc=AU&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ![Peachpie Responsive File Manager](https://github.com/gordon-matt/peachpie-responsive-file-manager/raw/master/Misc/logo.png)
